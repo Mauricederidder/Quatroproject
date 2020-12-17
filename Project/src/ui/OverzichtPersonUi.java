@@ -23,11 +23,12 @@ public class OverzichtPersonUi extends Application {
         VBox vertical = new VBox();
         vertical.getChildren().add(new Label("Overzicht personen"));
 
-        Button overzicht = new Button("Overzicht");
-        overzicht.setOnAction((event) -> {
+        Button Aanmaken = new Button("Aanmaken");
+        Aanmaken.setOnAction((event) -> {
            // Stage stageOverzicht = new Stage();
             try {
                 createPerson.startCreatePerson();
+                window.close();
             } catch (Exception E) {
                 System.out.println("Something whent wrong!");
             }
@@ -35,8 +36,8 @@ public class OverzichtPersonUi extends Application {
 
         HBox texts = new HBox();
         texts.setSpacing(30);
-        texts.getChildren().add(overzicht);
-        texts.getChildren().add(new Button("Aanmaken"));
+        texts.getChildren().add(Aanmaken);
+        texts.getChildren().add(new Button("Overzicht"));
         texts.getChildren().add(new Button("Updaten"));
         texts.getChildren().add(new Button("Verwijderen"));
 
