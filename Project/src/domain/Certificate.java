@@ -4,9 +4,11 @@ public class Certificate {
     
     private int certificateId;
     private int rating;
+    // TODO:: Implementeer 
 
     public Certificate(int certificateId, int rating){
-
+        this.certificateId = certificateId;
+        this.rating = rating;
     }
 
     public int getCertificateId() {
