@@ -26,11 +26,11 @@ public class OverzichtPersonUi extends Application {
         VBox vertical = new VBox();
         vertical.getChildren().add(new Label("Overzicht personen"));
 
-         for (Student student : new CRUD().readTest()) {
-             Label label = new Label();
-             label.setText(student.getEmail());
-             vertical.getChildren().add(label);
-         }
+        for (Student student : new CRUD().readTest()) {
+            Label label = new Label();
+            label.setText(student.getEmail());
+            vertical.getChildren().add(label);
+        }
         // Use import checklist in combination with for loop
 
         Button Aanmaken = new Button("Aanmaken");
@@ -65,12 +65,13 @@ public class OverzichtPersonUi extends Application {
         // hey ik ben luuk :) <3😎
     }
 
-    public static void addToOverzicht(VBox vbox) {
+    public int countAmountInDatabase() {
+        int i = 0;
 
-
-
-
+        for (Student student : new CRUD().readTest()) {
+           i++;
+        }
+        return i;
     }
-
 
 }

@@ -116,7 +116,7 @@ public class CreatePersonUi {
             try {
                 // Insert add to database code
                 String email = textAreaEmail.getText();
-                new CRUD().create(2, email);
+                new CRUD().create((overzichtUi.countAmountInDatabase()+1), email);
 
                 Stage overzicht = new Stage();
                 overzichtUi.start(overzicht);
