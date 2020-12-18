@@ -46,7 +46,6 @@ public class Student extends Person{
 
     @Override
     public String toString() {
-
         return
             " courses='" + getCourses() + "'" +
             ", authorisedCertificates='" + getAuthorisedCertificates() + "'" +

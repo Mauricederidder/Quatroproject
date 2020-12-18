@@ -3,6 +3,7 @@ package domain;
 import java.util.List;
 
 public class Course {
+    
     private int courseId;
     private String courseName;
     private Level level;

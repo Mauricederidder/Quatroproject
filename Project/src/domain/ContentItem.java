@@ -1,5 +1,5 @@
 package domain;
 
-public class ContentItem {
+public abstract class ContentItem {
 
 }
