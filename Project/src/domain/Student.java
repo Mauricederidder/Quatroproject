@@ -43,9 +43,6 @@ public class Student extends Person{
     public void setStudentId(int studentId) {
         this.studentId = studentId;
     }
- 
-
-    
 
     @Override
     public String toString() {
@@ -57,5 +54,15 @@ public class Student extends Person{
             super.toString();
     }
 
+    // Course CRUD
+    // TODO implement database function
+    public void signup(Course course){
+        // add to list
+        this.courses.add(course);
+        
+    }
 
+    public void removeCourse(Course course){
+        this.courses.remove(course);
+    }
 }
