@@ -44,4 +44,18 @@ public class Student extends Person{
         this.studentId = studentId;
     }
  
+
+    
+
+    @Override
+    public String toString() {
+
+        return
+            " courses='" + getCourses() + "'" +
+            ", authorisedCertificates='" + getAuthorisedCertificates() + "'" +
+            ", studentId='" + getStudentId() + "'" +
+            super.toString();
+    }
+
+
 }
