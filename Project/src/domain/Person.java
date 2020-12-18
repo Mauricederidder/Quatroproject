@@ -26,6 +26,21 @@ public abstract class Person {
         this.postalCode = postalCode;
     }
 
+
+    //delete after vertical slice
+    public Person(String Email){
+        this.Email = Email;
+        this.name = null;
+        this.dayOfBirth = null;
+        this.gender = null;
+        this.adress = null;
+        this.city = null;
+        this.country = null;
+        this.postalCode = null;
+    }
+
+
+
     // getters and setters
     public String getEmail() {
         return this.Email;
