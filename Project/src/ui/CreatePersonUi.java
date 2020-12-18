@@ -11,6 +11,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import database.CRUD;
+
 //extends Application
 public class CreatePersonUi {
 
@@ -113,6 +115,9 @@ public class CreatePersonUi {
             // Stage stageOverzicht = new Stage();
             try {
                 // Insert add to database code
+                String email = textAreaEmail.getText();
+                new CRUD().create(2, email);
+
                 Stage overzicht = new Stage();
                 overzichtUi.start(overzicht);
                 createPersonStage.close();
