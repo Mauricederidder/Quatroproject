@@ -1,6 +1,10 @@
 package database;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import domain.*;
 
 public class CRUD {
     String connectionUrl = "jdbc:sqlserver://localhost;databaseName=Codecademy;integratedSecurity=true";
@@ -45,6 +49,68 @@ public class CRUD {
             System.out.println(String.format("| %7s | %-32s |\n", " ", " ").replace(" ", "-"));
 
         }
+        catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null)
+                try {
+                    rs.close();
+                } catch (Exception e) {
+                }
+            if (stmt != null)
+                try {
+                    stmt.close();
+                } catch (Exception e) {
+                }
+            if (con != null)
+                try {
+                    con.close();
+                } catch (Exception e) {
+                }
+        }
+    }
+
+        //delete after vertical slice and implement it in the read above
+        public ArrayList<Student> readTest() {
+            try {
+                // 'Importeer' de driver die je gedownload hebt.
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+                // Maak de verbinding met de database.
+                con = DriverManager.getConnection(connectionUrl);
+    
+                // Stel een SQL query samen.
+                String SQL = "SELECT * FROM Cursisten";
+                stmt = con.createStatement();
+                // Voer de query uit op de database.
+                rs = stmt.executeQuery(SQL);
+    
+                System.out.println(String.format("| %7s | %-32s |\n", " ", " ").replace(" ", "-"));
+    
+                ArrayList<Student> databaseStudents = new ArrayList<>();
+
+                // Als de resultset waarden bevat dan lopen we hier door deze waarden en printen
+                // ze.
+                while (rs.next()) {
+                    // Vraag per row de kolommen in die row op.
+                    int id = rs.getInt("CursistID");
+                    String email = rs.getString("Email");
+                    
+                    Student p = new Student(email);
+                    databaseStudents.add(p);
+                    // Print de kolomwaarden.
+                    // System.out.println(id + " " + email + " ");
+    
+                    // Met 'format' kun je de string die je print het juiste formaat geven, als je
+                    // dat wilt.
+                    // %d = decimal, %s = string, %-32s = string, links uitgelijnd, 32 characters
+                    // breed.
+                    System.out.format("| %7d | %-32s | \n", id, email);
+                }
+                System.out.println(String.format("| %7s | %-32s |\n", " ", " ").replace(" ", "-"));
+                return databaseStudents;
+            }
+            
+
 
         // Handle any errors that may have occurred.
         catch (Exception e) {
@@ -66,6 +132,7 @@ public class CRUD {
                 } catch (Exception e) {
                 }
         }
+        return null;
     }
 
     public void create(int CursistID, String emailCursist) {
