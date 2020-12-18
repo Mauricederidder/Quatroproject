@@ -13,6 +13,9 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import database.CRUD;
+import domain.Student;
+
 public class OverzichtPersonUi extends Application {
 
     @Override
@@ -23,10 +26,12 @@ public class OverzichtPersonUi extends Application {
         VBox vertical = new VBox();
         vertical.getChildren().add(new Label("Overzicht personen"));
 
-        //enter forloop so that we can add everyone from the database.
-        //Use import checklist in combination with for loop
-
-
+         for (Student student : new CRUD().readTest()) {
+             Label label = new Label();
+             label.setText(student.getEmail());
+             vertical.getChildren().add(label);
+         }
+        // Use import checklist in combination with for loop
 
         Button Aanmaken = new Button("Aanmaken");
         Aanmaken.setOnAction((event) -> {
@@ -38,7 +43,7 @@ public class OverzichtPersonUi extends Application {
                 System.out.println("Something whent wrong!");
             }
         });
-        
+
         HBox texts = new HBox();
         texts.setSpacing(30);
         texts.getChildren().add(Aanmaken);
@@ -49,7 +54,6 @@ public class OverzichtPersonUi extends Application {
         layout.setCenter(vertical);
         layout.setBottom(texts);
 
-        
         StackPane root = new StackPane(layout);
         window.setTitle("Overzicht mensen");
         window.setScene(new Scene(root, 400, 250));
@@ -59,6 +63,13 @@ public class OverzichtPersonUi extends Application {
     public static void main(String[] args) throws Exception {
         launch(OverzichtPersonUi.class);
         // hey ik ben luuk :) <3😎
+    }
+
+    public static void addToOverzicht(VBox vbox) {
+
+
+
+
     }
 
 
