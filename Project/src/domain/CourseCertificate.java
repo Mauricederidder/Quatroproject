@@ -1,14 +1,15 @@
 package domain;
 
-public class Certificate {
+public class CourseCertificate {
     
     private int certificateId;
     private int rating;
-    // TODO:: Implementeer certificate
+    private Course linkedCourse;
 
-    public Certificate(int certificateId, int rating){
+    public CourseCertificate(int certificateId, int rating, Course linkedCourse){
         this.certificateId = certificateId;
         this.rating = rating;
+        this.linkedCourse = linkedCourse;
     }
 
     public int getCertificateId() {
@@ -27,4 +28,11 @@ public class Certificate {
         this.rating = rating;
     }
 
+    public Course getLinkedCourse() {
+        return this.linkedCourse;
+    }
+
+    public void setLinkedCourse(Course linkedCourse) {
+        this.linkedCourse = linkedCourse;
+    }
 }
