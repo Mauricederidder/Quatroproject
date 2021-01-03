@@ -134,7 +134,7 @@ public class CRUD {
         return null;
     }
 
-    public void create(int CursistID, String emailCursist) {
+    public void create(String emailCursist) {
         try {
             // 'Importeer' de driver die je gedownload hebt.
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -142,7 +142,7 @@ public class CRUD {
             con = DriverManager.getConnection(connectionUrl);
 
             // Stel een SQL query samen.
-            String SQL = String.format("INSERT INTO Cursisten(CursistID, Email) VALUES (%d, '%S')", CursistID,
+            String SQL = String.format("INSERT INTO Cursisten(CursistID, Email) VALUES (%d, '%S')", 122,
                     emailCursist);
             stmt = con.createStatement();
             // Voer de query uit op de database.
