@@ -3,16 +3,18 @@ package domain;
 import java.util.List;
 
 public class Course {
-    
+
     private int courseId;
     private String courseName;
     private Level level;
+    private String levelString;
     private String subject;
     private String introduction;
     private String description;
     private List<ContentItem> contentItems;
 
-    public Course(int courseId, String courseName, Level level, String subject, String introduction, String description, List<ContentItem> contentItems) {
+    public Course(int courseId, String courseName, Level level, String subject, String introduction, String description,
+            List<ContentItem> contentItems) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.level = level;
@@ -42,8 +44,16 @@ public class Course {
         return this.level;
     }
 
+    public String getLevelString() {
+        return this.levelString;
+    }
+
     public void setLevel(Level level) {
         this.level = level;
+    }
+
+    public void setLevelString(String level) {
+        this.levelString = level;
     }
 
     public String getSubject() {
@@ -78,8 +88,12 @@ public class Course {
         this.contentItems = contentItems;
     }
 
-    
-    
-
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return String.format(
+                " CourseID: %d \n Course Name: %s \n Subject: %s \n Difficulty: %s \n Intro Text: %s \n Description: %s",
+                this.courseId, this.courseName, this.subject, this.levelString, this.introduction, this.description);
+    }
 
 }
