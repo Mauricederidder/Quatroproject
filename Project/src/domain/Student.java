@@ -1,5 +1,6 @@
 package domain;
 
+import java.security.cert.Certificate;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 public class Student extends Person {
 
     private List<Course> courses;
-    private List<Certificate> authorisedCertificates;
+    private List<CourseCertificate> authorisedCertificates;
     private int studentId;
 
     public Student(String Email, String name, Date dayOfBirth, String gender, String adress, String city,
@@ -40,11 +41,11 @@ public class Student extends Person {
         this.courses = courses;
     }
 
-    public List<Certificate> getAuthorisedCertificates() {
+    public List<CourseCertificate> getAuthorisedCertificates() {
         return this.authorisedCertificates;
     }
 
-    public void setAuthorisedCertificates(List<Certificate> authorisedCertificates) {
+    public void setAuthorisedCertificates(List<CourseCertificate> authorisedCertificates) {
         this.authorisedCertificates = authorisedCertificates;
     }
 
@@ -61,16 +62,17 @@ public class Student extends Person {
         return " courses='" + getCourses() + "'" + ", authorisedCertificates='" + getAuthorisedCertificates() + "'"
                 + ", studentId='" + getStudentId() + "'" + super.toString();
     }
-
-    // Course CRUD
-    // TODO implement database function
-    public void signup(Course course) {
+    public void signup(Course course){
         // add to list
-        this.courses.add(course);
-
+        this.courses.add(course);       
     }
-
-    public void removeCourse(Course course) {
+    public void removeCourse(Course course){
         this.courses.remove(course);
+    }
+    public void addCertificate(CourseCertificate certificate){
+        this.authorisedCertificates.add(certificate);
+    }
+    public void removeCertificate(CourseCertificate certificate){
+        this.authorisedCertificates.remove(certificate);
     }
 }
