@@ -1,4 +1,4 @@
-package ui;
+package ui.oldstuff;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -19,7 +19,6 @@ public class OverzichtPersonUi extends Application {
     @Override
     public void start(Stage window) {
         CreatePersonUi createPerson = new CreatePersonUi();
-
         BorderPane layout = new BorderPane();
         VBox vertical = new VBox();
         vertical.getChildren().add(new Label("Overzicht personen"));
@@ -45,9 +44,6 @@ public class OverzichtPersonUi extends Application {
         HBox texts = new HBox();
         texts.setSpacing(30);
         texts.getChildren().add(Aanmaken);
-        // texts.getChildren().add(new Button("Overzicht"));
-        // texts.getChildren().add(new Button("Updaten"));
-        // texts.getChildren().add(new Button("Verwijderen"));
 
         layout.setCenter(vertical);
         layout.setBottom(texts);
