@@ -24,7 +24,7 @@ public class OverviewPersonCreatePersonSceneLogic {
         EventHandler<MouseEvent> eventMouseClick = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                TextArea emailTextArea = OverviewPersonCreatePersonScene.space.getChildren().get(1);
+                //TextArea emailTextArea = OverviewPersonCreatePersonScene.space.getChildren().get(1);
                 String email = "test";
                  new CRUD().create(email);
 

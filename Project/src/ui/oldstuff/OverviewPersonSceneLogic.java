@@ -1,4 +1,4 @@
-package ui;
+package ui.oldstuff;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
