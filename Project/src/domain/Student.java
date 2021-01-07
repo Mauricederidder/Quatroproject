@@ -8,7 +8,7 @@ import java.util.List;
 public class Student extends Person {
 
     private List<Course> courses;
-    private List<CourseCertificate> authorisedCertificates;
+    private List<Certificate> authorisedCertificates;
     private int studentId;
 
     public Student(String Email, String name, Date dayOfBirth, String gender, String adress, String city,
@@ -42,11 +42,11 @@ public class Student extends Person {
         this.courses = courses;
     }
 
-    public List<CourseCertificate> getAuthorisedCertificates() {
+    public List<Certificate> getAuthorisedCertificates() {
         return this.authorisedCertificates;
     }
 
-    public void setAuthorisedCertificates(List<CourseCertificate> authorisedCertificates) {
+    public void setAuthorisedCertificates(List<Certificate> authorisedCertificates) {
         this.authorisedCertificates = authorisedCertificates;
     }
 
@@ -71,10 +71,10 @@ public class Student extends Person {
     public void removeCourse(Course course){
         this.courses.remove(course);
     }
-    public void addCertificate(CourseCertificate certificate){
+    public void addCertificate(Certificate certificate){
         this.authorisedCertificates.add(certificate);
     }
-    public void removeCertificate(CourseCertificate certificate){
+    public void removeCertificate(Certificate certificate){
         this.authorisedCertificates.remove(certificate);
     }
 }

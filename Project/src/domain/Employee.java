@@ -12,10 +12,10 @@ public class Employee extends Person {
         this.employeeID = employeeID;
     }
 
-    public void giveCertificate(CourseCertificate certificate, Student student){
+    public void giveCertificate(Certificate certificate, Student student){
         student.addCertificate(certificate);
     }
-    public void removeCertificate(CourseCertificate certificate, Student student){
+    public void removeCertificate(Certificate certificate, Student student){
         student.removeCertificate(certificate);
     }
 }
