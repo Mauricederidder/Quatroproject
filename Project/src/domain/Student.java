@@ -1,5 +1,6 @@
 package domain;
 
+import java.security.cert.Certificate;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ public class Student extends Person {
 
     public Student(String Email, String name, Date dayOfBirth, String gender, String adress, String city,
             String country, String postalCode, int studentId) {
+
         super(Email, name, dayOfBirth, gender, adress, city, country, postalCode);
 
         this.studentId = studentId;
@@ -21,7 +23,7 @@ public class Student extends Person {
 
     }
 
-    //delete after vertical slice
+    // delete after vertical slice
     public Student(String Email) {
         super(Email);
 
@@ -56,21 +58,23 @@ public class Student extends Person {
         this.studentId = studentId;
     }
 
+
     @Override
     public String toString() {
-        return " courses='" + getCourses() + "'" + ", authorisedCertificates='" + getAuthorisedCertificates() + "'"
-                + ", studentId='" + getStudentId() + "'" + super.toString();
+        return String.format(" StudentID: %d \n Name: %s \n Email: %s \n Day of Birth: %s \n Gender: %s \n Address: %s \n City: %s \n Country: %s \n PostalCode: %s \n ",
+                this.studentId, this.getName(), this.getEmail(),this.getDayOfBirth(), this.getGender(), this.getAdress(),this.getCity(), this.getCountry(), this.getPostalCode());
     }
-
-    // Course CRUD
-    // TODO implement database function
-    public void signup(Course course) {
+    public void signup(Course course){
         // add to list
-        this.courses.add(course);
-
+        this.courses.add(course);       
     }
-
-    public void removeCourse(Course course) {
+    public void removeCourse(Course course){
         this.courses.remove(course);
+    }
+    public void addCertificate(Certificate certificate){
+        this.authorisedCertificates.add(certificate);
+    }
+    public void removeCertificate(Certificate certificate){
+        this.authorisedCertificates.remove(certificate);
     }
 }
