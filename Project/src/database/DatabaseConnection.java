@@ -1,11 +1,9 @@
 package database;
 
-
 import java.sql.*;
 import java.util.ArrayList;
 
 import domain.*;
-
 
 public class DatabaseConnection {
     static String connectionUrl = "jdbc:sqlserver://localhost;databaseName=Codecademy;integratedSecurity=true";
@@ -16,8 +14,8 @@ public class DatabaseConnection {
 
     static ResultSet rs = null;
 
-
     public static void connect() throws ClassNotFoundException, SQLException {
+
         // 'Importeer' de driver die je gedownload hebt.
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         // Maak de verbinding met de database.
@@ -29,28 +27,27 @@ public class DatabaseConnection {
             connect();
 
             // Stel een SQL query samen.
-         
+
             stmt = con.createStatement();
             // Voer de query uit op de database.
             return rs = stmt.executeQuery(query);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         } finally {
             if (rs != null)
                 try {
-                    rs.close();
+                   //  rs.close();
                 } catch (Exception e) {
                 }
             if (stmt != null)
                 try {
-                    stmt.close();
+                    // stmt.close();
                 } catch (Exception e) {
                 }
             if (con != null)
                 try {
-                    con.close();
+                    // con.close();
                 } catch (Exception e) {
                 }
         }

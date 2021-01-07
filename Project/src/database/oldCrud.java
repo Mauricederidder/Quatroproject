@@ -22,7 +22,7 @@ public class oldCrud {
             con = DriverManager.getConnection(connectionUrl);
 
             // Stel een SQL query samen.
-            String SQL = "SELECT * FROM Cursisten";
+            String SQL = "SELECT * FROM Students";
             stmt = con.createStatement();
             // Voer de query uit op de database.
             rs = stmt.executeQuery(SQL);
@@ -33,7 +33,7 @@ public class oldCrud {
             // ze.
             while (rs.next()) {
                 // Vraag per row de kolommen in die row op.
-                int id = rs.getInt("CursistID");
+                int id = rs.getInt("StudentID");
                 String email = rs.getString("Email");
 
                 // Print de kolomwaarden.

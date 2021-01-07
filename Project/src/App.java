@@ -1,10 +1,20 @@
+import java.security.cert.CRLReason;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.Month;
+
+import database.CourseRepo;
 import database.StudentRepo;
+import database.oldCrud;
+import domain.Person;
+import domain.Student;
 
 public class App {
-    public static void main(String[] args) throws Exception {
+
+
+	public static void main(String[] args)  {
         StudentRepo repo = new StudentRepo();
-        System.out.println(repo.get(1).getName());
-    
+        repo.get();
         // hey ik ben Noah :)
     }
 }

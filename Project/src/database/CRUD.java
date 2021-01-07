@@ -10,7 +10,8 @@ public interface Crud<T>{
     // overflow 🌊 methode om alles terug te krijgen 
     public T get();
 
-    public void update(int id,T params);
+    public void update(int id, String params);
 
     public void delete(int id);
+    
 }
