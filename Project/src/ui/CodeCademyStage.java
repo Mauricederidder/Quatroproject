@@ -18,7 +18,7 @@ public class CodeCademyStage extends Application {
         // TODO Auto-generated method stub
         guiStage.setTitle("Codecademy");
         guiStage.setMaximized(true);
-        guiStage.setScene(CodeCademyLandingScene.codeCademyLandingScene());
+        guiStage.setScene(CodeCademyClickedCourseStatistics.CodeCademyClickedCourseStatisticsSceneBuilder());
         guiStage.show();
     }
     
