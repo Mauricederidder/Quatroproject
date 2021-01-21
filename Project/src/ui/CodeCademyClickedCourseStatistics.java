@@ -37,7 +37,9 @@ public class CodeCademyClickedCourseStatistics {
 
     protected static FlowPane codeCademyClickedCourseStatisticsCenterLayout() {
         FlowPane rootToo = new FlowPane();
+        rootToo.getChildren().add(codeCademyClickedCourseStatisticsGridPaneAddCertificate());
         rootToo.getChildren().add(codeCademyClickedCourseStatisticsBestMatchingCourseVbox());
+        rootToo.getChildren().add(codeCademyClickedCourseStatisticsModulesCompletionGridPane());
         rootToo.setVgap(10);
         rootToo.setHgap(10);
         rootToo.setAlignment(Pos.TOP_CENTER);
@@ -80,10 +82,37 @@ public class CodeCademyClickedCourseStatistics {
         return amountOfPeopleLabel;
     }
 
+    protected static GridPane codeCademyClickedCourseStatisticsGridPaneAddCertificate() {
+        GridPane grid = new GridPane();
+        Button button = codeCademyClickedCourseStatisticsAddCertificateButton();
+        Label label = codeCademyClickedCourseStatisticsAddCertificateLabel();
+        button.setMinWidth(100);
+        button.setMaxWidth(250);
+        grid.getColumnConstraints().add(new ColumnConstraints(230));
+        grid.getColumnConstraints().add(new ColumnConstraints(30));
+        grid.add(label, 0, 0);
+        grid.add(button, 0, 1);
+        return grid;
+    }
+
+    protected static Label codeCademyClickedCourseStatisticsAddCertificateLabel() {
+        Label addCertificateLabel = new Label("Add a certificate to this course");
+        addCertificateLabel.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Regular.ttf").toExternalForm(), 14));
+        return addCertificateLabel;
+    }
+
+    protected static Button codeCademyClickedCourseStatisticsAddCertificateButton() {
+        Button addCertificateButton = new Button("Add Certificate");
+        addCertificateButton.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Regular.ttf").toExternalForm(), 14));
+        addCertificateButton.setTextFill(Color.web("#ffffff", 1.0));
+        addCertificateButton.setStyle("-fx-background-color:#000000;");
+        
+        return addCertificateButton;
+    }
+
     protected static VBox codeCademyClickedCourseStatisticsBestMatchingCourseVbox() {
         VBox matchingCourseVbox = new VBox();
         matchingCourseVbox.getChildren().add(codeCademyClickedCourseStatisticsBestMatchingCourseGridPane());
-
         return matchingCourseVbox;
     }
 
@@ -100,7 +129,7 @@ public class CodeCademyClickedCourseStatistics {
         Label SecondColumnFirstRow = codeCademyClickedCourseStatisticsAmountOfPeopleBestMatchingCoursesCourseLabel();
         Label ThirdColumnFirstRow = codeCademyClickedCourseStatisticsAmountOfPeopleBestMatchingCoursesStudentsLabel();
         Label FourthColumnFirstRow = codeCademyClickedCourseStatisticsAmountOfPeopleBestMatchingCoursesStudentsMatchendeTags();
-        //fillerdata
+        // fillerdata
         Label FirstColumnSecondRow = codeCademyClickedCourseStatisticsAmountofPeopleDummyDataOne();
         Label SecondColumnSecondRow = codeCademyClickedCourseStatisticsAmountofPeopleDummyDataTwo();
         Label ThirdColumnSecondRow = codeCademyClickedCourseStatisticsAmountofPeopleDummyDataThree();
@@ -109,17 +138,17 @@ public class CodeCademyClickedCourseStatistics {
         SecondColumnSecondRow.setPadding(new Insets(25, 10, 25, 10));
         ThirdColumnSecondRow.setPadding(new Insets(25, 10, 25, 10));
         FourthColumnSecondRow.setPadding(new Insets(25, 10, 25, 10));
-        //fillerendofdata
+        // fillerendofdata
         FirstColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         SecondColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         ThirdColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         FourthColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-        //fillerdata
+        // fillerdata
         FirstColumnSecondRow.setMaxSize(170, 40);
         SecondColumnSecondRow.setMaxSize(170, 40);
         ThirdColumnSecondRow.setMaxSize(170, 40);
         FourthColumnSecondRow.setMaxSize(170, 40);
-        //fillerendofdata
+        // fillerendofdata
         matchingCourse.setStyle("-fx-background-color:#000000");
         matchingCourse.setVgap(20);
         matchingCourse.setHgap(10);
@@ -129,14 +158,15 @@ public class CodeCademyClickedCourseStatistics {
         matchingCourse.add(SecondColumnFirstRow, 1, 2);
         matchingCourse.add(ThirdColumnFirstRow, 2, 2);
         matchingCourse.add(FourthColumnFirstRow, 3, 2);
-        //fillerdata
+        // fillerdata
         matchingCourse.add(FirstColumnSecondRow, 0, 3);
         matchingCourse.add(SecondColumnSecondRow, 1, 3);
         matchingCourse.add(ThirdColumnSecondRow, 2, 3);
         matchingCourse.add(FourthColumnSecondRow, 3, 3);
-        //fillerendofdata
+        // fillerendofdata
         return matchingCourse;
     }
+
     protected static Label codeCademyClickedCourseStatisticsAmountOfPeopleBestMatchingCoursesLabel() {
         Label amountOfPeopleLabel = new Label("Best matching courses");
         amountOfPeopleLabel.setFont(
@@ -144,6 +174,7 @@ public class CodeCademyClickedCourseStatistics {
         amountOfPeopleLabel.setTextFill(Color.web("#FFFFFF", 1.0));
         return amountOfPeopleLabel;
     }
+
     protected static Label codeCademyClickedCourseStatisticsAmountOfPeopleBestMatchingCoursesRankingLabel() {
         Label amountOfPeopleLabel = new Label("Ranking");
         amountOfPeopleLabel.setFont(
@@ -151,6 +182,7 @@ public class CodeCademyClickedCourseStatistics {
         amountOfPeopleLabel.setTextFill(Color.web("#FFFFFF", 1.0));
         return amountOfPeopleLabel;
     }
+
     protected static Label codeCademyClickedCourseStatisticsAmountOfPeopleBestMatchingCoursesCourseLabel() {
         Label amountOfPeopleLabel = new Label("Course");
         amountOfPeopleLabel.setFont(
@@ -158,6 +190,7 @@ public class CodeCademyClickedCourseStatistics {
         amountOfPeopleLabel.setTextFill(Color.web("#FFFFFF", 1.0));
         return amountOfPeopleLabel;
     }
+
     protected static Label codeCademyClickedCourseStatisticsAmountOfPeopleBestMatchingCoursesStudentsLabel() {
         Label amountOfPeopleLabel = new Label("Students");
         amountOfPeopleLabel.setFont(
@@ -165,6 +198,7 @@ public class CodeCademyClickedCourseStatistics {
         amountOfPeopleLabel.setTextFill(Color.web("#FFFFFF", 1.0));
         return amountOfPeopleLabel;
     }
+
     protected static Label codeCademyClickedCourseStatisticsAmountOfPeopleBestMatchingCoursesStudentsMatchendeTags() {
         Label amountOfPeopleLabel = new Label("Matching tags");
         amountOfPeopleLabel.setFont(
@@ -172,6 +206,7 @@ public class CodeCademyClickedCourseStatistics {
         amountOfPeopleLabel.setTextFill(Color.web("#FFFFFF", 1.0));
         return amountOfPeopleLabel;
     }
+
     // filler data
     protected static Label codeCademyClickedCourseStatisticsAmountofPeopleDummyDataOne() {
         Label label = new Label("1");
@@ -180,6 +215,7 @@ public class CodeCademyClickedCourseStatistics {
         label.setStyle("-fx-background-color:#404040");
         return label;
     }
+
     protected static Label codeCademyClickedCourseStatisticsAmountofPeopleDummyDataTwo() {
         Label label = new Label("Html for beginners");
         label.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Regular.ttf").toExternalForm(), 14));
@@ -187,6 +223,7 @@ public class CodeCademyClickedCourseStatistics {
         label.setStyle("-fx-background-color:#404040");
         return label;
     }
+
     protected static Label codeCademyClickedCourseStatisticsAmountofPeopleDummyDataThree() {
         Label label = new Label("352");
         label.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Regular.ttf").toExternalForm(), 14));
@@ -194,6 +231,7 @@ public class CodeCademyClickedCourseStatistics {
         label.setStyle("-fx-background-color:#404040");
         return label;
     }
+
     protected static Label codeCademyClickedCourseStatisticsAmountofPeopleDummyDataFour() {
         Label label = new Label("Html,Beginner");
         label.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Regular.ttf").toExternalForm(), 14));
@@ -202,5 +240,77 @@ public class CodeCademyClickedCourseStatistics {
         return label;
     }
     // end of filler data
+
+    protected static GridPane codeCademyClickedCourseStatisticsModulesCompletionGridPane() {
+        GridPane matchingCourse = new GridPane();
+        Label tableHeaderLabel = codeCademyClickedCourseStatisticsModulesCompletionHeaderLabel();
+        for (int i = 0; i < 2; i++) {
+            ColumnConstraints column = new ColumnConstraints(90);
+            matchingCourse.getColumnConstraints().add(column);
+        }
+        Label FirstColumnFirstRow = codeCademyClickedCourseStatisticsModulesCompletionLabelOne();
+        Label SecondColumnFirstRow = codeCademyClickedCourseStatisticsModulesCompletionLabelTwo();
+        // fillerdata
+        Label FirstColumnSecondRow = codeCademyClickedCourseStatisticsModulesCompletionLabelSecondRowOne();
+        Label SecondColumnSecondRow = codeCademyClickedCourseStatisticsModulesCompletionLabelSecondRowTwo();
+        FirstColumnSecondRow.setPadding(new Insets(25, 10, 25, 10));
+        SecondColumnSecondRow.setPadding(new Insets(25, 10, 25, 10));
+        // fillerendofdata
+        FirstColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        SecondColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        // fillerdata
+        FirstColumnSecondRow.setMaxSize(190, 40);
+        SecondColumnSecondRow.setMaxSize(50, 40);
+        // fillerendofdata
+        matchingCourse.setStyle("-fx-background-color:#000000");
+        matchingCourse.setVgap(20);
+        matchingCourse.setHgap(10);
+        matchingCourse.add(tableHeaderLabel, 0, 1);
+        matchingCourse.setColumnSpan(tableHeaderLabel, 4);
+        matchingCourse.add(FirstColumnFirstRow, 0, 2);
+        matchingCourse.add(SecondColumnFirstRow, 1, 2);
+        // fillerdata
+        matchingCourse.add(FirstColumnSecondRow, 0, 3);
+        matchingCourse.add(SecondColumnSecondRow, 1, 3);
+        // fillerendofdata
+        return matchingCourse;
+    }
+
+    protected static Label codeCademyClickedCourseStatisticsModulesCompletionHeaderLabel(){
+        Label label = new Label("Modules completion");
+        label.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Regular.ttf").toExternalForm(), 18));
+        label.setTextFill(Color.web("#FFFFFF", 1.0));
+        return label;
+    }
+
+    protected static Label codeCademyClickedCourseStatisticsModulesCompletionLabelOne(){
+        Label label = new Label("Module name");
+        label.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Regular.ttf").toExternalForm(), 12));
+        label.setTextFill(Color.web("#FFFFFF", 1.0));
+        return label;
+    }
+
+    protected static Label codeCademyClickedCourseStatisticsModulesCompletionLabelTwo(){
+        Label label = new Label("voortgang");
+        label.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Regular.ttf").toExternalForm(), 12));
+        label.setTextFill(Color.web("#FFFFFF", 1.0));
+        return label;
+    }
+
+    protected static Label codeCademyClickedCourseStatisticsModulesCompletionLabelSecondRowOne(){
+        Label label = new Label("Just a module");
+        label.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Regular.ttf").toExternalForm(), 12));
+        label.setTextFill(Color.web("#FFFFFF", 1.0));
+        label.setStyle("-fx-background-color:#404040");
+        return label;
+    }
+
+    protected static Label codeCademyClickedCourseStatisticsModulesCompletionLabelSecondRowTwo(){
+        Label label = new Label("30%");
+        label.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Regular.ttf").toExternalForm(), 12));
+        label.setTextFill(Color.web("#FFFFFF", 1.0));
+        label.setStyle("-fx-background-color:#404040");
+        return label;
+    }
 
 }
