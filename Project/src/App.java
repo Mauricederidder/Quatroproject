@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.Month;
 
 import database.CourseRepo;
+import database.RegistrationsRepo;
 import database.StudentRepo;
 import database.oldCrud;
 import domain.Person;

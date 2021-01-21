@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import domain.Course;
 import domain.Level;
 
-public class CourseRepo implements Crud<Course> {
+public class CourseRepo implements CRUD<Course> {
 
     @Override
     public void create(Course params) {

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import domain.Certificate;
 
-public class CertificateRepo implements Crud<Certificate> {
+public class CertificateRepo implements CRUD<Certificate> {
 
     @Override
     public void create(Certificate params) {
