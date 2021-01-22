@@ -2,6 +2,7 @@ package database;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 import domain.Module;
 
@@ -45,7 +46,7 @@ public class ModuleRepo implements Crud<Module> {
     }
 
     @Override
-    public Module get() {
+    public List<Module> get() {
         ResultSet rs = DatabaseConnection.execute(String.format("SELECT * FROM Modules INNER JOIN ContentItems ON ContentItems.ContentItemID = Modules.ContentItemID"));
         Module module = new Module(0, 0, null, null, null, null,0, null, null, null);
         ArrayList<Module> moduleList = new ArrayList<Module>();
