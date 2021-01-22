@@ -1,5 +1,10 @@
 package ui;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
 import database.CertificateRepo;
 import database.CourseRepo;
 import domain.Course;
@@ -227,6 +232,7 @@ public class CodeCademyAllCoursesScene {
     }
 
     protected static GridPane codeCademyAllCoursesGridPaneTopCoursesTables(){
+        // Set up table
         GridPane tablesGrid = new GridPane();
         tablesGrid.getColumnConstraints().add(new ColumnConstraints(30));
         tablesGrid.getColumnConstraints().add(new ColumnConstraints(80));
@@ -252,11 +258,59 @@ public class CodeCademyAllCoursesScene {
         tablesGrid.add(FirstColumnFirstRow,1,1);
         tablesGrid.add(SecondColumnFirstRow,2,1);
         tablesGrid.add(ThirdColumnFirstRow,3,1);
+
+        // Then fill in the DATA
+        CourseRepo courseRepo = new CourseRepo();
+        for (int i = 1; i < courseRepo.top5Courses().size() + 1; i++) {
+
+            Label FirstColumnSecondRow = codeCademyTopCoursesGridPaneTupelsLabelFirstColumn(courseRepo.get(i));
+            Label SecondColumnSecondRow = codeCademyTopCoursesGridPaneTupelsLabelSecondColumn(courseRepo.get(i));
+            Label ThirdColumnSecondRow = codeCademyTopCoursesGridPaneTupelsLabelThirdColumn(courseRepo.get(i));
+            
+            FirstColumnSecondRow.setPadding(new Insets(25,10,25,10));
+            SecondColumnSecondRow.setPadding(new Insets(25,10,25,10));
+            ThirdColumnSecondRow.setPadding(new Insets(25,10,25,10));
+
+            FirstColumnSecondRow.setMaxSize(170,40);
+            SecondColumnSecondRow.setMaxSize(170,40);
+            ThirdColumnSecondRow.setMaxSize(170,40);
+
+            tablesGrid.add(FirstColumnSecondRow,1,2+i);
+            tablesGrid.add(SecondColumnSecondRow,2,2+i);
+            tablesGrid.add(ThirdColumnSecondRow,3,2+i);
+     
+        }
         return tablesGrid;
+    }
+    protected static Label codeCademyTopCoursesGridPaneTupelsLabelFirstColumn(Course course){
+        // Course fill in data
+        Label courseCompletionRateLabelFirstColumn = new Label(course.getCourseId().toString());
+        courseCompletionRateLabelFirstColumn.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(),14));
+        courseCompletionRateLabelFirstColumn.setTextFill(Color.web("#FFFFFF", 1.0));
+        courseCompletionRateLabelFirstColumn.setStyle("-fx-background-color:#404040");
+        return courseCompletionRateLabelFirstColumn;
+    }
+
+    protected static Label codeCademyTopCoursesGridPaneTupelsLabelSecondColumn(Course course){
+        CourseRepo courseRepo = new CourseRepo();
+        Label courseCompletionRateLabelSecondColumn = new Label(course.getCourseName());
+        courseCompletionRateLabelSecondColumn.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(),14));
+        courseCompletionRateLabelSecondColumn.setTextFill(Color.web("#FFFFFF", 1.0));
+        courseCompletionRateLabelSecondColumn.setStyle("-fx-background-color:#404040");
+        return courseCompletionRateLabelSecondColumn;
+    }
+
+    protected static Label codeCademyTopCoursesGridPaneTupelsLabelThirdColumn(Course course){
+        CourseRepo courseRepo = new CourseRepo();
+        Label courseCompletionRateLabelThirdColumn = new Label( courseRepo.studentsPerCourse( course.getCourseId() ).toString() );
+        courseCompletionRateLabelThirdColumn.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(),14));
+        courseCompletionRateLabelThirdColumn.setTextFill(Color.web("#FFFFFF", 1.0));
+        courseCompletionRateLabelThirdColumn.setStyle("-fx-background-color:#404040");
+        return courseCompletionRateLabelThirdColumn;
     }
 
     protected static Label codeCademyAllCoursesGridPaneTableLabelTopCourses(){
-        Label courseCompletionRateLabel = new Label("Top courses rated courses");
+        Label courseCompletionRateLabel = new Label("Top rated courses");
         courseCompletionRateLabel.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(),28));
         courseCompletionRateLabel.setTextFill(Color.web("#FFFFFF", 1.0));
         return courseCompletionRateLabel;
@@ -281,14 +335,16 @@ public class CodeCademyAllCoursesScene {
         courseCompletionRateLabelThirdColumn.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(),16));
         courseCompletionRateLabelThirdColumn.setTextFill(Color.web("#FFFFFF", 1.0));
         return courseCompletionRateLabelThirdColumn;
-    }   
-     protected static VBox codeCademyAllCoursesGridPaneMostCertificatesVBox(){
+    }
+    
+    protected static VBox codeCademyAllCoursesGridPaneMostCertificatesVBox(){
         VBox box = new VBox();
         box.getChildren().add(codeCademyAllCoursesGridPaneTopCoursesTables());
         return box;
     }
 
     protected static GridPane codeCademyAllCoursesGridPaneMostCertificatesTables(){
+        // set up the table
         GridPane tablesGrid = new GridPane();
         tablesGrid.getColumnConstraints().add(new ColumnConstraints(30));
         tablesGrid.getColumnConstraints().add(new ColumnConstraints(80));
@@ -314,11 +370,69 @@ public class CodeCademyAllCoursesScene {
         tablesGrid.add(FirstColumnFirstRow,1,1);
         tablesGrid.add(SecondColumnFirstRow,2,1);
         tablesGrid.add(ThirdColumnFirstRow,3,1);
+
+        // Then fill in the DATA
+        CourseRepo courseRepo = new CourseRepo();
+        CertificateRepo certificateRepo = new CertificateRepo();
+        Iterator iterator = certificateRepo.mostCertificatesGiven().entrySet().iterator();
+        int i = 0;
+        while (iterator.hasNext()) {
+            i++;
+            Map.Entry pair = (Map.Entry)iterator.next();
+            
+
+            
+            Label FirstColumnSecondRow = codeCademyMostCertificatesGridPaneTupelsLabelFirstColumn(i);
+            Label SecondColumnSecondRow = codeCademyMostCertificatesGridPaneTupelsLabelSecondColumn(pair.getKey());
+            Label ThirdColumnSecondRow = codeCademyMostCertificatesGridPaneTupelsLabelThirdColumn(pair.getValue());
+            
+            FirstColumnSecondRow.setPadding(new Insets(25,10,25,10));
+            SecondColumnSecondRow.setPadding(new Insets(25,10,25,10));
+            ThirdColumnSecondRow.setPadding(new Insets(25,10,25,10));
+
+            FirstColumnSecondRow.setMaxSize(170,40);
+            SecondColumnSecondRow.setMaxSize(170,40);
+            ThirdColumnSecondRow.setMaxSize(170,40);
+
+            tablesGrid.add(FirstColumnSecondRow,1,2+i);
+            tablesGrid.add(SecondColumnSecondRow,2,2+i);
+            tablesGrid.add(ThirdColumnSecondRow,3,2+i);
+        }
+           
+        
+        
         return tablesGrid;
     }
 
+    protected static Label codeCademyMostCertificatesGridPaneTupelsLabelFirstColumn(Integer i){
+        // Course fill in data
+        Label courseCompletionRateLabelFirstColumn = new Label(i.toString());
+        courseCompletionRateLabelFirstColumn.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(),14));
+        courseCompletionRateLabelFirstColumn.setTextFill(Color.web("#FFFFFF", 1.0));
+        courseCompletionRateLabelFirstColumn.setStyle("-fx-background-color:#404040");
+        return courseCompletionRateLabelFirstColumn;
+    }
+
+    protected static Label codeCademyMostCertificatesGridPaneTupelsLabelSecondColumn(Object value ){
+        CourseRepo courseRepo = new CourseRepo();
+        Label courseCompletionRateLabelSecondColumn = new Label(value.toString());
+        courseCompletionRateLabelSecondColumn.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(),14));
+        courseCompletionRateLabelSecondColumn.setTextFill(Color.web("#FFFFFF", 1.0));
+        courseCompletionRateLabelSecondColumn.setStyle("-fx-background-color:#404040");
+        return courseCompletionRateLabelSecondColumn;
+    }
+
+    protected static Label codeCademyMostCertificatesGridPaneTupelsLabelThirdColumn(Object value){
+        CourseRepo courseRepo = new CourseRepo();
+        Label courseCompletionRateLabelThirdColumn = new Label(value.toString());
+        courseCompletionRateLabelThirdColumn.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(),14));
+        courseCompletionRateLabelThirdColumn.setTextFill(Color.web("#FFFFFF", 1.0));
+        courseCompletionRateLabelThirdColumn.setStyle("-fx-background-color:#404040");
+        return courseCompletionRateLabelThirdColumn;
+    }
+
     protected static Label codeCademyAllCoursesGridPaneTableLabelMostCertificates(){
-        Label courseCompletionRateLabel = new Label("Top courses rated courses");
+        Label courseCompletionRateLabel = new Label("Most certificates given out");
         courseCompletionRateLabel.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(),28));
         courseCompletionRateLabel.setTextFill(Color.web("#FFFFFF", 1.0));
         return courseCompletionRateLabel;
@@ -339,7 +453,7 @@ public class CodeCademyAllCoursesScene {
     }
 
     protected static Label codeCademyAllCoursesGridPaneMostCertificatesThirdColumn(){
-        Label courseCompletionRateLabelThirdColumn = new Label("Students");
+        Label courseCompletionRateLabelThirdColumn = new Label("Certificates");
         courseCompletionRateLabelThirdColumn.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(),16));
         courseCompletionRateLabelThirdColumn.setTextFill(Color.web("#FFFFFF", 1.0));
         return courseCompletionRateLabelThirdColumn;

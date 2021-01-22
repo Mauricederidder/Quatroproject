@@ -137,7 +137,7 @@ public class CertificateRepo implements Crud<Certificate> {
         // if no one is subscribed to the course, add 0.
         if(completionBasedOnGender.isEmpty()){
             completionBasedOnGender.add("0%");
-            completionBasedOnGender.add("0%");
+            completionBasedOnGender.add("0");
         }
         return completionBasedOnGender;
     }
