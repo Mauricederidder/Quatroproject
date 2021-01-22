@@ -6,6 +6,7 @@ import java.security.PublicKey;
 
 import javax.lang.model.util.ElementScanner6;
 
+import domain.Certificate;
 import domain.Course;
 
 import domain.Person;
@@ -54,43 +55,20 @@ public class Validation {
             return false;
         }
     }
-
-    // //datum nog doen
-    // public boolean validateDate(String strDate){
-    //     /* Check if date is 'null' */
-	//     if (strDate.trim().equals(""))
-	//         {
-	//             return true;
-	//         }
-	//         /* Date is not 'null' */
-	//         else
-	//         {
-	//         /*
-	//          * Set preferred date format,
-	//          * For example MM-dd-yyyy, MM.dd.yyyy,dd.MM.yyyy etc.*/
-	//         SimpleDateFormat sdfrmt = new SimpleDateFormat("MM/dd/yyyy");
-	//         sdfrmt.setLenient(false);
-	//         /* Create Date object
-	//          * parse the string into date 
-    //              */
-	//         try
-	//         {
-	//             Date javaDate = sdfrmt.parse(strDate); 
-	//             System.out.println(strDate+" is valid date format");
-	//         }
-	//         /* Date format is invalid */
-	//         catch (ParseException e)
-	//         {
-	//             System.out.println(strDate+" is Invalid Date format");
-	//             return false;
-	//         }
-	//         /* Return true if date format is valid */
-	//         return true;
-	//     }
-    // }
+    
+    public boolean validateDifficulty(String difficulty){
+        if (difficulty.equals("Beginner") || difficulty.equals("Advanced") ||difficulty.equals("Expert") ) {
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     public boolean validateDate(Date date){
-        return true;
+        if (date != null && date.before(new Date())) {
+            return true;
+        }
+        return false;
     }
 
     public boolean validateGender(String gender){
@@ -137,12 +115,21 @@ public class Validation {
         return false;
     }
 
-    public boolean validateCourse(Course course){
-        if (validateName(course.getCourseName()) 
-         ) {
-            
-        }
-        return true;
-    }
+    // public boolean validateCourse(Course course){
+    //     if (validateName(course.getCourseName()) 
+    //      ) {
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
+    public boolean test(Certificate certificate){
+        //Validate dificulty
+        if (validateDifficulty(certificate.getDifficulty()) &&
+        validatePercentage(certificate.getRating())
+        ) {
+            return true;
+        }
+        return false;
+    }
 }
