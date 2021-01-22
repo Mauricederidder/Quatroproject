@@ -29,6 +29,7 @@ public class StudentRepo implements Crud<Student> {
 
     @Override
     public Student get(int id) {
+
         // TODO Auto-generated method stub
         ResultSet rs = DatabaseConnection.execute(String.format(
                 "SELECT * FROM Persons INNER JOIN Students ON Students.Email = Persons.Email WHERE StudentID = %d",

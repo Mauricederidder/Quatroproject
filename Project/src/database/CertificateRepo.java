@@ -2,10 +2,12 @@ package database;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import domain.Certificate;
 
-public class CertificateRepo implements CRUD<Certificate> {
+public class CertificateRepo implements Crud<Certificate> {
 
     @Override
     public void create(Certificate params) {
@@ -83,4 +85,51 @@ public class CertificateRepo implements CRUD<Certificate> {
 
     }
 
+    public List completionBasedOnGender() {
+        ResultSet rs = DatabaseConnection.execute(
+                "SELECT CourseName, COUNT(CertificateIssuance.StudentID) AS Total, COUNT(CASE WHEN Gender='Male' THEN 1 END) AS Male, COUNT(CASE WHEN Gender='Female' THEN 1 END) AS Female FROM CertificateIssuance INNER JOIN Certificate ON Certificate.CertificateID = CertificateIssuance.CertificateID INNER JOIN Courses ON Certificate.CourseID = Courses.CourseID INNER JOIN Students ON CertificateIssuance.StudentID = Students.StudentID INNER JOIN Persons ON Persons.Email = Students.Email GROUP BY CourseName");
+
+        List<String> completionBasedOnGender = new ArrayList<>();
+
+        try {
+
+            while (rs.next()) {
+                String courseName = rs.getString("CourseName");
+                double totalStudents = rs.getDouble("Total");
+                double totalMale = rs.getDouble("Male");
+                double totalFemale = rs.getDouble("Female");
+                double percentageMale = (totalMale / totalStudents) * 100;
+                double percentageFemale = (totalFemale / totalStudents) * 100;
+                completionBasedOnGender.add(courseName + " | Total: " + totalStudents + "  |  Male: " + percentageMale
+                        + "%  |  Female: " + percentageFemale + "%  |  \n ");
+            }
+            System.out.println(completionBasedOnGender);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return completionBasedOnGender;
+    }
+
+    public HashMap mostCertificatesGiven() {
+        ResultSet rs = DatabaseConnection.execute(String.format(
+                "SELECT Courses.CourseName, COUNT(CertificateIssuance.CertificateID) AS AmountOfCertificates FROM Certificate INNER JOIN CertificateIssuance ON CertificateIssuance.CertificateID = Certificate.CertificateID INNER JOIN Courses ON Courses.CourseID = Certificate.CourseID GROUP BY Courses.CourseName ORDER BY COUNT(CertificateIssuance.CertificateID) DESC"));
+
+        HashMap<String, Integer> mostCertificates = new HashMap<>();
+
+        try {
+            while (rs.next()) {
+                String courseName = rs.getString("CourseName");
+                int amount = rs.getInt("AmountOfCertificates");
+                mostCertificates.put(courseName, amount);
+            }
+            for (String i : mostCertificates.keySet()) {
+                System.out.println(i + " | Amount of certificates: " + mostCertificates.get(i));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return mostCertificates;
+    }
 }
