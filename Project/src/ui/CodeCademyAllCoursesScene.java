@@ -293,7 +293,7 @@ public class CodeCademyAllCoursesScene {
         tablesGrid.getColumnConstraints().add(new ColumnConstraints(200));
         tablesGrid.getColumnConstraints().add(new ColumnConstraints(80));
         tablesGrid.getColumnConstraints().add(new ColumnConstraints(30));
-        
+
         Label tableHeaderLabel = codeCademyAllCoursesGridPaneTableLabelMostCertificates();
         Label FirstColumnFirstRow = codeCademyAllCoursesGridPaneMostCertificatesFirstColumn();
         Label SecondColumnFirstRow = codeCademyAllCoursesGridPaneMostCertificatesSecondColumn();
