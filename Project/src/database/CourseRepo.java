@@ -117,6 +117,29 @@ public class CourseRepo implements Crud<Course> {
         }
         return studentsPerCourse;
     }
+    public Integer studentsPerCourse(int id){
+        ResultSet rs = DatabaseConnection.execute(String.format(
+                "SELECT CourseName, COUNT(*) AS TotalPersons FROM Registrations INNER JOIN Courses ON Courses.CourseID = Registrations.CourseID WHERE Courses.CourseID = %d GROUP BY CourseName ",id));
+
+        HashMap<String, Integer> studentsPerCourse = new HashMap<String, Integer>();
+        Integer totalRegistrations = 0;
+        try {
+            while (rs.next()) {
+                String courseName = rs.getString("CourseName");
+                totalRegistrations = rs.getInt("TotalPersons");
+
+                studentsPerCourse.put(courseName, totalRegistrations);
+            }
+
+            for (String i : studentsPerCourse.keySet()) {
+                System.out.println(i + " | " + studentsPerCourse.get(i));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return totalRegistrations;
+    }
 
     public HashMap top5Courses() {
         ResultSet rs = DatabaseConnection.execute(String.format(
