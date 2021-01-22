@@ -67,7 +67,6 @@ public class CodeCademyLandingScene {
         button.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(),14));
         button.setStyle("-fx-text-fill:white; -fx-background-color:black;");
         return button;
-
     }
 
     protected static DropShadow codeCademyLandingSceneDropShadowButton(){
@@ -83,6 +82,7 @@ public class CodeCademyLandingScene {
         Label text = codeCademyLandingSceneGridText();
         studentenButton.setText("Studenten");
         cursussenButton.setText("Cursussen");
+        cursussenButton.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademyLandingSceneLogic.eventHandlerMouseOver());
         centerGrid.setPadding(new Insets(30,10,430,10));
         centerGrid.setHgap(10);
         centerGrid.setVgap(40);
