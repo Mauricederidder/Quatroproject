@@ -19,11 +19,31 @@ public class CodeCademyLandingSceneLogic {
     
 
     // Returns an EventHandler so the button goes to a different color when hovering.
-    protected static EventHandler<MouseEvent> eventHandlerMouseOver() {
+    protected static EventHandler<MouseEvent> eventHandlerAllCourses() {
         EventHandler<MouseEvent> eventHandlerMouseOver = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
                 CodeCademyStage.getStage().setScene(CodeCademyAllCoursesScene.CodeCademyAllCoursesSceneBuilder());;
+            }
+        };
+        return eventHandlerMouseOver;
+    }
+
+    protected static EventHandler<MouseEvent> eventHandlerStudentSearch() {
+        EventHandler<MouseEvent> eventHandlerMouseOver = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                CodeCademyStage.getStage().setScene(CodeCademySearchStudent.CodeCademySearchStudentSceneBuilder());;
+            }
+        };
+        return eventHandlerMouseOver;
+    }
+
+    protected static EventHandler<MouseEvent> eventHandlerAddcourses() {
+        EventHandler<MouseEvent> eventHandlerMouseOver = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                CodeCademyStage.getStage().setScene(CodeCademyAddCourse.CodeCademyAddCourseSceneBuilder());;
             }
         };
         return eventHandlerMouseOver;

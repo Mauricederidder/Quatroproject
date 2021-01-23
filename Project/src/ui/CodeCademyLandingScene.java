@@ -81,8 +81,9 @@ public class CodeCademyLandingScene {
         Button cursussenButton = codeCademyLandingSceneButton();
         Label text = codeCademyLandingSceneGridText();
         studentenButton.setText("Studenten");
+        studentenButton.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademyLandingSceneLogic.eventHandlerStudentSearch());
         cursussenButton.setText("Cursussen");
-        cursussenButton.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademyLandingSceneLogic.eventHandlerMouseOver());
+        cursussenButton.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademyLandingSceneLogic.eventHandlerAllCourses());
         centerGrid.setPadding(new Insets(30,10,430,10));
         centerGrid.setHgap(10);
         centerGrid.setVgap(40);
