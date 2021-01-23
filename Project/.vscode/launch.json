@@ -15,7 +15,7 @@
             "type": "java",
             "name": "Debug (Launch)-App<Project_50572fbe>",
             "request": "launch",
-            "vmArgs": "-p C:\\Hobby\\Coding\\JavaFX\\openjfx-11.0.2_windows-x64_bin-sdk\\javafx-sdk-11.0.2\\lib --add-modules javafx.controls",    
+            "vmArgs": "-p D:\\javafx-sdk-11.0.2\\lib --add-modules javafx.controls",    
             "mainClass": "App",
             "projectName": "Project_50572fbe"
         }
