@@ -122,7 +122,7 @@ public class CourseRepo implements Crud<Course> {
                 "SELECT CourseName, COUNT(*) AS TotalPersons FROM Registrations INNER JOIN Courses ON Courses.CourseID = Registrations.CourseID WHERE Courses.CourseID = %d GROUP BY CourseName ",id));
 
         HashMap<String, Integer> studentsPerCourse = new HashMap<String, Integer>();
-        Integer totalRegistrations = 0;
+        int totalRegistrations = 0;
         try {
             while (rs.next()) {
                 String courseName = rs.getString("CourseName");
@@ -165,12 +165,12 @@ public class CourseRepo implements Crud<Course> {
         return top5Courses;
     }
 
-    public int totalClearedBasedOnCourse(int courseID) {
+    public Integer totalClearedBasedOnCourse(int courseID) {
         ResultSet rs = DatabaseConnection.execute(String.format(
                 "SELECT COUNT(CertificateIssuance.StudentID) AS Behaald FROM Certificate INNER JOIN CertificateIssuance ON Certificate.CertificateID  = CertificateIssuance.CertificateID WHERE CourseID = %d",
                 courseID));
 
-        int behaald = 0;
+        Integer behaald = 0;
 
         try {
             while (rs.next()) {

@@ -139,6 +139,8 @@ public class CodeCademyAllCoursesScene {
             ThirdColumnSecondRow.setPadding(new Insets(25,10,25,10));
             FourthColumnSecondRow.setPadding(new Insets(25,10,25,10));
 
+            FirstColumnSecondRow.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademyAllCoursesLogic.eventHandlerMouseOver(courseRepo.get(i)));
+
             FirstColumnSecondRow.setMaxSize(170,40);
             SecondColumnSecondRow.setMaxSize(170,40);
             ThirdColumnSecondRow.setMaxSize(170,40);

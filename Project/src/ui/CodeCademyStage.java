@@ -18,16 +18,15 @@ public class CodeCademyStage extends Application {
         // TODO Auto-generated method stub
         guiStage.setTitle("Codecademy");
         guiStage.setMaximized(true);
-        guiStage.setScene(codeCademyAddModule.CodeCademyAddModuleSceneBuilder());
+        guiStage.setScene(CodeCademyAllCoursesScene.CodeCademyAllCoursesSceneBuilder());
         guiStage.show();
     }
     
     public static Stage getStage(){
         return guiStage;
     }
+    
     public static void main(String[] args) throws Exception {
         launch(CodeCademyStage.class);
     }
-
-
 }
