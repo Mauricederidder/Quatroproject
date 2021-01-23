@@ -70,26 +70,25 @@ public class CodeCademySearchStudent {
 
     protected static GridPane codeCademySearchStudentsSceneGridPane(){
         GridPane grid = new GridPane();
-        grid.add(codeCademySearchStudentsTextField(),0,0);
-        grid.add(new Label("     "),1,0);
-        grid.add(codeCademySearchButton(),2,0);
-        return grid;
-    }
 
-    protected static TextField codeCademySearchStudentsTextField(){
         TextField text = new TextField("Enter name");
         text.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(),14));
-        return text;
-    }
-    
-    protected static Button codeCademySearchButton(){
+        
+        grid.add(text,0,0);
+
+        grid.add(new Label("     "),1,0);
+
         Button button = new Button("Find account");
         button.setStyle("-fx-background-color:#000000");
         button.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(),16));
         button.setTextFill(Color.web("#FFFFFF"));;
         button.setMaxHeight(50);
         button.setMaxWidth(450);
-        return button;
+        button.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademySearchStudentLogic.searchStudentEventHandler(text));
+
+        grid.add(button,2,0);
+
+        return grid;
     }
 
 }

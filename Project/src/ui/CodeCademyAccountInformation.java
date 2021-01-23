@@ -1,5 +1,6 @@
 package ui;
 
+import domain.Student;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -22,7 +23,10 @@ import javafx.scene.text.Text;
 
 public class CodeCademyAccountInformation {
 
-    protected static Scene CodeCademyAccountInformationSceneBuilder() {
+    private static Student student;
+
+    protected static Scene CodeCademyAccountInformationSceneBuilder(Student studentArg) {
+        student = studentArg;
         Scene codeCademyAllCoursesScene = new Scene(CodeCademyAccountInformationLayout());
         return codeCademyAllCoursesScene;
     }
@@ -53,7 +57,7 @@ public class CodeCademyAccountInformation {
     }
 
     protected static Label codeCademyAccountInformationHeaderTitle() {
-        Label title = new Label("Account Information - *Entername*");
+        Label title = new Label("Account Information - "+ student.getName());
         title.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(), 40));
         return title;
     }

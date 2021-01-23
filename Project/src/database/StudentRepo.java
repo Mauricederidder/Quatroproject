@@ -57,6 +57,34 @@ public class StudentRepo implements Crud<Student> {
         return student;
     }
 
+    public Student get(String name) {
+
+        // TODO Auto-generated method stub
+        ResultSet rs = DatabaseConnection.execute(String.format(
+                "SELECT TOP 1 * FROM Persons INNER JOIN Students ON Students.Email = Persons.Email WHERE Persons.Name LIKE '%%%s%%'",
+                name));
+
+        Student student = new Student(null, null, null, null, null, null, null, null, 0);
+
+        try {
+            while (rs.next()) {
+                student.setStudentId(rs.getInt("StudentID"));
+                student.setEmail(rs.getString("Email"));
+                student.setAdress(rs.getString("Address"));
+                student.setName(rs.getString("Name"));
+                student.setDayOfBirth(rs.getDate("DayOfBirth"));
+                student.setGender(rs.getString("Gender"));
+                student.setCity(rs.getString("City"));
+                student.setCountry(rs.getString("Country"));
+                student.setPostalCode(rs.getString("PostalCode"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return student;
+    }
+
     @Override
     public ArrayList<Student> get() {
         ResultSet rs = DatabaseConnection
@@ -77,10 +105,6 @@ public class StudentRepo implements Crud<Student> {
                 student.setCountry(rs.getString("Country"));
                 student.setPostalCode(rs.getString("PostalCode"));
                 studentsList.add(student);
-
-            }
-            for (Student i : studentsList) {
-                System.out.println(i);
             }
 
         } catch (Exception e) {
@@ -89,6 +113,8 @@ public class StudentRepo implements Crud<Student> {
         }
         return null;
     }
+
+
 
     @Override
     public void update(int id, String email) {
