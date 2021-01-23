@@ -261,6 +261,8 @@ public class CodeCademyClickedCourseStatistics {
 
     protected static GridPane codeCademyClickedCourseStatisticsModulesCompletionGridPane() {
         GridPane matchingCourse = new GridPane();
+        Button addModulesButton = codeCademyAddCourseAddModuleButton();
+
         Label tableHeaderLabel = codeCademyClickedCourseStatisticsModulesCompletionHeaderLabel();
         for (int i = 0; i < 2; i++) {
             ColumnConstraints column = new ColumnConstraints(90);
@@ -291,6 +293,8 @@ public class CodeCademyClickedCourseStatistics {
         matchingCourse.add(FirstColumnSecondRow, 0, 3);
         matchingCourse.add(SecondColumnSecondRow, 1, 3);
         // fillerendofdata
+        matchingCourse.add(addModulesButton,1,4);
+        addModulesButton.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademyClickedCourseStatisticsLogic.EventMouseOnClickAddModuleButton(linkedCourse));
         return matchingCourse;
     }
 
@@ -329,6 +333,15 @@ public class CodeCademyClickedCourseStatistics {
         label.setTextFill(Color.web("#FFFFFF", 1.0));
         label.setStyle("-fx-background-color:#404040");
         return label;
+    }
+
+    protected static Button codeCademyAddCourseAddModuleButton(){
+        Image img = new Image("file:C:\\School\\Leerjaar 1\\Periode 2\\Programmeren 2\\quatro repository\\Quatroproject\\Project\\src\\ui\\plus.png");
+        ImageView view = new ImageView(img);
+        Button button = new Button();
+        button.setGraphic(view);
+        button.setStyle("-fx-background-color:#404040;");
+        return button;
     }
 
 }
