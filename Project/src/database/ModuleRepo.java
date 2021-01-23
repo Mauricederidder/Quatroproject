@@ -11,13 +11,12 @@ public class ModuleRepo implements Crud<Module> {
     @Override
     public void create(Module params) {
         double version = params.getVersion();
-        int serialNumber = params.getSerialNumber();
         String description = params.getDescription();
         String contactName = params.getContactName();
         String contactEmail = params.getContactEmail();
 
         ResultSet rs = DatabaseConnection.execute(String.format(
-                "INSERT INTO Modules(Version, Description, SerialNumber, ContactPersonName, ContactPersonEmail) VALUES ('%f','%s', %d ,'%s','%s')",
+                "INSERT INTO Modules(Version, Description, ContactPersonName, ContactPersonEmail) VALUES ('%f','%s','%s','%s')",
                 version, description, contactName, contactEmail));
     }
 
@@ -26,13 +25,12 @@ public class ModuleRepo implements Crud<Module> {
         ResultSet rs = DatabaseConnection.execute(String.format(
                 "SELECT * FROM Persons INNER JOIN Students ON Students.Email = Persons.Email WHERE StudentID = %d",
                 id));
-        Module module = new Module(0, 0, null, null, null, null, 0, null, null, null);
+        Module module = new Module(0, null, null, null, null, 0, null, null, null);
 
         try {
 
             while (rs.next()) {
                 module.setVersion(rs.getInt("Version"));
-                module.setSerialNumber(rs.getInt("SerialNumber"));
                 module.setDescription(rs.getString("Description"));
                 module.setContactEmail(rs.getString("ContactPersonEmail"));
                 module.setContactName(rs.getString("ContactPersonName"));
@@ -48,14 +46,13 @@ public class ModuleRepo implements Crud<Module> {
     @Override
     public List<Module> get() {
         ResultSet rs = DatabaseConnection.execute(String.format("SELECT * FROM Modules INNER JOIN ContentItems ON ContentItems.ContentItemID = Modules.ContentItemID"));
-        Module module = new Module(0, 0, null, null, null, null,0, null, null, null);
+        Module module = new Module(0, null, null, null, null,0, null, null, null);
         ArrayList<Module> moduleList = new ArrayList<Module>();
 
         try {
             
             while (rs.next()) {
                 module.setVersion(rs.getInt("Version"));
-                module.setSerialNumber(rs.getInt("SerialNumber"));
                 module.setDescription(rs.getString("Description"));
                 module.setContactEmail(rs.getString("ContactPersonEmail"));
                 module.setContactName(rs.getString("ContactPersonName"));
