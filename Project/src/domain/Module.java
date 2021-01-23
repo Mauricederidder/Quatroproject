@@ -9,6 +9,9 @@ public class Module extends ContentItem {
     private String description;
     private String contactName;
     private String contactEmail;
+    private String avarageProgress;
+
+
 
     public Module(double version, int serialNumber, String description, String contactName, 
         String contactEmail,Course linkedCourse, int contentItemId, Status status, Date publicationDate, String title) {
@@ -59,7 +62,14 @@ public class Module extends ContentItem {
     public void setContactEmail(String contactEmail) {
         this.contactEmail = contactEmail;
     }
+    public String getAvarageProgress() {
+        return this.avarageProgress;
+    }
 
+    public void setAvarageProgress(String avarageProgress) {
+        this.avarageProgress = avarageProgress;
+    }
+    
     @Override
     public String toString() {
         return "{" +
