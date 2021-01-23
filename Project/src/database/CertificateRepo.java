@@ -44,7 +44,7 @@ public class CertificateRepo implements Crud<Certificate> {
     }
 
     @Override
-    public Certificate get() {
+    public ArrayList<Certificate> get() {
         ResultSet rs = DatabaseConnection.execute("SELECT * FROM Certificate");
         ArrayList<Certificate> certificateList = new ArrayList<Certificate>();
 

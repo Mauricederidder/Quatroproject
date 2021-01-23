@@ -18,7 +18,7 @@ import domain.Student;
 
 public class OverviewPersonScene {
 
-    protected static Scene overviewPersonScene() {
+    public static Scene overviewPersonScene() {
         Scene overviewPersonScene = new Scene(overviewPersonRootLayout());
         return overviewPersonScene;
     }

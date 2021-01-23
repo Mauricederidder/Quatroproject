@@ -49,14 +49,14 @@ public class CourseRepo implements Crud<Course> {
     }
 
     @Override
-    public Course get() {
-        ResultSet rs = DatabaseConnection.execute("SELECT * FROM Courses");
+    public ArrayList<Course> get() {
+        ResultSet rs = DatabaseConnection
+                .execute("SELECT * FROM Courses");
         ArrayList<Course> coursesList = new ArrayList<Course>();
-
+        Course course = new Course(1, null, null, null, null, null, null);
         try {
             while (rs.next()) {
-
-                Course course = new Course(1, null, null, null, null, null, null);
+            
                 course.setCourseName(rs.getString("CourseName"));
                 course.setLevelString(rs.getString("Difficulty"));
                 course.setSubject(rs.getString("Subject"));
@@ -67,15 +67,17 @@ public class CourseRepo implements Crud<Course> {
                 coursesList.add(course);
 
             }
+            
             for (Course i : coursesList) {
                 System.out.println(i);
             }
+            return coursesList;
 
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
-        return null;
+        
     }
 
     @Override

@@ -1,5 +1,7 @@
 package ui;
 
+import database.CourseRepo;
+import domain.Course;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -82,47 +84,69 @@ public class CodeCademyAllCoursesScene {
         GridPane tablesGrid = new GridPane();
         tablesGrid.getColumnConstraints().add(new ColumnConstraints(30));
         tablesGrid.getColumnConstraints().add(new ColumnConstraints(180));
+
         for (int i = 0; i < 3; i++) {
             ColumnConstraints column = new ColumnConstraints(190);
             tablesGrid.getColumnConstraints().add(column);
         }
 
         Button addButton = new Button("addshit");
+
+        // First, create the table.
         Label tableHeaderLabel = codeCademyAllCoursesGridPaneTableLabelCourseCompletion();
         Label FirstColumnFirstRow = codeCademyAllCoursesGridPaneTableLabelFirstColumn();
         Label SecondColumnFirstRow = codeCademyAllCoursesGridPaneTableLabelSecondColumn();
         Label ThirdColumnFirstRow = codeCademyAllCoursesGridPaneTableLabelThirdColumn();
         Label FourthColumnFirstRow = codeCademyAllCoursesGridPaneTableLabelFourthColumn();
-        Label FirstColumnSecondRow = codeCademyAllCoursesGridPaneTupelsLabelFirstColumn();
-        Label SecondColumnSecondRow = codeCademyAllCoursesGridPaneTupelsLabelSecondColumn();
-        Label ThirdColumnSecondRow = codeCademyAllCoursesGridPaneTupelsLabelThirdColumn();
-        Label FourthColumnSecondRow = codeCademyAllCoursesGridPaneTupelsLabelFourthColumn();
-        FirstColumnSecondRow.setPadding(new Insets(25,10,25,10));
-        SecondColumnSecondRow.setPadding(new Insets(25,10,25,10));
-        ThirdColumnSecondRow.setPadding(new Insets(25,10,25,10));
-        FourthColumnSecondRow.setPadding(new Insets(25,10,25,10));
-        FirstColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE  );
-        SecondColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE );
-        ThirdColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE  );
-        FourthColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE );
-        FirstColumnSecondRow.setMaxSize(170,40);
-        SecondColumnSecondRow.setMaxSize(170,40);
-        ThirdColumnSecondRow.setMaxSize(170,40);
-        FourthColumnSecondRow.setMaxSize(170,40);
-        tablesGrid.setStyle("-fx-background-color:#000000");
-        tablesGrid.setVgap(20);
-        tablesGrid.setHgap(10);
+        
+        CourseRepo courseRepo = new CourseRepo();
+
         tablesGrid.add(tableHeaderLabel,1,0);
         tablesGrid.setColumnSpan(tableHeaderLabel, 5);
+
         tablesGrid.add(FirstColumnFirstRow,1,1);
         tablesGrid.add(SecondColumnFirstRow,2,1);
         tablesGrid.add(ThirdColumnFirstRow,3,1);
         tablesGrid.add(FourthColumnFirstRow,4,1);
-        tablesGrid.add(FirstColumnSecondRow,1,2);
-        tablesGrid.add(SecondColumnSecondRow,2,2);
-        tablesGrid.add(ThirdColumnSecondRow,3,2);
-        tablesGrid.add(FourthColumnSecondRow,4,2);
+
+        tablesGrid.setStyle("-fx-background-color:#000000");
+        tablesGrid.setVgap(20);
+        tablesGrid.setHgap(10);
+
+        FirstColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE  );
+        SecondColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE );
+        ThirdColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE  );
+        FourthColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE );
+
         tablesGrid.add(addButton,5,3);
+        
+        // Then fill in the DATA
+
+        for (int i = 0; i < courseRepo.get().size(); i++) {
+
+            Label FirstColumnSecondRow = codeCademyAllCoursesGridPaneTupelsLabelFirstColumn(courseRepo.get(i));
+            Label SecondColumnSecondRow = codeCademyAllCoursesGridPaneTupelsLabelSecondColumn();
+            Label ThirdColumnSecondRow = codeCademyAllCoursesGridPaneTupelsLabelThirdColumn();
+            Label FourthColumnSecondRow = codeCademyAllCoursesGridPaneTupelsLabelFourthColumn();
+
+            FirstColumnSecondRow.setPadding(new Insets(25,10,25,10));
+            SecondColumnSecondRow.setPadding(new Insets(25,10,25,10));
+            ThirdColumnSecondRow.setPadding(new Insets(25,10,25,10));
+            FourthColumnSecondRow.setPadding(new Insets(25,10,25,10));
+
+            FirstColumnSecondRow.setMaxSize(170,40);
+            SecondColumnSecondRow.setMaxSize(170,40);
+            ThirdColumnSecondRow.setMaxSize(170,40);
+            FourthColumnSecondRow.setMaxSize(170,40);
+
+            tablesGrid.add(FirstColumnSecondRow,1,2);
+            tablesGrid.add(SecondColumnSecondRow,2,2);
+            tablesGrid.add(ThirdColumnSecondRow,3,2);
+            tablesGrid.add(FourthColumnSecondRow,4,2);
+           
+        }
+
+
         return tablesGrid;
     }
 
@@ -161,8 +185,9 @@ public class CodeCademyAllCoursesScene {
         return courseCompletionRateLabelFourthColumn;
     }
     //filler data
-    protected static Label codeCademyAllCoursesGridPaneTupelsLabelFirstColumn(){
-        Label courseCompletionRateLabelFirstColumn = new Label("DummyDataCourse");
+    protected static Label codeCademyAllCoursesGridPaneTupelsLabelFirstColumn(Course course){
+        // Course fill in data
+        Label courseCompletionRateLabelFirstColumn = new Label(course.getCourseName());
         courseCompletionRateLabelFirstColumn.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(),14));
         courseCompletionRateLabelFirstColumn.setTextFill(Color.web("#FFFFFF", 1.0));
         courseCompletionRateLabelFirstColumn.setStyle("-fx-background-color:#404040");
