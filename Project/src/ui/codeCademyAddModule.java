@@ -25,7 +25,8 @@ public class codeCademyAddModule {
     
     private static Course linkedCourse;
 
-    protected static Scene CodeCademyAddModuleSceneBuilder() {
+    protected static Scene CodeCademyAddModuleSceneBuilder(Course course) {
+        linkedCourse = course;
         Scene codeCademyAllCoursesScene = new Scene(codeCademyAddModuleLayout());
         return codeCademyAllCoursesScene;
     }
@@ -100,7 +101,7 @@ public class codeCademyAddModule {
         String ModuleDescription = TextFieldModuleDescription.getText();
         String ModuleContactName = TextFieldModuleContactName.getText();
         String ModuleContactEmail = TextFieldModuleContactEmail.getText();
-        addModuleButton.addEventHandler(MouseEvent.MOUSE_CLICKED, codeCademyAddModuleLogic.eventHandlerMouseClickedAddModule(Version,Modulename, ModuleDescription,ModuleContactName,ModuleContactEmail));
+        addModuleButton.addEventHandler(MouseEvent.MOUSE_CLICKED, codeCademyAddModuleLogic.eventHandlerMouseClickedAddModule(Version,Modulename, ModuleDescription,ModuleContactName,ModuleContactEmail, linkedCourse));
         return vbox;
     }
 
