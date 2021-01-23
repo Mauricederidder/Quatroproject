@@ -299,16 +299,16 @@ public class CodeCademyClickedCourseStatistics {
         ArrayList<Module> modules = courseRepo.getProgress(linkedCourse.getCourseId());
         for (int i = 0; i < modules.size(); i++) {
             
-            Label FirstColumnSecondRow = codeCademyClickedCourseStatisticsModulesCompletionLabelSecondRowOne(modules.get(i).getTitle());
-            Label SecondColumnSecondRow = codeCademyClickedCourseStatisticsModulesCompletionLabelSecondRowTwo(modules.get(i).getAvarageProgress());
-            FirstColumnSecondRow.setPadding(new Insets(25, 10, 25, 10));
-            SecondColumnSecondRow.setPadding(new Insets(25, 10, 25, 10));
+            // Label FirstColumnSecondRow = codeCademyClickedCourseStatisticsModulesCompletionLabelSecondRowOne(modules.get(i).getTitle());
+            // Label SecondColumnSecondRow = codeCademyClickedCourseStatisticsModulesCompletionLabelSecondRowTwo(modules.get(i).getAvarageProgress());
+            // FirstColumnSecondRow.setPadding(new Insets(25, 10, 25, 10));
+            // SecondColumnSecondRow.setPadding(new Insets(25, 10, 25, 10));
     
-            FirstColumnSecondRow.setMaxSize(190, 40);
-            SecondColumnSecondRow.setMaxSize(50, 40);
+            // FirstColumnSecondRow.setMaxSize(190, 40);
+            // SecondColumnSecondRow.setMaxSize(50, 40);
           
-            matchingCourse.add(FirstColumnSecondRow, 0, 3+i);
-            matchingCourse.add(SecondColumnSecondRow, 1, 3+i);
+            // matchingCourse.add(FirstColumnSecondRow, 0, 3+i);
+            // matchingCourse.add(SecondColumnSecondRow, 1, 3+i);
         }
         // fillerendofdata
         matchingCourse.add(addModulesButton,1,4);

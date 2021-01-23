@@ -96,12 +96,8 @@ public class codeCademyAddModule {
         vbox.getChildren().add(TextFieldModuleContactEmail);
         vbox.getChildren().add(new Label(""));
         vbox.getChildren().add(addModuleButton);
-        String Version = TextFieldModuleVersion.getText();
-        String Modulename = textFieldModuleName.getText();
-        String ModuleDescription = TextFieldModuleDescription.getText();
-        String ModuleContactName = TextFieldModuleContactName.getText();
-        String ModuleContactEmail = TextFieldModuleContactEmail.getText();
-        addModuleButton.addEventHandler(MouseEvent.MOUSE_CLICKED, codeCademyAddModuleLogic.eventHandlerMouseClickedAddModule(Version,Modulename, ModuleDescription,ModuleContactName,ModuleContactEmail, linkedCourse));
+
+        addModuleButton.addEventHandler(MouseEvent.MOUSE_CLICKED, codeCademyAddModuleLogic.eventHandlerMouseClickedAddModule(TextFieldModuleVersion,textFieldModuleName, TextFieldModuleDescription,TextFieldModuleContactName,TextFieldModuleContactEmail, linkedCourse));
         return vbox;
     }
 

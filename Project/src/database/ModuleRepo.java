@@ -28,22 +28,22 @@ public class ModuleRepo implements Crud<Module> {
         ResultSet rsci = DatabaseConnection.execute(String.format(
                 "INSERT INTO ContentItems(Status, PublicationDate, CourseID) VALUES ('%s','2020-01-22','%s')", status,
                 x));
-
-        ResultSet getContentID = DatabaseConnection.execute(String.format("c"));
+        ResultSet getContentID = DatabaseConnection
+                .execute(String.format("SELECT TOP (1) ContentItemID FROM ContentItems ORDER BY contentItemID DESC"));
         int i = 0;
         try {
-             i = getContentID.getInt("ContentItemID");
 
-             ResultSet rs = DatabaseConnection.execute(String.format(
-                "INSERT INTO Modules(Titel, Version, Followers, Description, ContactPersonName, ContactPersonEmail, ContentItemID) VALUES ('%s',1.0,10,'%s','%s','%s','%d')",
-                title, description, contactName, contactEmail, i));
+            while (getContentID.next()) {
+                i = getContentID.getInt("ContentItemID");
+            }
+            ResultSet rs = DatabaseConnection.execute(String.format(
+                    "INSERT INTO Modules(Titel, Version, Followers, Description, ContactPersonName, ContactPersonEmail, ContentItemID) VALUES ('%s',1.0,10,'%s','%s','%s',%d)",
+                    title, description, contactName, contactEmail, i));
 
         } catch (Exception e) {
-           System.out.println("error");
+            System.out.println("error");
             // e.printStackTrace();
         }
-
-
 
     }
 

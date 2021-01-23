@@ -19,6 +19,7 @@ import javafx.scene.effect.*;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
@@ -26,10 +27,16 @@ import javafx.scene.text.Text;
 
 public class codeCademyAddModuleLogic {
     
-    protected static EventHandler<MouseEvent> eventHandlerMouseClickedAddModule(String Version, String Modulename, String ModuleDescription, String ModuleContactName, String ModuleContactEmail, Course linkedScene) {
+    protected static EventHandler<MouseEvent> eventHandlerMouseClickedAddModule(TextField TextFieldModuleVersion, TextField textFieldModuleName, TextField TextFieldModuleDescription, TextField TextFieldModuleContactName, TextField TextFieldModuleContactEmail, Course linkedScene) {
         EventHandler<MouseEvent> eventHandlerMouseClick = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) { 
+
+                String Version = TextFieldModuleVersion.getText();
+                String Modulename = textFieldModuleName.getText();
+                String ModuleDescription = TextFieldModuleDescription.getText();
+                String ModuleContactName = TextFieldModuleContactName.getText();
+                String ModuleContactEmail = TextFieldModuleContactEmail.getText();
                 // DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/mm/dd");  
                 // LocalDateTime now = LocalDateTime.now();  
                 // String test = String.valueOf(dtf.format(now));
