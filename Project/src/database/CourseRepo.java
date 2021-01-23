@@ -7,6 +7,7 @@ import java.util.List;
 
 import domain.Course;
 import domain.Level;
+import domain.Module;
 
 public class CourseRepo implements Crud<Course> {
 
@@ -225,6 +226,28 @@ public class CourseRepo implements Crud<Course> {
 
         return matchingCourses;
     }
+
+    public ArrayList<Module> getProgress(int id) {
+        ResultSet rs = DatabaseConnection.execute(String.format("SELECT Modules.Titel, Progress.Progress FROM Progress INNER JOIN ContentItems ON ContentItems.ContentItemID = Progress.ContentItemID INNER JOIN Courses ON Courses.CourseID = ContentItems.CourseID INNER JOIN Modules ON ContentItems.ContentItemID = Modules.ContentItemID",id));
+
+        ArrayList<Module> progress = new ArrayList<Module>();
+
+        try {
+            while (rs.next()) {
+                Module module = new Module(id, id, null, null, null, null, id, null, null, null);
+                module.setAvarageProgress(rs.getString("Progress"));
+                module.setTitle(rs.getString(rs.getString("Titel")));
+                progress.add(module);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return progress;
+    }
+    
+
     public List getTagsBasedOnCourse(Integer courseID) {
         ResultSet rs = DatabaseConnection.execute(String.format(
                 "SELECT CourseName, TagName FROM Courses INNER JOIN CourseTags ON CourseTags.CourseID = Courses.CourseID INNER JOIN Tags ON Tags.TagID = CourseTags.TagID "));
@@ -242,5 +265,4 @@ public class CourseRepo implements Crud<Course> {
 
         return tags;
     }
-
 }

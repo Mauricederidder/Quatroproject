@@ -98,6 +98,7 @@ public class CodeCademyAllCoursesScene {
         }
 
         Button addButton = new Button("addshit");
+        addButton.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademyLandingSceneLogic.eventHandlerAddcourses());
 
         // First, create the table.
         Label tableHeaderLabel = codeCademyAllCoursesGridPaneTableLabelCourseCompletion();

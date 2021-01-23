@@ -1,9 +1,12 @@
 package ui;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import database.CourseRepo;
+import database.ModuleRepo;
 import domain.Course;
+import domain.Module;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -86,7 +89,7 @@ public class CodeCademyClickedCourseStatistics {
     protected static Label codeCademyClickedCourseStatisticsAmountOfPeopleLabel() {
         CourseRepo courseRepo = new CourseRepo();
         
-        Label amountOfPeopleLabel = new Label(courseRepo.totalClearedBasedOnCourse(linkedCourse.getCourseId()).toString());
+        Label amountOfPeopleLabel = new Label("Completed by: " + courseRepo.totalClearedBasedOnCourse(linkedCourse.getCourseId()).toString() + " students");
         amountOfPeopleLabel.setFont(
                 Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Regular.ttf").toExternalForm(), 22));
         return amountOfPeopleLabel;
@@ -184,10 +187,10 @@ public class CodeCademyClickedCourseStatistics {
                 ThirdColumnSecondRow.setMaxSize(170, 40);
                 FourthColumnSecondRow.setMaxSize(170, 40);
                 
-                matchingCourse.add(FirstColumnSecondRow, 0, 3);
-                matchingCourse.add(SecondColumnSecondRow, 1, 3);
-                matchingCourse.add(ThirdColumnSecondRow, 2, 3);
-                matchingCourse.add(FourthColumnSecondRow, 3, 3); 
+                matchingCourse.add(FirstColumnSecondRow, 0, 3+i/3);
+                matchingCourse.add(SecondColumnSecondRow, 1, 3+i/3);
+                matchingCourse.add(ThirdColumnSecondRow, 2, 3+i/3);
+                matchingCourse.add(FourthColumnSecondRow, 3, 3+i/3); 
             }  
 
         }
@@ -236,7 +239,7 @@ public class CodeCademyClickedCourseStatistics {
 
     // filler data
     protected static Label codeCademyClickedCourseStatisticsAmountofPeopleDummyDataOne(Integer i) {
-        Label label = new Label("Completed by: " + i.toString() + " Students");
+        Label label = new Label( i.toString());
         label.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Regular.ttf").toExternalForm(), 14));
         label.setTextFill(Color.web("#FFFFFF", 1.0));
         label.setStyle("-fx-background-color:#404040");
@@ -291,20 +294,22 @@ public class CodeCademyClickedCourseStatistics {
         matchingCourse.add(FirstColumnFirstRow, 0, 2);
         matchingCourse.add(SecondColumnFirstRow, 1, 2);
         
-        // for (int i = 0; i < ; i++) {
-        //     Label FirstColumnSecondRow = codeCademyClickedCourseStatisticsModulesCompletionLabelSecondRowOne();
-        //     Label SecondColumnSecondRow = codeCademyClickedCourseStatisticsModulesCompletionLabelSecondRowTwo();
-        //     FirstColumnSecondRow.setPadding(new Insets(25, 10, 25, 10));
-        //     SecondColumnSecondRow.setPadding(new Insets(25, 10, 25, 10));
-    
-        //     FirstColumnSecondRow.setMaxSize(190, 40);
-        //     SecondColumnSecondRow.setMaxSize(50, 40);
-          
-        //     matchingCourse.add(FirstColumnSecondRow, 0, 3);
-        //     matchingCourse.add(SecondColumnSecondRow, 1, 3);
-        // }
-      
 
+        CourseRepo courseRepo = new CourseRepo();
+        ArrayList<Module> modules = courseRepo.getProgress(linkedCourse.getCourseId());
+        for (int i = 0; i < modules.size(); i++) {
+            
+            Label FirstColumnSecondRow = codeCademyClickedCourseStatisticsModulesCompletionLabelSecondRowOne(modules.get(i).getTitle());
+            Label SecondColumnSecondRow = codeCademyClickedCourseStatisticsModulesCompletionLabelSecondRowTwo(modules.get(i).getAvarageProgress());
+            FirstColumnSecondRow.setPadding(new Insets(25, 10, 25, 10));
+            SecondColumnSecondRow.setPadding(new Insets(25, 10, 25, 10));
+    
+            FirstColumnSecondRow.setMaxSize(190, 40);
+            SecondColumnSecondRow.setMaxSize(50, 40);
+          
+            matchingCourse.add(FirstColumnSecondRow, 0, 3+i);
+            matchingCourse.add(SecondColumnSecondRow, 1, 3+i);
+        }
         // fillerendofdata
         matchingCourse.add(addModulesButton,1,4);
         addModulesButton.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademyClickedCourseStatisticsLogic.EventMouseOnClickAddModuleButton(linkedCourse));
@@ -332,16 +337,16 @@ public class CodeCademyClickedCourseStatistics {
         return label;
     }
 
-    protected static Label codeCademyClickedCourseStatisticsModulesCompletionLabelSecondRowOne(){
-        Label label = new Label("Just a module");
+    protected static Label codeCademyClickedCourseStatisticsModulesCompletionLabelSecondRowOne(String moduleName){
+        Label label = new Label(moduleName);
         label.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Regular.ttf").toExternalForm(), 12));
         label.setTextFill(Color.web("#FFFFFF", 1.0));
         label.setStyle("-fx-background-color:#404040");
         return label;
     }
 
-    protected static Label codeCademyClickedCourseStatisticsModulesCompletionLabelSecondRowTwo(){
-        Label label = new Label("30%");
+    protected static Label codeCademyClickedCourseStatisticsModulesCompletionLabelSecondRowTwo(String avarageProgress){
+        Label label = new Label(avarageProgress);
         label.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Regular.ttf").toExternalForm(), 12));
         label.setTextFill(Color.web("#FFFFFF", 1.0));
         label.setStyle("-fx-background-color:#404040");
