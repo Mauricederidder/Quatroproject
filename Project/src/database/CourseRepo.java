@@ -236,7 +236,7 @@ public class CourseRepo implements Crud<Course> {
             while (rs.next()) {
                 Module module = new Module(id, null, null, null, null, null, null, null);
                 module.setAvarageProgress(rs.getString("Progress"));
-                module.setTitle(rs.getString(rs.getString("Titel")));
+                module.setTitle(rs.getString("Titel"));
                 progress.add(module);
             }
 

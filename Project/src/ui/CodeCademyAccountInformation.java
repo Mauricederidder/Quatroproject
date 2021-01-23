@@ -1,6 +1,12 @@
 package ui;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import database.StudentRepo;
 import domain.Student;
+import domain.Certificate;
+import domain.Course;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -94,26 +100,36 @@ public class CodeCademyAccountInformation {
     }
 
     protected static GridPane codeCademyAllCoursesCertificatesGridPaneTables() {
+        // Make TABLE
         GridPane tablesGrid = new GridPane();
         tablesGrid.getColumnConstraints().add(new ColumnConstraints(30));
         Label tableHeaderLabel = codeCademyAccountInformationCertificatesTableHeader();
         Label FirstColumnFirstRow = codeCademyAccountInformationCertificatesTablFirstColumn();
-        Label FirstColumnSecondRow = codeCademyAccountInformationCertificatesFillerData();
-        FirstColumnSecondRow.setPadding(new Insets(25, 10, 25, 10));
+
         FirstColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-        FirstColumnSecondRow.setMaxSize(170, 40);
+       
         tablesGrid.setStyle("-fx-background-color:#000000");
         tablesGrid.setVgap(20);
         tablesGrid.setHgap(10);
         tablesGrid.add(tableHeaderLabel, 1, 0);
-        tablesGrid.setColumnSpan(tableHeaderLabel, 2);
+        tablesGrid.setColumnSpan(tableHeaderLabel,2);
         tablesGrid.add(FirstColumnFirstRow, 1, 1);
-        tablesGrid.add(FirstColumnSecondRow, 1, 2);
+        // Fill in DATA
+        StudentRepo studentRepo = new StudentRepo();
+        List<Course> courses = studentRepo.getStudentCourse(student.getStudentId());
+        for (int i = 0; i < courses.size(); i++) {
+
+            Label FirstColumnSecondRow = codeCademyAccountInformationCertificatesFillerData(courses.get(i));
+            FirstColumnSecondRow.setPadding(new Insets(25, 10, 25, 10));
+            FirstColumnSecondRow.setMaxSize(170, 40);
+            tablesGrid.add(FirstColumnSecondRow, 1, 2+i);
+            FirstColumnSecondRow.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademyAccountInformationLogic.showStudentCourseInformation(courses.get(i),student));
+        }
         return tablesGrid;
     }
 
     protected static Label codeCademyAccountInformationCertificatesTableHeader() {
-        Label Label = new Label("Certificates");
+        Label Label = new Label("Courses");
         Label.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(), 18));
         Label.setTextFill(Color.web("#FFFFFF", 1.0));
         return Label;
@@ -126,8 +142,8 @@ public class CodeCademyAccountInformation {
         return Label;
     }
 
-    protected static Label codeCademyAccountInformationCertificatesFillerData() {
-        Label Label = new Label("HTML For Beginners");
+    protected static Label codeCademyAccountInformationCertificatesFillerData(Course course) {
+        Label Label = new Label(course.getCourseName());
         Label.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(), 12));
         Label.setTextFill(Color.web("#FFFFFF", 1.0));
         Label.setStyle("-fx-background-color:#404040");
@@ -142,7 +158,7 @@ public class CodeCademyAccountInformation {
     }
 
     protected static Label codeCademyAccountInformationFollowedCourseHeader() {
-        Label TextFieldLabelOne = new Label("Followed courses");
+        Label TextFieldLabelOne = new Label("Earned certificates");
         TextFieldLabelOne.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(), 18));
         TextFieldLabelOne.setTextFill(Color.web("#000000", 1.0));
         return TextFieldLabelOne;
@@ -153,17 +169,26 @@ public class CodeCademyAccountInformation {
         tablesGrid.getColumnConstraints().add(new ColumnConstraints(30));
         Label tableHeaderLabel = codeCademyAccountInformationFollowedCourseTableHeader();
         Label FirstColumnFirstRow = codeCademyAccountInformationFollowedCourseTablFirstColumn();
-        Label FirstColumnSecondRow = codeCademyAccountInformationFollowedCourseTablesFillerData();
-        FirstColumnSecondRow.setPadding(new Insets(25, 10, 25, 10));
         FirstColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-        FirstColumnSecondRow.setMaxSize(170, 40);
         tablesGrid.setStyle("-fx-background-color:#000000");
         tablesGrid.setVgap(20);
         tablesGrid.setHgap(10);
         tablesGrid.add(tableHeaderLabel, 1, 0);
-        tablesGrid.setColumnSpan(tableHeaderLabel, 5);
         tablesGrid.add(FirstColumnFirstRow, 1, 1);
-        tablesGrid.add(FirstColumnSecondRow, 1, 2);
+        tablesGrid.setColumnSpan(tableHeaderLabel, 5);
+
+        // Fill in data
+        StudentRepo studentRepo = new StudentRepo();
+        List<Certificate> certificates = studentRepo.getStudentCertificate(student.getStudentId());
+
+        for (int i = 0; i < certificates.size(); i++) {
+            Label FirstColumnSecondRow = codeCademyAccountInformationFollowedCourseTablesFillerData(certificates.get(i));
+            FirstColumnSecondRow.setPadding(new Insets(25, 10, 25, 10));
+            FirstColumnSecondRow.setMaxSize(170, 40);
+           
+            tablesGrid.add(FirstColumnSecondRow, 1, 2+i);
+         
+        }
         return tablesGrid;
     }
 
@@ -175,13 +200,13 @@ public class CodeCademyAccountInformation {
     }
 
     protected static Label codeCademyAccountInformationFollowedCourseTablFirstColumn() {
-        Label Label = new Label("Course name");
+        Label Label = new Label("Certificate name");
         Label.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(), 14));
         Label.setTextFill(Color.web("#FFFFFF", 1.0));
         return Label;
     }
-    protected static Label codeCademyAccountInformationFollowedCourseTablesFillerData() {
-        Label Label = new Label("HTML For Beginners");
+    protected static Label codeCademyAccountInformationFollowedCourseTablesFillerData(Certificate certificate){
+        Label Label = new Label(certificate.getName());
         Label.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(), 12));
         Label.setTextFill(Color.web("#FFFFFF", 1.0));
         Label.setStyle("-fx-background-color:#404040");

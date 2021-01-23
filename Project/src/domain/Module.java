@@ -21,7 +21,8 @@ public class Module extends ContentItem {
         this.contactEmail = contactEmail;
     }
 
-    public double getVersion() {
+
+	public double getVersion() {
         return this.version;
     }
 

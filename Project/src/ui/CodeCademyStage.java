@@ -20,7 +20,7 @@ public class CodeCademyStage extends Application {
         guiStage.setTitle("Codecademy");
         guiStage.setMaximized(true);
 
-        guiStage.setScene(CodeCademyAllCoursesScene.CodeCademyAllCoursesSceneBuilder());
+        guiStage.setScene(CodeCademyLandingScene.codeCademyLandingScene());
         guiStage.show();
     }
     

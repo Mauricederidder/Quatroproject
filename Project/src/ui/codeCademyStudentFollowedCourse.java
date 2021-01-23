@@ -1,5 +1,11 @@
 package ui;
 
+import java.util.List;
+
+import database.StudentRepo;
+import domain.Course;
+import domain.Module;
+import domain.Student;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -22,7 +28,13 @@ import javafx.scene.text.Text;
 
 public class codeCademyStudentFollowedCourse {
 
-    protected static Scene codeCademyStudentFollowedCourseSceneBuilder() {
+    private static Student student;
+    private static Course course;
+
+    protected static Scene codeCademyStudentFollowedCourseSceneBuilder(Course courseArg, Student studentArg) {
+        course = courseArg;
+        course.setCourseId(course.getCourseId()-1);
+        student = studentArg;
         Scene codeCademyAllCoursesScene = new Scene(codeCademyStudentFollowedCourseLayout());
         return codeCademyAllCoursesScene;
     }
@@ -53,7 +65,7 @@ public class codeCademyStudentFollowedCourse {
     }
 
     protected static Label codeCademyStudentFollowedCourseHeaderTitle() {
-        Label title = new Label("*Entername* - *ClickedCourse* overzicht");
+        Label title = new Label(student.getName() + " " + course.getCourseName() + " overview");
         title.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(), 40));
         return title;
     }
@@ -77,21 +89,12 @@ public class codeCademyStudentFollowedCourse {
         Label FirstColumnFirstRow = codeCademyStudentFollowedCourseFirstColumn();
         Label SecondColumnFirstRow = codeCademyStudentFollowedCourseSecondColumn();
         Label ThirdColumnFirstRow = codeCademyStudentFollowedCourseThirdColumn();
-        // start of filler data
-        Label FirstColumnSecondRow = codeCademyStudentFollowedCourseFirstColumnSecondRow();
-        Label SecondColumnSecondRow = codeCademyStudentFollowedCourseSecondColumnSecondRow();
-        Label ThirdColumnSecondRow = codeCademyStudentFollowedCourseThirdColumnSecondRow();
-        FirstColumnSecondRow.setPadding(new Insets(15, 10, 15, 10));
-        SecondColumnSecondRow.setPadding(new Insets(15, 10, 15, 10));
-        ThirdColumnSecondRow.setPadding(new Insets(15, 10, 15, 10));
+
         // end of filler data
         FirstColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         SecondColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         ThirdColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-        // fillerdata
-        FirstColumnSecondRow.setMaxSize(170, 40);
-        SecondColumnSecondRow.setMaxSize(170, 40);
-        ThirdColumnSecondRow.setMaxSize(170, 40);
+
         // fillerendofdata
         tablesGrid.setStyle("-fx-background-color:#000000");
         tablesGrid.setVgap(20);
@@ -101,10 +104,30 @@ public class codeCademyStudentFollowedCourse {
         tablesGrid.add(FirstColumnFirstRow, 1, 1);
         tablesGrid.add(SecondColumnFirstRow, 2, 1);
         tablesGrid.add(ThirdColumnFirstRow, 3, 1);
-        // fillerdata
-        tablesGrid.add(FirstColumnSecondRow, 1, 2);
-        tablesGrid.add(SecondColumnSecondRow, 2, 2);
-        tablesGrid.add(ThirdColumnSecondRow, 3, 2);
+
+        // Fill in DATA
+        StudentRepo studentRepo = new StudentRepo();
+        List<Module> modules = studentRepo.getStudentCourseModules(student.getStudentId(), course.getCourseId());
+        for (int i = 0; i < modules.size(); i++) {
+
+            Label FirstColumnSecondRow = codeCademyStudentFollowedCourseFirstColumnSecondRow(i+1);
+            Label SecondColumnSecondRow = codeCademyStudentFollowedCourseSecondColumnSecondRow(modules.get(i));
+            Label ThirdColumnSecondRow = codeCademyStudentFollowedCourseThirdColumnSecondRow(modules.get(i));
+    
+            FirstColumnSecondRow.setMaxSize(170, 40);
+            SecondColumnSecondRow.setMaxSize(170, 40);
+            ThirdColumnSecondRow.setMaxSize(170, 40);
+    
+            FirstColumnSecondRow.setPadding(new Insets(15, 10, 15, 10));
+            SecondColumnSecondRow.setPadding(new Insets(15, 10, 15, 10));
+            ThirdColumnSecondRow.setPadding(new Insets(15, 10, 15, 10));
+    
+            tablesGrid.add(FirstColumnSecondRow, 1, 2+i);
+            tablesGrid.add(SecondColumnSecondRow, 2, 2+i);
+            tablesGrid.add(ThirdColumnSecondRow, 3, 2+i);
+        }
+
+
         // fillerendofdata
         return tablesGrid;
     }
@@ -138,24 +161,24 @@ public class codeCademyStudentFollowedCourse {
     }
 
     // start of filler data
-    protected static Label codeCademyStudentFollowedCourseFirstColumnSecondRow() {
-        Label label = new Label("Module number");
+    protected static Label codeCademyStudentFollowedCourseFirstColumnSecondRow(Integer i) {
+        Label label = new Label(i.toString());
         label.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(), 16));
         label.setTextFill(Color.web("#FFFFFF", 1.0));
         label.setStyle("-fx-background-color:#404040");
         return label;
     }
 
-    protected static Label codeCademyStudentFollowedCourseSecondColumnSecondRow() {
-        Label label = new Label("Module name");
+    protected static Label codeCademyStudentFollowedCourseSecondColumnSecondRow(Module module) {
+        Label label = new Label(module.getTitle());
         label.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(), 16));
         label.setTextFill(Color.web("#FFFFFF", 1.0));
         label.setStyle("-fx-background-color:#404040");
         return label;
     }
 
-    protected static Label codeCademyStudentFollowedCourseThirdColumnSecondRow() {
-        Label label = new Label("Module progress");
+    protected static Label codeCademyStudentFollowedCourseThirdColumnSecondRow(Module module) {
+        Label label = new Label(module.getAvarageProgress());
         label.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(), 16));
         label.setTextFill(Color.web("#FFFFFF", 1.0));
         label.setStyle("-fx-background-color:#404040");

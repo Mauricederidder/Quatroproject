@@ -4,8 +4,13 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+
+import domain.Certificate;
+import domain.Course;
 import domain.Person;
 import domain.Student;
+import domain.Module;
 
 public class StudentRepo implements Crud<Student> {
 
@@ -130,5 +135,56 @@ public class StudentRepo implements Crud<Student> {
         ResultSet rs = DatabaseConnection.execute(String.format("DELETE FROM Students WHERE StudentID = %d", id));
 
     }
+    public List<Course> getStudentCourse(int studentId) {
+        // TODO Auto-generated method stub
+        ResultSet rs = DatabaseConnection.execute(String.format("SELECT Courses.CourseName FROM Courses INNER JOIN Registrations ON Registrations.CourseID = Courses.CourseID INNER JOIN Students ON Students.StudentID = Registrations.StudentID WHERE Students.StudentID = %d", studentId));
+        
+        List<Course> list = new ArrayList<Course>();
 
+        try {
+            while (rs.next()) {
+                Course course = new Course(studentId, null, null, null, null, null, null);
+                course.setCourseName(rs.getString("CourseName"));
+                list.add(course);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    public List<Certificate> getStudentCertificate(int studentId) {
+        // TODO Auto-generated method stub
+        ResultSet rs = DatabaseConnection.execute(String.format("SELECT Certificate.Name FROM CertificateIssuance INNER JOIN Certificate ON CertificateIssuance.CertificateID = Certificate.CertificateID WHERE StudentID = %d", studentId));
+
+        List<Certificate> list = new ArrayList<Certificate>();
+
+        try {
+            while (rs.next()) {
+                Certificate certificate = new Certificate(0, null, 0, null);
+                certificate.setName(rs.getString("Name"));
+                list.add(certificate);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    public List<Module> getStudentCourseModules(int studentId, int courseId) {
+        // TODO Auto-generated method stub
+        ResultSet rs = DatabaseConnection.execute(String.format("SELECT Modules.Titel, Progress.Progress FROM Progress INNER JOIN ContentItems ON ContentItems.ContentItemID = Progress.ContentItemID INNER JOIN Modules ON ContentItems.ContentItemID = Modules.ContentItemID WHERE StudentId = %d AND CourseID = %d", studentId,courseId));
+
+        List<Module> list = new ArrayList<Module>();
+
+        try {
+            while (rs.next()) {
+                Module module = new Module(courseId, null, null, null, null, null, null, null);
+                module.setTitle(rs.getString("Titel"));
+                module.setAvarageProgress(rs.getString("Progress"));
+                list.add(module);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }
