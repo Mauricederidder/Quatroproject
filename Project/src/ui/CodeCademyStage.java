@@ -1,5 +1,6 @@
 package ui;
 
+import database.CourseRepo;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,16 +19,16 @@ public class CodeCademyStage extends Application {
         // TODO Auto-generated method stub
         guiStage.setTitle("Codecademy");
         guiStage.setMaximized(true);
-        guiStage.setScene(CodeCademyLandingScene.codeCademyLandingScene());
+
+        guiStage.setScene(CodeCademyAllCoursesScene.CodeCademyAllCoursesSceneBuilder());
         guiStage.show();
     }
     
     public static Stage getStage(){
         return guiStage;
     }
+    
     public static void main(String[] args) throws Exception {
         launch(CodeCademyStage.class);
     }
-
-
 }

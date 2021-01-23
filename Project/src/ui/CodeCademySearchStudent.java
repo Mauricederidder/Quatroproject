@@ -81,6 +81,7 @@ public class CodeCademySearchStudent {
         text.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(),14));
         return text;
     }
+    
     protected static Button codeCademySearchButton(){
         Button button = new Button("Find account");
         button.setStyle("-fx-background-color:#000000");

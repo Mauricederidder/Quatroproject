@@ -122,7 +122,7 @@ public class CourseRepo implements Crud<Course> {
                 "SELECT CourseName, COUNT(*) AS TotalPersons FROM Registrations INNER JOIN Courses ON Courses.CourseID = Registrations.CourseID WHERE Courses.CourseID = %d GROUP BY CourseName ",id));
 
         HashMap<String, Integer> studentsPerCourse = new HashMap<String, Integer>();
-        Integer totalRegistrations = 0;
+        int totalRegistrations = 0;
         try {
             while (rs.next()) {
                 String courseName = rs.getString("CourseName");
@@ -165,12 +165,12 @@ public class CourseRepo implements Crud<Course> {
         return top5Courses;
     }
 
-    public int totalClearedBasedOnCourse(int courseID) {
+    public Integer totalClearedBasedOnCourse(int courseID) {
         ResultSet rs = DatabaseConnection.execute(String.format(
                 "SELECT COUNT(CertificateIssuance.StudentID) AS Behaald FROM Certificate INNER JOIN CertificateIssuance ON Certificate.CertificateID  = CertificateIssuance.CertificateID WHERE CourseID = %d",
                 courseID));
 
-        int behaald = 0;
+        Integer behaald = 0;
 
         try {
             while (rs.next()) {
@@ -186,8 +186,29 @@ public class CourseRepo implements Crud<Course> {
 
     public List matchingCoursesBasedOnTag(String tag) {
         ResultSet rs = DatabaseConnection.execute(String.format(
-                "SELECT CourseName, TagName FROM Courses INNER JOIN CourseTags ON CourseTags.CourseID = Courses.CourseID INNER JOIN Tags ON Tags.TagID = CourseTags.TagID WHERE TagName = '%s'",
+                "SELECT Courses.CourseID, CourseName, TagName FROM Courses INNER JOIN CourseTags ON CourseTags.CourseID = Courses.CourseID INNER JOIN Tags ON Tags.TagID = CourseTags.TagID WHERE TagName = '%s'",
                 tag));
+
+        List<String> matchingCourses = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                String courseName = rs.getString("CourseName");
+                String tagName = rs.getString("TagName");
+                matchingCourses.add(courseName);
+                matchingCourses.add(tagName);
+                matchingCourses.add(studentsPerCourse(rs.getInt("CourseID")).toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        //matchingCourses.add(rs.getInt("CourseID"));
+        return matchingCourses;
+    }
+
+    public List getAllTagsBasedOnCourse() {
+        ResultSet rs = DatabaseConnection.execute(String.format(
+                "SELECT Courses.CourseName, Tags.TagName FROM Courses LEFT JOIN CourseTags ON Courses.CourseID = CourseTags.CourseID LEFT JOIN Tags ON Tags.TagID = CourseTags.TagID"));
 
         List<String> matchingCourses = new ArrayList<>();
 
@@ -204,6 +225,22 @@ public class CourseRepo implements Crud<Course> {
 
         return matchingCourses;
     }
+    public List getTagsBasedOnCourse(Integer courseID) {
+        ResultSet rs = DatabaseConnection.execute(String.format(
+                "SELECT CourseName, TagName FROM Courses INNER JOIN CourseTags ON CourseTags.CourseID = Courses.CourseID INNER JOIN Tags ON Tags.TagID = CourseTags.TagID "));
 
-    
+        List<String> tags = new ArrayList<>();
+
+        try {
+            while (rs.next()) {
+                String tagName = rs.getString("TagName");
+                tags.add(tagName);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return tags;
+    }
+
 }

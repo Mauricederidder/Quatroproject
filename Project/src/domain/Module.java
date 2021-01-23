@@ -5,16 +5,14 @@ import java.sql.Date;
 public class Module extends ContentItem {
 
     private double version;
-    private int serialNumber;
     private String description;
     private String contactName;
     private String contactEmail;
 
-    public Module(double version, int serialNumber, String description, String contactName, 
-        String contactEmail,Course linkedCourse, int contentItemId, Status status, Date publicationDate, String title) {
-        super(linkedCourse, contentItemId, status, publicationDate, title);
+    public Module(double version, String description, String contactName, 
+        String contactEmail,Course linkedCourse, Status status, Date publicationDate, String title) {
+        super(linkedCourse, status, publicationDate, title);
         this.version = version;
-        this.serialNumber = serialNumber;
         this.description = description;
         this.contactName = contactName;
         this.contactEmail = contactEmail;
@@ -28,13 +26,6 @@ public class Module extends ContentItem {
         this.version = version;
     }
 
-    public int getSerialNumber() {
-        return this.serialNumber;
-    }
-
-    public void setSerialNumber(int serialNumber) {
-        this.serialNumber = serialNumber;
-    }
 
     public String getDescription() {
         return this.description;
@@ -64,7 +55,7 @@ public class Module extends ContentItem {
     public String toString() {
         return "{" +
             " version='" + getVersion() + "'" +
-            ", serialNumber='" + getSerialNumber() + "'" +
+            ", serialNumber='" + "'" +
             ", description='" + getDescription() + "'" +
             ", contactName='" + getContactName() + "'" +
             ", contactEmail='" + getContactEmail() + "'" +
