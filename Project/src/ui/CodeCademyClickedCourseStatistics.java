@@ -1,5 +1,6 @@
 package ui;
 
+import domain.*;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -21,6 +22,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class CodeCademyClickedCourseStatistics {
+    
 
     protected static Scene CodeCademyClickedCourseStatisticsSceneBuilder() {
         Scene codeCademyAllCoursesScene = new Scene(codeCademyClickedCourseStatisticsLayout());

@@ -1,5 +1,6 @@
 package ui;
 
+import domain.Course;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -21,6 +22,8 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class codeCademyAddModule {
+    
+    private static Course linkedCourse;
 
     protected static Scene CodeCademyAddModuleSceneBuilder() {
         Scene codeCademyAllCoursesScene = new Scene(codeCademyAddModuleLayout());
@@ -69,21 +72,35 @@ public class codeCademyAddModule {
 
     protected static VBox codeCademyAddModuleTextfieldVbox(){
         VBox vbox = new VBox();
+        TextField TextFieldModuleVersion = codeCademyAddModuleTextFieldModuleContactVersion();
         TextField textFieldModuleName = codeCademyAddModuleTextFieldModuleName(); 
-        TextField TextFieldModuletag = codeCademyAddModuleTextFieldModuleTag() ;
+        TextField TextFieldModuleDescription = codeCademyAddModuleTextFieldModuleDescription();
+        TextField TextFieldModuleContactName = codeCademyAddModuleTextFieldModuleContactName();
+        TextField TextFieldModuleContactEmail = codeCademyAddModuleTextFieldModuleContactEmail();
         Button addModuleButton = codeCademyAddModuleButton();
 
+        vbox.getChildren().add(codeCademyAddModuleTextFieldLabelModuleVersion());
+        vbox.getChildren().add(TextFieldModuleVersion);
+        vbox.getChildren().add(new Label(""));
         vbox.getChildren().add(codeCademyAddModuleTextFieldLabelModuleName());
         vbox.getChildren().add(textFieldModuleName);
         vbox.getChildren().add(new Label(""));
-        vbox.getChildren().add(codeCademyAddModuleTextFieldLabelModuleTag());
-        vbox.getChildren().add(TextFieldModuletag);
+        vbox.getChildren().add(codeCademyAddModuleTextFieldLabelModuleDescription());
+        vbox.getChildren().add(TextFieldModuleDescription);
         vbox.getChildren().add(new Label(""));
-        vbox.getChildren().add(codeCademyAddModuleButton());
+        vbox.getChildren().add(codeCademyAddModuleTextFieldLabelModuleContactName());
+        vbox.getChildren().add(TextFieldModuleContactName);
+        vbox.getChildren().add(new Label(""));
+        vbox.getChildren().add(codeCademyAddModuleTextFieldLabelModuleContactEmail());
+        vbox.getChildren().add(TextFieldModuleContactEmail);
+        vbox.getChildren().add(new Label(""));
         vbox.getChildren().add(addModuleButton);
-        String name = textFieldModuleName.getText();
-        String tag = TextFieldModuletag.getText();
-        addModuleButton.addEventHandler(MouseEvent.MOUSE_CLICKED, codeCademyAddModuleLogic.eventHandlerMouseClickedAddModule(name,tag));
+        String Version = TextFieldModuleVersion.getText();
+        String Modulename = textFieldModuleName.getText();
+        String ModuleDescription = TextFieldModuleDescription.getText();
+        String ModuleContactName = TextFieldModuleContactName.getText();
+        String ModuleContactEmail = TextFieldModuleContactEmail.getText();
+        addModuleButton.addEventHandler(MouseEvent.MOUSE_CLICKED, codeCademyAddModuleLogic.eventHandlerMouseClickedAddModule(Version,Modulename, ModuleDescription,ModuleContactName,ModuleContactEmail));
         return vbox;
     }
 
@@ -101,17 +118,58 @@ public class codeCademyAddModule {
         return TextFieldModulename;
     }
 
-    protected static Label codeCademyAddModuleTextFieldLabelModuleTag() {
-        Label TextFieldLabelOne = new Label("Module tags: ");
+    protected static Label codeCademyAddModuleTextFieldLabelModuleDescription() {
+        Label TextFieldLabelOne = new Label("Module Descriptions: ");
         TextFieldLabelOne
                 .setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(), 16));
         TextFieldLabelOne.setTextFill(Color.web("#000000", 1.0));
         return TextFieldLabelOne;
     }
 
-    protected static TextField codeCademyAddModuleTextFieldModuleTag() {
+    protected static TextField codeCademyAddModuleTextFieldModuleDescription() {
         TextField TextFieldModuleTag = new TextField();
-        TextFieldModuleTag.setText("Module tags");
+        TextFieldModuleTag.setText("Module Description");
+        return TextFieldModuleTag;
+    }
+    
+    protected static Label codeCademyAddModuleTextFieldLabelModuleContactName() {
+        Label TextFieldLabelOne = new Label("Contact Name: ");
+        TextFieldLabelOne
+                .setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(), 16));
+        TextFieldLabelOne.setTextFill(Color.web("#000000", 1.0));
+        return TextFieldLabelOne;
+    }
+
+    protected static TextField codeCademyAddModuleTextFieldModuleContactName() {
+        TextField TextFieldModuleTag = new TextField();
+        TextFieldModuleTag.setText("Enter contact name");
+        return TextFieldModuleTag;
+    }
+
+    protected static Label codeCademyAddModuleTextFieldLabelModuleContactEmail() {
+        Label TextFieldLabelOne = new Label("Contact Email: ");
+        TextFieldLabelOne
+                .setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(), 16));
+        TextFieldLabelOne.setTextFill(Color.web("#000000", 1.0));
+        return TextFieldLabelOne;
+    }
+
+    protected static TextField codeCademyAddModuleTextFieldModuleContactEmail() {
+        TextField TextFieldModuleTag = new TextField();
+        TextFieldModuleTag.setText("Enter contact Email");
+        return TextFieldModuleTag;
+    }
+
+    protected static Label codeCademyAddModuleTextFieldLabelModuleVersion() {
+        Label TextFieldLabelOne = new Label("Module Version ");
+        TextFieldLabelOne.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(), 16));
+        TextFieldLabelOne.setTextFill(Color.web("#000000", 1.0));
+        return TextFieldLabelOne;
+    }
+
+    protected static TextField codeCademyAddModuleTextFieldModuleContactVersion() {
+        TextField TextFieldModuleTag = new TextField();
+        TextFieldModuleTag.setText("1.0");
         return TextFieldModuleTag;
     }
 

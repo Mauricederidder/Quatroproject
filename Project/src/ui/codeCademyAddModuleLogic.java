@@ -16,13 +16,13 @@ import javafx.scene.text.Text;
 
 public class codeCademyAddModuleLogic {
     
-
-    protected static EventHandler<MouseEvent> eventHandlerMouseClickedAddModule(String name, String tag) {
+    protected static EventHandler<MouseEvent> eventHandlerMouseClickedAddModule(String Version, String Modulename, String ModuleDescription, String ModuleContactName, String ModuleContactEmail) {
         EventHandler<MouseEvent> eventHandlerMouseClick = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                
-                
+                Double v = Double.valueOf(Version);
+                Module newModule = new Module(V,10,Modulename,ModuleDescription,ModuleContactEmail);
+
 
             }
         };
