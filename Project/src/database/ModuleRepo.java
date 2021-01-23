@@ -34,12 +34,16 @@ public class ModuleRepo implements Crud<Module> {
         try {
              i = getContentID.getInt("ContentItemID");
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        ResultSet rs = DatabaseConnection.execute(String.format(
+             ResultSet rs = DatabaseConnection.execute(String.format(
                 "INSERT INTO Modules(Titel, Version, Followers, Description, ContactPersonName, ContactPersonEmail, ContentItemID) VALUES ('%s',1.0,10,'%s','%s','%s','%d')",
                 title, description, contactName, contactEmail, i));
+
+        } catch (Exception e) {
+           System.out.println("error");
+            // e.printStackTrace();
+        }
+
+
 
     }
 
