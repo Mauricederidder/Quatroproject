@@ -186,8 +186,29 @@ public class CourseRepo implements Crud<Course> {
 
     public List matchingCoursesBasedOnTag(String tag) {
         ResultSet rs = DatabaseConnection.execute(String.format(
-                "SELECT CourseName, TagName FROM Courses INNER JOIN CourseTags ON CourseTags.CourseID = Courses.CourseID INNER JOIN Tags ON Tags.TagID = CourseTags.TagID WHERE TagName = '%s'",
+                "SELECT Courses.CourseID, CourseName, TagName FROM Courses INNER JOIN CourseTags ON CourseTags.CourseID = Courses.CourseID INNER JOIN Tags ON Tags.TagID = CourseTags.TagID WHERE TagName = '%s'",
                 tag));
+
+        List<String> matchingCourses = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                String courseName = rs.getString("CourseName");
+                String tagName = rs.getString("TagName");
+                matchingCourses.add(courseName);
+                matchingCourses.add(tagName);
+                matchingCourses.add(studentsPerCourse(rs.getInt("CourseID")).toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        //matchingCourses.add(rs.getInt("CourseID"));
+        return matchingCourses;
+    }
+
+    public List getAllTagsBasedOnCourse() {
+        ResultSet rs = DatabaseConnection.execute(String.format(
+                "SELECT Courses.CourseName, Tags.TagName FROM Courses LEFT JOIN CourseTags ON Courses.CourseID = CourseTags.CourseID LEFT JOIN Tags ON Tags.TagID = CourseTags.TagID"));
 
         List<String> matchingCourses = new ArrayList<>();
 
@@ -204,6 +225,22 @@ public class CourseRepo implements Crud<Course> {
 
         return matchingCourses;
     }
+    public List getTagsBasedOnCourse(Integer courseID) {
+        ResultSet rs = DatabaseConnection.execute(String.format(
+                "SELECT CourseName, TagName FROM Courses INNER JOIN CourseTags ON CourseTags.CourseID = Courses.CourseID INNER JOIN Tags ON Tags.TagID = CourseTags.TagID "));
 
-    
+        List<String> tags = new ArrayList<>();
+
+        try {
+            while (rs.next()) {
+                String tagName = rs.getString("TagName");
+                tags.add(tagName);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return tags;
+    }
+
 }
