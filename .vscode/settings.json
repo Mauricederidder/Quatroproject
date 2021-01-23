@@ -1,28 +1,15 @@
 {
-    "java.project.referencedLibraries": {
-        "include": [
-            "lib/**/*.jar",
-            "d:\\Temp\\sqljdbc_8.4\\ptb\\mssql-jdbc-8.4.1.jre11.jar",
-            "c:\\Hobby\\Coding\\JavaFX\\openjfx-11.0.2_windows-x64_bin-sdk\\javafx-sdk-11.0.2\\lib\\javafx.base.jar",
-            "c:\\Hobby\\Coding\\JavaFX\\openjfx-11.0.2_windows-x64_bin-sdk\\javafx-sdk-11.0.2\\lib\\javafx.controls.jar",
-            "c:\\Hobby\\Coding\\JavaFX\\openjfx-11.0.2_windows-x64_bin-sdk\\javafx-sdk-11.0.2\\lib\\javafx.fxml.jar",
-            "c:\\Hobby\\Coding\\JavaFX\\openjfx-11.0.2_windows-x64_bin-sdk\\javafx-sdk-11.0.2\\lib\\javafx.graphics.jar",
-            "c:\\Hobby\\Coding\\JavaFX\\openjfx-11.0.2_windows-x64_bin-sdk\\javafx-sdk-11.0.2\\lib\\javafx.media.jar",
-            "c:\\Hobby\\Coding\\JavaFX\\openjfx-11.0.2_windows-x64_bin-sdk\\javafx-sdk-11.0.2\\lib\\javafx.swing.jar",
-            "c:\\Hobby\\Coding\\JavaFX\\openjfx-11.0.2_windows-x64_bin-sdk\\javafx-sdk-11.0.2\\lib\\javafx.web.jar",
-            "c:\\Hobby\\Coding\\JavaFX\\openjfx-11.0.2_windows-x64_bin-sdk\\javafx-sdk-11.0.2\\lib\\javafx-swt.jar",
-            "c:\\Hobby\\Coding\\SQL Server JavaDriver\\sqljdbc_8.4\\enu\\mssql-jdbc-8.4.1.jre11.jar",
-            "c:\\Temp\\javafx\\javafx-sdk-11.0.2\\lib\\javafx.base.jar",
-            "c:\\Temp\\javafx\\javafx-sdk-11.0.2\\lib\\javafx.controls.jar",
-            "c:\\Temp\\javafx\\javafx-sdk-11.0.2\\lib\\javafx.fxml.jar",
-            "c:\\Temp\\javafx\\javafx-sdk-11.0.2\\lib\\javafx.graphics.jar",
-            "c:\\Temp\\javafx\\javafx-sdk-11.0.2\\lib\\javafx.media.jar",
-            "c:\\Temp\\javafx\\javafx-sdk-11.0.2\\lib\\javafx.swing.jar",
-            "c:\\Temp\\javafx\\javafx-sdk-11.0.2\\lib\\javafx.web.jar",
-            "c:\\Temp\\javafx\\javafx-sdk-11.0.2\\lib\\javafx-swt.jar"
-        ],
-        "exclude": [
-            "d:\\javafx-sdk-11.0.2\\lib\\javafx.graphics.jar"
-        ]
-    }
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "d:\\Temp\\sqljdbc_8.4\\ptb\\mssql-jdbc-8.4.1.jre11.jar",
+        "c:\\Hobby\\Coding\\JavaFX\\openjfx-11.0.2_windows-x64_bin-sdk\\javafx-sdk-11.0.2\\lib\\javafx.base.jar",
+        "c:\\Hobby\\Coding\\JavaFX\\openjfx-11.0.2_windows-x64_bin-sdk\\javafx-sdk-11.0.2\\lib\\javafx.controls.jar",
+        "c:\\Hobby\\Coding\\JavaFX\\openjfx-11.0.2_windows-x64_bin-sdk\\javafx-sdk-11.0.2\\lib\\javafx.fxml.jar",
+        "c:\\Hobby\\Coding\\JavaFX\\openjfx-11.0.2_windows-x64_bin-sdk\\javafx-sdk-11.0.2\\lib\\javafx.graphics.jar",
+        "c:\\Hobby\\Coding\\JavaFX\\openjfx-11.0.2_windows-x64_bin-sdk\\javafx-sdk-11.0.2\\lib\\javafx.media.jar",
+        "c:\\Hobby\\Coding\\JavaFX\\openjfx-11.0.2_windows-x64_bin-sdk\\javafx-sdk-11.0.2\\lib\\javafx.swing.jar",
+        "c:\\Hobby\\Coding\\JavaFX\\openjfx-11.0.2_windows-x64_bin-sdk\\javafx-sdk-11.0.2\\lib\\javafx.web.jar",
+        "c:\\Hobby\\Coding\\JavaFX\\openjfx-11.0.2_windows-x64_bin-sdk\\javafx-sdk-11.0.2\\lib\\javafx-swt.jar",
+        "c:\\Hobby\\Coding\\SQL Server JavaDriver\\sqljdbc_8.4\\enu\\mssql-jdbc-8.4.1.jre11.jar"
+    ]
 }
