@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Course {
 
-    private int courseId;
+    private Integer courseId;
     private String courseName;
     private Level level;
     private String levelString;
@@ -13,7 +13,7 @@ public class Course {
     private String description;
     private List<ContentItem> contentItems;
 
-    public Course(int courseId, String courseName, Level level, String subject, String introduction, String description,
+    public Course(Integer courseId, String courseName, Level level, String subject, String introduction, String description,
             List<ContentItem> contentItems) {
         this.courseId = courseId;
         this.courseName = courseName;
@@ -24,11 +24,11 @@ public class Course {
         this.contentItems = contentItems;
     }
 
-    public int getCourseId() {
+    public Integer getCourseId() {
         return this.courseId;
     }
 
-    public void setCourseId(int courseId) {
+    public void setCourseId(Integer courseId) {
         this.courseId = courseId;
     }
 

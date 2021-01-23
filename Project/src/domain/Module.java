@@ -4,13 +4,13 @@ import java.sql.Date;
 
 public class Module extends ContentItem {
 
-    private String version;
+    private double version;
     private int serialNumber;
     private String description;
     private String contactName;
     private String contactEmail;
 
-    public Module(String version, int serialNumber, String description, String contactName, 
+    public Module(double version, int serialNumber, String description, String contactName, 
         String contactEmail,Course linkedCourse, int contentItemId, Status status, Date publicationDate, String title) {
         super(linkedCourse, contentItemId, status, publicationDate, title);
         this.version = version;
@@ -20,11 +20,11 @@ public class Module extends ContentItem {
         this.contactEmail = contactEmail;
     }
 
-    public String getVersion() {
+    public double getVersion() {
         return this.version;
     }
 
-    public void setVersion(String version) {
+    public void setVersion(double version) {
         this.version = version;
     }
 
