@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch OverzichtPersonUi",
+            "request": "launch",
+            "mainClass": "ui.oldstuff.OverzichtPersonUi",
+            "projectName": "Quatroproject_1519f27e"
+        },
+        {
+            "type": "java",
+            "name": "Launch CodeCademyStage",
+            "request": "launch",
+            "mainClass": "ui.CodeCademyStage",
+            "projectName": "Quatroproject_1519f27e"
+        },
+        {
+            "type": "java",
             "name": "Launch CodeCademyStage",
             "request": "launch",
             "mainClass": "ui.CodeCademyStage",
@@ -15,14 +29,14 @@
             "type": "java",
             "name": "Launch Current File",
             "request": "launch",
-            "vmArgs": "-p C:\\Hobby\\Coding\\JavaFX\\openjfx-11.0.2_windows-x64_bin-sdk\\javafx-sdk-11.0.2\\lib  --add-modules javafx.controls",
+            "vmArgs": "-p C:\\Temp\\javafx\\javafx-sdk-11.0.2\\lib --add-modules javafx.controls",
             "mainClass": "${file}"
         },
         {
             "type": "java",
             "name": "Launch App",
             "request": "launch",
-            "vmArgs": "-p C:\\Hobby\\Coding\\JavaFX\\openjfx-11.0.2_windows-x64_bin-sdk\\javafx-sdk-11.0.2\\lib  --add-modules javafx.controls",
+            "vmArgs": "-p C:\\Temp\\javafx\\javafx-sdk-11.0.2\\lib --add-modules javafx.controls",
             "mainClass": "App",
             "projectName": "Quatroproject_75e23d4"
         },
@@ -30,7 +44,7 @@
             "type": "java",
             "name": "Launch OverzichtPersonUi",
             "request": "launch",
-            "vmArgs": "-p C:\\Hobby\\Coding\\JavaFX\\openjfx-11.0.2_windows-x64_bin-sdk\\javafx-sdk-11.0.2\\lib  --add-modules javafx.controls",
+            "vmArgs": "-p C:\\Temp\\javafx\\javafx-sdk-11.0.2\\lib --add-modules javafx.controls",
             "mainClass": "ui.OverzichtPersonUi",
             "projectName": "Quatroproject_75e23d4"
         }

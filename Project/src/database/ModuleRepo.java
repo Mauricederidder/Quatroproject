@@ -2,6 +2,7 @@ package database;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 import domain.Module;
 
@@ -9,15 +10,15 @@ public class ModuleRepo implements Crud<Module> {
 
     @Override
     public void create(Module params) {
+        String title = params.getTitle();
         double version = params.getVersion();
-        int serialNumber = params.getSerialNumber();
         String description = params.getDescription();
         String contactName = params.getContactName();
         String contactEmail = params.getContactEmail();
 
         ResultSet rs = DatabaseConnection.execute(String.format(
-                "INSERT INTO Modules(Version, Description, SerialNumber, ContactPersonName, ContactPersonEmail) VALUES ('%f','%s', %d ,'%s','%s')",
-                version, description, contactName, contactEmail));
+                "INSERT INTO Modules(Title, Version, Description, SerialNumber, ContactPersonName, ContactPersonEmail) VALUES ('%s','%f','%s', %d ,'%s','%s')",
+                title, version, description, contactName, contactEmail));
     }
 
     @Override
@@ -80,5 +81,27 @@ public class ModuleRepo implements Crud<Module> {
     @Override
     public void delete(int id) {
         ResultSet rs = DatabaseConnection.execute(String.format("DELETE FROM Modules WHERE ContentItemID = %d", id));
+    }
+
+    public List modulePerCourse(int id){
+        ResultSet rs = DatabaseConnection.execute(String.format(
+                "SELECT Modules.Titel AS Module FROM Modules INNER JOIN ContentItems ON Modules.ContentItemID = ContentItems.ContentItemID INNER JOIN Courses ON Courses.CourseID = ContentItems.CourseID WHERE Courses.CourseID = %d",
+                id));
+
+        List<String> modules = new ArrayList<>();
+
+        try {
+            while (rs.next()) {
+                String module = rs.getString("Module");
+                modules.add(module);
+            }
+            System.out.println(modules);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return modules;
+    }
     }
 }
