@@ -1,5 +1,8 @@
 package ui;
 
+import java.util.List;
+
+import database.ModuleRepo;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -19,6 +22,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import domain.Module;
 
 public class CodeCademyAddCourse {
 
@@ -117,6 +121,15 @@ public class CodeCademyAddCourse {
         button.setMaxWidth(450);
         return button;
     }
+    protected static Button codeCademyAddCourseAddModuleButton(){
+        Button button = new Button("Add Module");
+        button.setStyle("-fx-background-color:#000000");
+        button.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(),16));
+        button.setTextFill(Color.web("#FFFFFF"));;
+        button.setMaxHeight(50);
+        button.setMaxWidth(450);
+        return button;
+    }
 
     protected static Label codeCademyAddCourseAddModulesOverview(){
         Label addModules = new Label("Addable modules");
@@ -131,37 +144,26 @@ public class CodeCademyAddCourse {
         GridPane grid = new GridPane();
         grid.setHgap(15);
         grid.setStyle("-fx-background-color:#404040");
-        grid.add(codeCademyAddCourseAllModules(), 0, 1);
-        grid.add(codeCademyAddCourseAddModuleButton(),1,1);
+
+        ModuleRepo moduleRepo = new ModuleRepo();
+        List<Module> modules = moduleRepo.get();
+        for (int i = 0; i < modules.size() ; i++) {
+            grid.add(codeCademyAddCourseAllModules(modules.get(i)), 0, 1+i);
+            grid.add(codeCademyAddCourseAddModuleButton(),1,1+i);
+        }
+
         grid.add(new Label(""),0,2);
-        grid.add(codeCademyAddCourseAllModulesTest(), 0, 3);
-        grid.add(new Label(""),0,4);
-        grid.add(codeCademyAddCourseAllModulesTest(), 0, 5);
+
         //grid.setPadding(new Insets(20,79,20,20));
         return grid;
     }
 
-    protected static Label codeCademyAddCourseAllModules(){
-        Label AllModules = new Label("Learning the basics");
+    protected static Label codeCademyAddCourseAllModules(Module moduleToAdd){
+        Label AllModules = new Label(moduleToAdd.getTitle());
         AllModules.setStyle("-fx-background-color:#404040");
         AllModules.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(),14));
         AllModules.setTextFill(Color.web("#FFFFFF"));;
         return AllModules;
-    }
-    protected static Label codeCademyAddCourseAllModulesTest(){
-        Label AllModules = new Label("Getting it down");
-        AllModules.setStyle("-fx-background-color:#404040");
-        AllModules.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(),14));
-        AllModules.setTextFill(Color.web("#FFFFFF"));;
-        return AllModules;
-    }
-    protected static Button codeCademyAddCourseAddModuleButton(){
-        Image img = new Image("file:C:\\School\\Leerjaar 1\\Periode 2\\Programmeren 2\\quatro repository\\Quatroproject\\Project\\src\\ui\\plus.png");
-        ImageView view = new ImageView(img);
-        Button button = new Button();
-        button.setGraphic(view);
-        button.setStyle("-fx-background-color:#404040;");
-        return button;
     }
 
 }

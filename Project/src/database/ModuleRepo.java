@@ -74,16 +74,16 @@ public class ModuleRepo implements Crud<Module> {
     public List<Module> get() {
         ResultSet rs = DatabaseConnection.execute(String.format(
                 "SELECT * FROM Modules INNER JOIN ContentItems ON ContentItems.ContentItemID = Modules.ContentItemID"));
-        Module module = new Module(0, null, null, null, null, null, null, null);
+
         ArrayList<Module> moduleList = new ArrayList<Module>();
-
         try {
-
             while (rs.next()) {
+                Module module = new Module(0, null, null, null, null, null, null, null);
                 module.setVersion(rs.getInt("Version"));
                 module.setDescription(rs.getString("Description"));
                 module.setContactEmail(rs.getString("ContactPersonEmail"));
                 module.setContactName(rs.getString("ContactPersonName"));
+                module.setTitle(rs.getString("Titel"));
                 moduleList.add(module);
             }
             for (Module i : moduleList) {
@@ -94,7 +94,7 @@ public class ModuleRepo implements Crud<Module> {
             e.printStackTrace();
             return null;
         }
-        return null;
+        return moduleList;
     }
 
     @Override
@@ -106,5 +106,24 @@ public class ModuleRepo implements Crud<Module> {
     @Override
     public void delete(int id) {
         ResultSet rs = DatabaseConnection.execute(String.format("DELETE FROM Modules WHERE ContentItemID = %d", id));
+    }
+    public List modulePerCourse(int id) {
+        ResultSet rs = DatabaseConnection.execute(String.format(
+                "SELECT Modules.Titel AS Module FROM Modules INNER JOIN ContentItems ON Modules.ContentItemID = ContentItems.ContentItemID INNER JOIN Courses ON Courses.CourseID = ContentItems.CourseID WHERE Courses.CourseID = %d",
+                id));
+
+        List<String> modules = new ArrayList<>();
+
+        try {
+            while (rs.next()) {
+                String module = rs.getString("Module");
+                modules.add(module);
+            }
+
+        } catch (Exception e) { 	
+            e.printStackTrace();
+        }
+
+        return modules;
     }
 }

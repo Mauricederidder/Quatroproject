@@ -17,7 +17,7 @@ public class CodeCademyStage extends Application {
     public void start(Stage mainStage) throws Exception {
         guiStage = mainStage;
         // TODO Auto-generated method stub
-        guiStage.setTitle("Codecademy");
+        guiStage.setTitle("Maurice de Ridder 2168234, Luuk Bartels 2169707, Noah Christiaan de Keijzer 2167874, Dani Heyl 2169961");
         guiStage.setMaximized(true);
 
         guiStage.setScene(CodeCademyLandingScene.codeCademyLandingScene());
