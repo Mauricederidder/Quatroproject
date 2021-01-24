@@ -97,7 +97,18 @@ public class CodeCademySearchStudent {
         button.setMaxWidth(450);
         button.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademySearchStudentLogic.searchStudentEventHandler(text));
 
+        Button buttonCreateAccount = new Button("Create account");
+        buttonCreateAccount.setStyle("-fx-background-color:#000000");
+        buttonCreateAccount.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(),16));
+        buttonCreateAccount.setTextFill(Color.web("#FFFFFF"));;
+        buttonCreateAccount.setMaxHeight(50);
+        buttonCreateAccount.setMaxWidth(450);
+        buttonCreateAccount.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademySearchStudentLogic.addStudentEventHandler());
+
+
+
         grid.add(button,2,0);
+        grid.add(buttonCreateAccount,3,0);
 
         return grid;
     }

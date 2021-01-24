@@ -31,4 +31,14 @@ public class CodeCademySearchStudentLogic {
             };
             return eventHandlerMouseOver;
         }
+        protected static EventHandler<MouseEvent> addStudentEventHandler() {
+            EventHandler<MouseEvent> eventHandlerMouseOver = new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent e) {
+                    
+                    CodeCademyStage.getStage().setScene(CodeCademyAddStudent.codeCademyAddStudentSceneBuilder());
+                }
+            };
+            return eventHandlerMouseOver;
+        }
 }
