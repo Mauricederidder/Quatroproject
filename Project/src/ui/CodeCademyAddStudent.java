@@ -71,32 +71,33 @@ public class CodeCademyAddStudent {
 
     protected static VBox codeCademyAddStudentTextfieldVbox() {
         VBox vbox = new VBox();
-        TextField TextFieldStudentVersion = codeCademyAddStudentTextFieldStudentContactVersion();
+        TextField TextFieldStudentEmail = codeCademyAddStudentTextFieldStudentContactVersion();
         TextField textFieldStudentName = codeCademyAddStudentTextFieldStudentName();
-        TextField TextFieldStudentDescription = codeCademyAddStudentTextFieldStudentDescription();
-        TextField TextFieldStudentContactName = codeCademyAddStudentTextFieldStudentContactName();
-        TextField TextFieldStudentContactEmail = codeCademyAddStudentTextFieldStudentContactEmail();
+        TextField TextFieldStudentGender = codeCademyAddStudentTextFieldStudentGender();
+        TextField TextFieldStudentAddress = codeCademyAddStudentTextFieldStudentContactAddress();
+        TextField TextFieldStudentContactCity = codeCademyAddStudentTextFieldStudentContactCity();
         TextField TextFieldStudentPostalCode = codeCademyAddStudentTextFieldPostalCode();
         Button addStudentButton = codeCademyAddStudentButton();
 
         vbox.getChildren().add(codeCademyAddStudentTextFieldLabelStudentVersion());
-        vbox.getChildren().add(TextFieldStudentVersion);
+        vbox.getChildren().add(TextFieldStudentEmail);
         vbox.getChildren().add(new Label(""));
         vbox.getChildren().add(codeCademyAddStudentTextFieldLabelStudentName());
         vbox.getChildren().add(textFieldStudentName);
         vbox.getChildren().add(new Label(""));
-        vbox.getChildren().add(codeCademyAddStudentTextFieldLabelStudentDescription());
-        vbox.getChildren().add(TextFieldStudentDescription);
+        vbox.getChildren().add(codeCademyAddStudentTextFieldLabelStudentGender());
+        vbox.getChildren().add(TextFieldStudentGender);
         vbox.getChildren().add(new Label(""));
-        vbox.getChildren().add(codeCademyAddStudentTextFieldLabelStudentContactName());
-        vbox.getChildren().add(TextFieldStudentContactName);
+        vbox.getChildren().add(codeCademyAddStudentTextFieldLabelStudentAddress());
+        vbox.getChildren().add(TextFieldStudentAddress);
         vbox.getChildren().add(new Label(""));
-        vbox.getChildren().add(codeCademyAddStudentTextFieldLabelStudentContactEmail());
-        vbox.getChildren().add(TextFieldStudentContactEmail);
+        vbox.getChildren().add(codeCademyAddStudentTextFieldLabelStudentContactCity());
+        vbox.getChildren().add(TextFieldStudentContactCity);
         vbox.getChildren().add(new Label(""));
         vbox.getChildren().add(codeCademyAddStudentTextFieldLabelStudentPostalcode());
         vbox.getChildren().add(TextFieldStudentPostalCode);
         vbox.getChildren().add(new Label(""));
+
         vbox.getChildren().add(addStudentButton);
 
         return vbox;
@@ -130,7 +131,7 @@ public class CodeCademyAddStudent {
         return TextFieldStudentname;
     }
 
-    protected static Label codeCademyAddStudentTextFieldLabelStudentDescription() {
+    protected static Label codeCademyAddStudentTextFieldLabelStudentGender() {
         Label TextFieldLabelOne = new Label("Gender: ");
         TextFieldLabelOne
                 .setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(), 16));
@@ -138,13 +139,13 @@ public class CodeCademyAddStudent {
         return TextFieldLabelOne;
     }
 
-    protected static TextField codeCademyAddStudentTextFieldStudentDescription() {
+    protected static TextField codeCademyAddStudentTextFieldStudentGender() {
         TextField TextFieldStudentTag = new TextField();
         TextFieldStudentTag.setText("Student Gender");
         return TextFieldStudentTag;
     }
     
-    protected static Label codeCademyAddStudentTextFieldLabelStudentContactName() {
+    protected static Label codeCademyAddStudentTextFieldLabelStudentAddress() {
         Label TextFieldLabelOne = new Label("Address: ");
         TextFieldLabelOne
                 .setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(), 16));
@@ -152,13 +153,13 @@ public class CodeCademyAddStudent {
         return TextFieldLabelOne;
     }
 
-    protected static TextField codeCademyAddStudentTextFieldStudentContactName() {
+    protected static TextField codeCademyAddStudentTextFieldStudentContactAddress() {
         TextField TextFieldStudentTag = new TextField();
         TextFieldStudentTag.setText("Enter adress");
         return TextFieldStudentTag;
     }
 
-    protected static Label codeCademyAddStudentTextFieldLabelStudentContactEmail() {
+    protected static Label codeCademyAddStudentTextFieldLabelStudentContactCity() {
         Label TextFieldLabelOne = new Label("City: ");
         TextFieldLabelOne
                 .setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(), 16));
@@ -166,7 +167,7 @@ public class CodeCademyAddStudent {
         return TextFieldLabelOne;
     }
 
-    protected static TextField codeCademyAddStudentTextFieldStudentContactEmail() {
+    protected static TextField codeCademyAddStudentTextFieldStudentContactCity() {
         TextField TextFieldStudentTag = new TextField();
         TextFieldStudentTag.setText("Enter city");
         return TextFieldStudentTag;
