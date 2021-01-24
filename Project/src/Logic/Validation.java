@@ -80,26 +80,17 @@ public class Validation {
     }
 
     //check op cijfers en nummers
-    public boolean validatePostalCode(String PostalCode){
-        boolean validPostalCode = true;
-        if (PostalCode.length() == 6) {
-            for (int i = 0 ; i != PostalCode.length() ; i++) {
-                char c = PostalCode.charAt(i);
-                if ((i >= 0) &&  (i < 4)) {
-                    if (Character.isDigit(c)) {
-                        validPostalCode = false;
-                    }
-                }
-                if ((i >= 0) &&  (i < 4)) {
-                    if (Character.isAlphabetic(c)) {
-                        validPostalCode = false;
-                    }
-                }                                             
-            }
-        }else{
-            validPostalCode = false;
+    public boolean validatePostalCode(String postalCode){
+        if (postalCode.equals(null)) {
+            return false;
+        } else if (postalCode.length() <= 5 || postalCode.length() >= 7) {
+            return false;
+        } else if (postalCode.matches("[1-9]{1}[0-9]{3}[a-zA-Z]{2}")) {
+            
+            return true;
+        } else {
+            return false;
         }
-        return validPostalCode;
     }
 
     public boolean validatePerson(Person person){

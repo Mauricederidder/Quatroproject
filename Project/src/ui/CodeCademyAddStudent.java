@@ -80,6 +80,8 @@ public class CodeCademyAddStudent {
         TextField TextFieldStudentPostalCode = codeCademyAddStudentTextFieldPostalCode();
         Button addStudentButton = codeCademyAddStudentButton();
 
+        Label error = codeCademyAddStudentStudentError();
+
         vbox.getChildren().add(codeCademyAddStudentTextFieldLabelStudentVersion());
         vbox.getChildren().add(TextFieldStudentEmail);
         vbox.getChildren().add(new Label(""));
@@ -100,7 +102,9 @@ public class CodeCademyAddStudent {
         vbox.getChildren().add(new Label(""));
 
         vbox.getChildren().add(addStudentButton);
-        addStudentButton.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademyAddStudentLogic.EventHandlerMouseClickAddStudent(TextFieldStudentEmail, textFieldStudentName, TextFieldStudentGender, TextFieldStudentAddress,TextFieldStudentContactCity, TextFieldStudentPostalCode));
+        vbox.getChildren().add(error);
+        addStudentButton.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademyAddStudentLogic.EventHandlerMouseClickAddStudent(TextFieldStudentEmail, textFieldStudentName, TextFieldStudentGender, TextFieldStudentAddress,TextFieldStudentContactCity, TextFieldStudentPostalCode,error));
+
 
         return vbox;
     }
@@ -202,5 +206,14 @@ public class CodeCademyAddStudent {
         button.setMaxWidth(450);
         return button;
     }
+
+    protected static Label codeCademyAddStudentStudentError() {
+        Label error = new Label("Please enter valid data ");
+        error.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(), 16));
+        error.setTextFill(Color.web("#FF0000", 1.0));
+        error.setVisible(false);
+        return error;
+    }
+
 
 }
