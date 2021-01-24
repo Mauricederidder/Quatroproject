@@ -1,5 +1,6 @@
 package database;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,6 +9,7 @@ import java.util.List;
 import domain.Course;
 import domain.Level;
 import domain.Module;
+import domain.ContentItem;
 
 public class CourseRepo implements Crud<Course> {
 
@@ -20,11 +22,34 @@ public class CourseRepo implements Crud<Course> {
         String dificulty = String.valueOf(params.getLevel());
         String introText = params.getIntroduction();
         String description = params.getDescription();
-
+        List<ContentItem> list = params.getContentItems();
 
         ResultSet rs = DatabaseConnection.execute(String.format(
                 "INSERT INTO Courses(CourseName, Subject, Difficulty, IntroText, Description) VALUES ('%s','%s', '%s', '%s','%s');",
                 name, subject, dificulty, introText, description));
+
+        // ResultSet index = DatabaseConnection
+        //         .execute(String.format("SELECT CourseID FROM Courses WHERE CourseName = '%s'", name));
+        // int i = 0;
+       
+        // try {
+        //     while (index.next()) {
+        //         i = index.getInt("CourseID");
+        //     }
+        //     for (ContentItem l : list) {
+        //         Date date = l.getPublicationDate();
+        //         String realDate = String.valueOf(date);
+
+        //         String stat = String.valueOf(l.getStatus());
+
+        //         ResultSet insertContentItem = DatabaseConnection.execute(String.format(
+        //             "INSERT INTO ContentItem(Status,PublicationDate,CourseID VALUES ('%s','%s',%d);",
+        //              stat, realDate, i));
+        //     }
+        // } catch (Exception e) {
+        //     e.printStackTrace();
+        // }
+
     }
 
     @Override
@@ -52,13 +77,12 @@ public class CourseRepo implements Crud<Course> {
 
     @Override
     public ArrayList<Course> get() {
-        ResultSet rs = DatabaseConnection
-                .execute("SELECT * FROM Courses");
+        ResultSet rs = DatabaseConnection.execute("SELECT * FROM Courses");
         ArrayList<Course> coursesList = new ArrayList<Course>();
         Course course = new Course(1, null, null, null, null, null, null);
         try {
             while (rs.next()) {
-            
+
                 course.setCourseName(rs.getString("CourseName"));
                 course.setLevelString(rs.getString("Difficulty"));
                 course.setSubject(rs.getString("Subject"));
@@ -69,7 +93,7 @@ public class CourseRepo implements Crud<Course> {
                 coursesList.add(course);
 
             }
-            
+
             for (Course i : coursesList) {
                 System.out.println(i);
             }
@@ -79,7 +103,7 @@ public class CourseRepo implements Crud<Course> {
             e.printStackTrace();
             return null;
         }
-        
+
     }
 
     @Override
@@ -119,9 +143,11 @@ public class CourseRepo implements Crud<Course> {
         }
         return studentsPerCourse;
     }
-    public Integer studentsPerCourse(int id){
+
+    public Integer studentsPerCourse(int id) {
         ResultSet rs = DatabaseConnection.execute(String.format(
-                "SELECT CourseName, COUNT(*) AS TotalPersons FROM Registrations INNER JOIN Courses ON Courses.CourseID = Registrations.CourseID WHERE Courses.CourseID = %d GROUP BY CourseName ",id));
+                "SELECT CourseName, COUNT(*) AS TotalPersons FROM Registrations INNER JOIN Courses ON Courses.CourseID = Registrations.CourseID WHERE Courses.CourseID = %d GROUP BY CourseName ",
+                id));
 
         HashMap<String, Integer> studentsPerCourse = new HashMap<String, Integer>();
         int totalRegistrations = 0;
@@ -203,8 +229,8 @@ public class CourseRepo implements Crud<Course> {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
-        //matchingCourses.add(rs.getInt("CourseID"));
+
+        // matchingCourses.add(rs.getInt("CourseID"));
         return matchingCourses;
     }
 
@@ -229,7 +255,9 @@ public class CourseRepo implements Crud<Course> {
     }
 
     public ArrayList<Module> getProgress(int id) {
-        ResultSet rs = DatabaseConnection.execute(String.format("SELECT Modules.Titel, Progress.Progress FROM Progress INNER JOIN ContentItems ON ContentItems.ContentItemID = Progress.ContentItemID INNER JOIN Courses ON Courses.CourseID = ContentItems.CourseID INNER JOIN Modules ON ContentItems.ContentItemID = Modules.ContentItemID",id));
+        ResultSet rs = DatabaseConnection.execute(String.format(
+                "SELECT Modules.Titel, Progress.Progress FROM Progress INNER JOIN ContentItems ON ContentItems.ContentItemID = Progress.ContentItemID INNER JOIN Courses ON Courses.CourseID = ContentItems.CourseID INNER JOIN Modules ON ContentItems.ContentItemID = Modules.ContentItemID",
+                id));
 
         ArrayList<Module> progress = new ArrayList<Module>();
 
@@ -247,7 +275,6 @@ public class CourseRepo implements Crud<Course> {
 
         return progress;
     }
-    
 
     public List getTagsBasedOnCourse(Integer courseID) {
         ResultSet rs = DatabaseConnection.execute(String.format(

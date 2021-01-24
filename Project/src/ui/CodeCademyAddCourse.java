@@ -109,7 +109,7 @@ public class CodeCademyAddCourse {
         vbox.getChildren().add(codeCademyAddCourseTextFieldLabelCourseDescription());
         vbox.getChildren().add(description);
         vbox.getChildren().add(new Label(""));
-        vbox.getChildren().add(codeCademyAddCourseGridPane());
+        // vbox.getChildren().add(codeCademyAddCourseGridPane());
         vbox.getChildren().add(new Label(""));
         vbox.getChildren().add(new Label(""));
         vbox.getChildren().add(addCourseButton);
@@ -195,43 +195,44 @@ public class CodeCademyAddCourse {
         button.setMaxWidth(450);
         return button;
     }
-    protected static Button codeCademyAddCourseAddModuleButton(Module module){
-        Button button = new Button("Add Module");
-        button.setStyle("-fx-background-color:#000000");
-        button.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(),16));
-        button.setTextFill(Color.web("#FFFFFF"));;
-        button.setMaxHeight(50);
-        button.setMaxWidth(450);
-        button.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademyAddCourseLogic.EventHandlerMouseClickedAddCourseAddModuleButton(button, module));
-        return button;
-    }
+    // protected static Button codeCademyAddCourseAddModuleButton(Module module){
+    //     Button button = new Button("Add Module");
+    //     button.setStyle("-fx-background-color:#000000");
+    //     button.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(),16));
+    //     button.setTextFill(Color.web("#FFFFFF"));;
+    //     button.setMaxHeight(50);
+    //     button.setMaxWidth(450);
+    //     button.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademyAddCourseLogic.EventHandlerMouseClickedAddCourseAddModuleButton(button, module));
+    //     return button;
+        
+    // }
 
-    protected static Label codeCademyAddCourseAddModulesOverview(){
-        Label addModules = new Label("Addable modules");
-        addModules.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(),22));
-        addModules.setTextFill(Color.web("#FFFFFF"));;
-        addModules.setStyle("-fx-background-color:#000000");
-        addModules.setPadding(new Insets(20,20,20,20));
-        return addModules;
-    }
+    // protected static Label codeCademyAddCourseAddModulesOverview(){
+    //     Label addModules = new Label("Addable modules");
+    //     addModules.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(),22));
+    //     addModules.setTextFill(Color.web("#FFFFFF"));;
+    //     addModules.setStyle("-fx-background-color:#000000");
+    //     addModules.setPadding(new Insets(20,20,20,20));
+    //     return addModules;
+    // }
 
-    protected static GridPane codeCademyAddCourseGridPane(){
-        GridPane grid = new GridPane();
-        grid.setHgap(15);
-        grid.setStyle("-fx-background-color:#404040");
+    // protected static GridPane codeCademyAddCourseGridPane(){
+    //     GridPane grid = new GridPane();
+    //     grid.setHgap(15);
+    //     grid.setStyle("-fx-background-color:#404040");
 
-        ModuleRepo moduleRepo = new ModuleRepo();
-        modules = moduleRepo.get();
-        for (int i = 0; i < modules.size() ; i++) {
-            grid.add(codeCademyAddCourseAllModules(modules.get(i)), 0, 1+i);
-            grid.add(codeCademyAddCourseAddModuleButton(modules.get(i)),1,1+i);
-        }
+    //     ModuleRepo moduleRepo = new ModuleRepo();
+    //     modules = moduleRepo.get();
+    //     for (int i = 0; i < modules.size() ; i++) {
+    //         grid.add(codeCademyAddCourseAllModules(modules.get(i)), 0, 1+i);
+    //         grid.add(codeCademyAddCourseAddModuleButton(modules.get(i)),1,1+i);
+    //     }
 
-        grid.add(new Label(""),0,2);
+    //     grid.add(new Label(""),0,2);
 
-        //grid.setPadding(new Insets(20,79,20,20));
-        return grid;
-    }
+    //     //grid.setPadding(new Insets(20,79,20,20));
+    //     return grid;
+    // }
 
     protected static Label codeCademyAddCourseAllModules(Module moduleToAdd){
         Label AllModules = new Label(moduleToAdd.getTitle());

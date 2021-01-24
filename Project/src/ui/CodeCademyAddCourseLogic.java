@@ -31,7 +31,7 @@ import domain.Module;
 
 public class CodeCademyAddCourseLogic {
 
-    private static List<Module> addedModules = new ArrayList<Module>();
+    // private static List<Module> addedModules = new ArrayList<Module>();
 
     protected static EventHandler<MouseEvent> EventHandlerMouseClickedAddCourse(TextField courseName,
             TextField courseSubject, ComboBox difficulty, TextField introText, TextField description) {
@@ -45,35 +45,34 @@ public class CodeCademyAddCourseLogic {
 
                 String intText = introText.getText();
                 String desc = description.getText();
+                
                 List<ContentItem> content = new ArrayList<>();
-                content.addAll(addedModules);
-
-
+                // content.addAll(addedModules);
+                
                 Course newCourse = new Course(0,cName,courseDifficulty,cSubject,intText,desc,content);
-
+                
                 CourseRepo crepo = new CourseRepo();
                 crepo.create(newCourse);
-
                 CodeCademyStage.getStage().setScene(CodeCademyAllCoursesScene.codeCademyAllCoursesSceneBuilder());
             }
         };
         return EventHandlerMouseClickedAddCourse;
     }
 
-    protected static EventHandler<MouseEvent> EventHandlerMouseClickedAddCourseAddModuleButton(Button button,
-            Module module) {
-        EventHandler<MouseEvent> EventHandlerMouseClickedAddCourse = new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent e) {
-                button.setVisible(false);
-                addedModules.add(module);
+    // protected static EventHandler<MouseEvent> EventHandlerMouseClickedAddCourseAddModuleButton(Button button,
+    //         Module module) {
+    //     EventHandler<MouseEvent> EventHandlerMouseClickedAddCourse = new EventHandler<MouseEvent>() {
+    //         @Override
+    //         public void handle(MouseEvent e) {
+    //             button.setVisible(false);
+    //             addedModules.add(module);
                 
-            }
+    //         }
 
 
-        };
-        return EventHandlerMouseClickedAddCourse;
-    }
+    //     };
+    //     return EventHandlerMouseClickedAddCourse;
+    // }
 
 
 
