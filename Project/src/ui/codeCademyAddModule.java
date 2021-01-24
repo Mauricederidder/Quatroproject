@@ -20,6 +20,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.control.ScrollPane;
+
 
 public class CodeCademyAddModule {
     
@@ -27,8 +29,17 @@ public class CodeCademyAddModule {
 
     protected static Scene codeCademyAddModuleSceneBuilder(Course course) {
         linkedCourse = course;
-        Scene codeCademyAllCoursesScene = new Scene(codeCademyAddModuleLayout());
+        Scene codeCademyAllCoursesScene = new Scene(codeCademyScrollPane());
         return codeCademyAllCoursesScene;
+    }
+
+    protected static ScrollPane codeCademyScrollPane(){
+        ScrollPane s = new ScrollPane(); 
+        s.setContent(codeCademyAddModuleLayout());
+        s.pannableProperty().set(true);
+        s.fitToWidthProperty().set(true);
+        s.fitToHeightProperty().set(true);
+        return s;
     }
 
     protected static BorderPane codeCademyAddModuleLayout() {

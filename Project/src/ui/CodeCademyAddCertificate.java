@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -27,8 +28,17 @@ public class CodeCademyAddCertificate {
 
     protected static Scene CodeCademyAddCertificateSceneBuilder(Course course) {
         linkedCourse = course;
-        Scene codeCademyAddCertificateScene = new Scene(codeCademyAddCertificateLayout());
+        Scene codeCademyAddCertificateScene = new Scene(codeCademyScrollPane());
         return codeCademyAddCertificateScene;
+    }
+
+    protected static ScrollPane codeCademyScrollPane(){
+        ScrollPane s = new ScrollPane(); 
+        s.setContent(codeCademyAddCertificateLayout());
+        s.pannableProperty().set(true);
+        s.fitToWidthProperty().set(true);
+        s.fitToHeightProperty().set(true);
+        return s;
     }
 
     protected static BorderPane codeCademyAddCertificateLayout() {

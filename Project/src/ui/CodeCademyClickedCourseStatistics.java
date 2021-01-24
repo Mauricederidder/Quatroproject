@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -33,8 +34,17 @@ public class CodeCademyClickedCourseStatistics {
 
     protected static Scene codeCademyClickedCourseStatisticsSceneBuilder(Course course) {
         linkedCourse = course;
-        Scene codeCademyAllCoursesScene = new Scene(codeCademyClickedCourseStatisticsLayout());
+        Scene codeCademyAllCoursesScene = new Scene(codeCademyScrollPane());
         return codeCademyAllCoursesScene;
+    }
+
+    protected static ScrollPane codeCademyScrollPane(){
+        ScrollPane s = new ScrollPane(); 
+        s.setContent(codeCademyClickedCourseStatisticsLayout());
+        s.pannableProperty().set(true);
+        s.fitToWidthProperty().set(true);
+        s.fitToHeightProperty().set(true);
+        return s;
     }
 
     protected static BorderPane codeCademyClickedCourseStatisticsLayout() {

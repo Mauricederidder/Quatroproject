@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -23,9 +24,19 @@ import javafx.scene.text.Text;
 public class CodeCademySearchStudent {
 
     protected static Scene codeCademySearchStudentSceneBuilder(){
-        Scene codeCademySearchStudentScene = new Scene(codeCademySearchStudentLayout());
+        Scene codeCademySearchStudentScene = new Scene(codeCademyScrollPane());
         return codeCademySearchStudentScene;
     }
+
+    protected static ScrollPane codeCademyScrollPane(){
+        ScrollPane s = new ScrollPane(); 
+        s.setContent(codeCademySearchStudentLayout());
+        s.pannableProperty().set(true);
+        s.fitToWidthProperty().set(true);
+        s.fitToHeightProperty().set(true);
+        return s;
+    }
+
 
     protected static BorderPane codeCademySearchStudentLayout() {
         BorderPane root = new BorderPane();

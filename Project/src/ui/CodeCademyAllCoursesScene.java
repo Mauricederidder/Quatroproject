@@ -18,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -29,8 +30,17 @@ public class CodeCademyAllCoursesScene {
 
 
     protected static Scene codeCademyAllCoursesSceneBuilder(){
-        Scene codeCademyAllCoursesScene = new Scene(codeCademyAllCoursesLayout());
+        Scene codeCademyAllCoursesScene = new Scene(codeCademyScrollPane());
         return codeCademyAllCoursesScene;
+    }
+
+    protected static ScrollPane codeCademyScrollPane(){
+        ScrollPane s = new ScrollPane(); 
+        s.setContent(codeCademyAllCoursesLayout());
+        s.pannableProperty().set(true);
+        s.fitToWidthProperty().set(true);
+        s.fitToHeightProperty().set(true);
+        return s;
     }
 
     protected static BorderPane codeCademyAllCoursesLayout() {

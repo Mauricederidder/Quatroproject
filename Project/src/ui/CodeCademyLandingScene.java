@@ -9,6 +9,7 @@ import javafx.scene.effect.*;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
@@ -18,7 +19,7 @@ import javafx.scene.text.Text;
 public class CodeCademyLandingScene {    
 
     protected static Scene codeCademyLandingScene() {
-        Scene codeCademyLandingScene = new Scene(codeCademyLandingSceneRootLayout());
+        Scene codeCademyLandingScene = new Scene(codeCademyScrollPane());
         return codeCademyLandingScene;
     }
 
@@ -28,6 +29,15 @@ public class CodeCademyLandingScene {
         root.setTop(codeCademyLandingSceneGridHeader());
         root.setCenter(codeCademyLandingSceneGridCenter());
         return root;
+    }
+
+    protected static ScrollPane codeCademyScrollPane(){
+        ScrollPane s = new ScrollPane(); 
+        s.setContent(codeCademyLandingSceneRootLayout());
+        s.pannableProperty().set(true);
+        s.fitToWidthProperty().set(true);
+        s.fitToHeightProperty().set(true);
+        return s;
     }
 
     protected static GridPane codeCademyLandingSceneGridHeader(){

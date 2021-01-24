@@ -17,12 +17,13 @@ public class CourseRepo implements Crud<Course> {
         int courseID = params.getCourseId();
         String name = params.getCourseName();
         String subject = params.getSubject();
-        Level dificulty = params.getLevel();
+        String dificulty = String.valueOf(params.getLevel());
         String introText = params.getIntroduction();
         String description = params.getDescription();
 
+
         ResultSet rs = DatabaseConnection.execute(String.format(
-                "INSERT INTO Courses(CourseName, Subject, Difficulty, IntroText, Description) VALUES ('%s','%s', %d, '%s','%s');",
+                "INSERT INTO Courses(CourseName, Subject, Difficulty, IntroText, Description) VALUES ('%s','%s', '%s', '%s','%s');",
                 name, subject, dificulty, introText, description));
     }
 

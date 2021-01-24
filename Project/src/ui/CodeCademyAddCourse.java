@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -23,13 +24,24 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import domain.Level;
 import domain.Module;
 
 public class CodeCademyAddCourse {
+    private static List<Module> modules;
 
     protected static Scene codeCademyAddCourseSceneBuilder(){
-        Scene codeCademyAllCoursesScene = new Scene(codeCademyAddCourseLayout());
+        Scene codeCademyAllCoursesScene = new Scene(codeCademyScrollPane());
         return codeCademyAllCoursesScene;
+    }
+
+    protected static ScrollPane codeCademyScrollPane(){
+        ScrollPane s = new ScrollPane(); 
+        s.setContent(codeCademyAddCourseLayout());
+        s.pannableProperty().set(true);
+        s.fitToWidthProperty().set(true);
+        s.fitToHeightProperty().set(true);
+        return s;
     }
 
     protected static BorderPane codeCademyAddCourseLayout() {
@@ -40,6 +52,7 @@ public class CodeCademyAddCourse {
         return root;
     }
 
+    
     protected static FlowPane codeCademyAddCourseCenterLayout(){
         FlowPane rootToo = new FlowPane();
         rootToo.setVgap(10);
@@ -79,6 +92,7 @@ public class CodeCademyAddCourse {
         ComboBox difficulty = codeCademyAddCourseTextFieldCourseDifficulty();
         TextField introText = codeCademyAddCourseTextFieldCourseIntroText();
         TextField description = codeCademyAddCourseTextFieldCourseDescription();
+        Button addCourseButton = codeCademyAddCourseButton();
 
         vbox.getChildren().add(codeCademyAddCourseTextFieldLabelCourseName());
         vbox.getChildren().add(courseName);
@@ -98,7 +112,10 @@ public class CodeCademyAddCourse {
         vbox.getChildren().add(codeCademyAddCourseGridPane());
         vbox.getChildren().add(new Label(""));
         vbox.getChildren().add(new Label(""));
-        vbox.getChildren().add(codeCademyAddCourseButton());
+        vbox.getChildren().add(addCourseButton);
+
+        addCourseButton.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademyAddCourseLogic.EventHandlerMouseClickedAddCourse(courseName,courseSubject,difficulty,introText,description));
+
         return vbox;
     }
     protected static Label codeCademyAddCourseTextFieldLabelCourseName(){
@@ -137,10 +154,7 @@ public class CodeCademyAddCourse {
     protected static ComboBox codeCademyAddCourseTextFieldCourseDifficulty(){
         ComboBox ComboBox = new ComboBox();
         ComboBox.getItems().addAll(
-          "Beginner",
-          "Advanced",
-          "Expert"
-          
+            Level.values()
         );
         ComboBox.getSelectionModel().selectFirst(); 
         return ComboBox;
@@ -181,13 +195,14 @@ public class CodeCademyAddCourse {
         button.setMaxWidth(450);
         return button;
     }
-    protected static Button codeCademyAddCourseAddModuleButton(){
+    protected static Button codeCademyAddCourseAddModuleButton(Module module){
         Button button = new Button("Add Module");
         button.setStyle("-fx-background-color:#000000");
         button.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(),16));
         button.setTextFill(Color.web("#FFFFFF"));;
         button.setMaxHeight(50);
         button.setMaxWidth(450);
+        button.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademyAddCourseLogic.EventHandlerMouseClickedAddCourseAddModuleButton(button, module));
         return button;
     }
 
@@ -206,10 +221,10 @@ public class CodeCademyAddCourse {
         grid.setStyle("-fx-background-color:#404040");
 
         ModuleRepo moduleRepo = new ModuleRepo();
-        List<Module> modules = moduleRepo.get();
+        modules = moduleRepo.get();
         for (int i = 0; i < modules.size() ; i++) {
             grid.add(codeCademyAddCourseAllModules(modules.get(i)), 0, 1+i);
-            grid.add(codeCademyAddCourseAddModuleButton(),1,1+i);
+            grid.add(codeCademyAddCourseAddModuleButton(modules.get(i)),1,1+i);
         }
 
         grid.add(new Label(""),0,2);
