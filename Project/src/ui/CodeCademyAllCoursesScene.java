@@ -114,7 +114,7 @@ public class CodeCademyAllCoursesScene {
             tablesGrid.getColumnConstraints().add(column);
         }
 
-        Button addButton = new Button("addshit");
+        Button addButton = new Button("Add Courses");
         addButton.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademyLandingSceneLogic.eventHandlerAddcourses());
 
         // First, create the table.
