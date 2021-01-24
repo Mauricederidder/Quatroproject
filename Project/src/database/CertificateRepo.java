@@ -84,7 +84,7 @@ public class CertificateRepo implements Crud<Certificate> {
 
     public List completionBasedOnGender() {
         ResultSet rs = DatabaseConnection.execute(
-                "SELECT CourseName, COUNT(CertificateIssuance.StudentID) AS Total, COUNT(CASE WHEN Gender='man' THEN 1 END) AS Male, COUNT(CASE WHEN Gender='vrouw' THEN 1 END) AS Female FROM CertificateIssuance INNER JOIN Certificate ON Certificate.CertificateID = CertificateIssuance.CertificateID INNER JOIN Courses ON Certificate.CourseID = Courses.CourseID INNER JOIN Students ON CertificateIssuance.StudentID = Students.StudentID INNER JOIN Persons ON Persons.Email = Students.Email GROUP BY CourseName");
+                "SELECT CourseName, COUNT(CertificateIssuance.StudentID) AS Total, COUNT(CASE WHEN Gender='Male' THEN 1 END) AS Male, COUNT(CASE WHEN Gender='Female' THEN 1 END) AS Female FROM CertificateIssuance INNER JOIN Certificate ON Certificate.CertificateID = CertificateIssuance.CertificateID INNER JOIN Courses ON Certificate.CourseID = Courses.CourseID INNER JOIN Students ON CertificateIssuance.StudentID = Students.StudentID INNER JOIN Persons ON Persons.Email = Students.Email GROUP BY CourseName");
 
         List<String> completionBasedOnGender = new ArrayList<>();
 
@@ -108,7 +108,7 @@ public class CertificateRepo implements Crud<Certificate> {
         return completionBasedOnGender;
     }
     public List completionBasedOnGender(int id) {
-        ResultSet rs = DatabaseConnection.execute(String.format("SELECT CourseName, COUNT(CertificateIssuance.StudentID) AS Total, COUNT(CASE WHEN Gender='man' THEN 1 END) AS Male, COUNT(CASE WHEN Gender='vrouw' THEN 1 END) AS Female FROM CertificateIssuance INNER JOIN Certificate ON Certificate.CertificateID = CertificateIssuance.CertificateID INNER JOIN Courses ON Certificate.CourseID = Courses.CourseID INNER JOIN Students ON CertificateIssuance.StudentID = Students.StudentID INNER JOIN Persons ON Persons.Email = Students.Email WHERE Certificate.CourseID = %d GROUP BY CourseName",id));
+        ResultSet rs = DatabaseConnection.execute(String.format("SELECT CourseName, COUNT(CertificateIssuance.StudentID) AS Total, COUNT(CASE WHEN Gender='Male' THEN 1 END) AS Male, COUNT(CASE WHEN Gender='Female' THEN 1 END) AS Female FROM CertificateIssuance INNER JOIN Certificate ON Certificate.CertificateID = CertificateIssuance.CertificateID INNER JOIN Courses ON Certificate.CourseID = Courses.CourseID INNER JOIN Students ON CertificateIssuance.StudentID = Students.StudentID INNER JOIN Persons ON Persons.Email = Students.Email WHERE Certificate.CourseID = %d GROUP BY CourseName",id));
 
         List<String> completionBasedOnGender = new ArrayList<>();
 
