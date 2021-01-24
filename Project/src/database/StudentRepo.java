@@ -21,15 +21,15 @@ public class StudentRepo implements Crud<Student> {
         String address = params.getAdress();
         String name = params.getName();
         String email = params.getEmail();
-        Date dayOfBirth = params.getDayOfBirth();
+        String dayOfBirth = String.valueOf(params.getDayOfBirth());
         String gender = params.getGender();
         String city = params.getCity();
         String country = params.getCountry();
         String postalCode = params.getPostalCode();
 
         ResultSet rs = DatabaseConnection.execute(String.format(
-                "INSERT INTO Persons(Email, Name, DayofBirth, Gender,Address, City, Country, PostalCode) VALUES ('%s', '%s', '%t','%s','%s','%s','%s','%s') INSERT INTO Students(Email) VALUES ('%s')",
-                email, name, gender, dayOfBirth, address, city, country, postalCode, email));
+                "INSERT INTO Persons(Email, Name, DayofBirth, Gender,Address, City, Country, PostalCode) VALUES ('%s', '%s', '1997-02-16','%s','%s','%s','%s','%s') INSERT INTO Students(Email) VALUES ('%s')",
+                email, name, gender, address, city, country, postalCode, email));
     }
 
     @Override

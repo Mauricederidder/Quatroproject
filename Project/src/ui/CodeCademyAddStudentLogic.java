@@ -1,9 +1,13 @@
 package ui;
 
+import java.sql.Date;
+
 import database.CertificateRepo;
 import database.ModuleRepo;
+import database.StudentRepo;
 import domain.Certificate;
 import domain.Course;
+import domain.Student;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -22,23 +26,30 @@ import javafx.scene.text.Text;
 
 public class CodeCademyAddStudentLogic {
 
-
-    protected static EventHandler<MouseEvent> EventHandlerMouseClickAddStudent(TextField email, TextField naam, TextField TextFieldStudentDescription, TextField TextFieldStudentContactName, TextField ) {
+    protected static EventHandler<MouseEvent> EventHandlerMouseClickAddStudent(TextField email, TextField naam,
+            ComboBox gender, TextField address, TextField contactCity, TextField postalCode) {
         EventHandler<MouseEvent> eventHandlerMouseOver = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                String certificateNaam = naam.getText();
-                String certificateDifficulty = String.valueOf(combo.getValue());
-                int courseId = course.getCourseId();
-                Certificate certificate = new Certificate(certificateNaam, certificateDifficulty,courseId);
-                CertificateRepo crepo = new CertificateRepo();
-               
-               
-                crepo.create(certificate);
+                String studentEmail = email.getText();
+                String studentNaam = naam.getText();
+                String gend = String.valueOf(gender.getValue());
+                String adres = address.getText();
+                String studentContactCity = contactCity.getText();
+                String studentPostalCode = postalCode.getText();
+                String country = "Netherlands";
+                Date dayofBirth = Date.valueOf("1997-02-16");  
 
-                CodeCademyStage.getStage().setScene(CodeCademyClickedCourseStatistics.codeCademyClickedCourseStatisticsSceneBuilder(course));;
+                Student student = new Student(studentEmail, studentNaam, dayofBirth, gend,
+                adres, studentContactCity, studentPostalCode, studentPostalCode, 0);
+
+                StudentRepo s = new StudentRepo();
+                s.create(student);
+                CodeCademyStage.getStage().setScene(CodeCademySearchStudent.codeCademySearchStudentSceneBuilder());
+
             }
         };
         return eventHandlerMouseOver;
+
     }
 }
