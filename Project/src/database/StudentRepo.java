@@ -160,7 +160,7 @@ public class StudentRepo implements Crud<Student> {
 
         try {
             while (rs.next()) {
-                Certificate certificate = new Certificate(0, null, 0, null);
+                Certificate certificate = new Certificate(null,null,0);
                 certificate.setName(rs.getString("Name"));
                 list.add(certificate);
             }

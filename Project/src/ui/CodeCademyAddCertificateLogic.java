@@ -34,7 +34,7 @@ public class CodeCademyAddCertificateLogic {
                 CertificateRepo crepo = new CertificateRepo();
                 crepo.create(certificate);
 
-                CodeCademyStage.getStage().setScene(CodeCademyClickedCourseStatistics.CodeCademyClickedCourseStatisticsSceneBuilder(course));;
+                CodeCademyStage.getStage().setScene(CodeCademyClickedCourseStatistics.codeCademyClickedCourseStatisticsSceneBuilder(course));;
             }
         };
         return eventHandlerMouseOver;
