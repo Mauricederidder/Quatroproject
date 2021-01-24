@@ -24,15 +24,18 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+import Logic.Validation;
+
+
 public class CodeCademyAddStudentLogic {
 
     protected static EventHandler<MouseEvent> EventHandlerMouseClickAddStudent(TextField email, TextField naam,
-            ComboBox gender, TextField address, TextField contactCity, TextField postalCode) {
+            ComboBox gender, TextField address, TextField contactCity, TextField postalCode, Label error) {
         EventHandler<MouseEvent> eventHandlerMouseOver = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-
-
+                Validation v = new Validation();
+               
                 String studentEmail = email.getText();
                 String studentNaam = naam.getText();
                 String gend = String.valueOf(gender.getValue());
@@ -42,13 +45,18 @@ public class CodeCademyAddStudentLogic {
                 String country = "Netherlands";
                 Date dayofBirth = Date.valueOf("1997-02-16");  
 
+
+                
                 Student student = new Student(studentEmail, studentNaam, dayofBirth, gend,
                 adres, studentContactCity, country, studentPostalCode, 0);
-
-                StudentRepo s = new StudentRepo();
-                s.create(student);
-                CodeCademyStage.getStage().setScene(CodeCademySearchStudent.codeCademySearchStudentSceneBuilder());
-
+                if (v.validatePerson(student)){
+                    StudentRepo s = new StudentRepo();
+                    s.create(student);
+                    CodeCademyStage.getStage().setScene(CodeCademySearchStudent.codeCademySearchStudentSceneBuilder());
+                } else {
+                    error.setVisible(true);
+                }
+    
             }
         };
         return eventHandlerMouseOver;
