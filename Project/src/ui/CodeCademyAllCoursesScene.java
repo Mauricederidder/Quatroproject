@@ -66,6 +66,7 @@ public class CodeCademyAllCoursesScene {
         Label emptyLabel = new Label();
         headerGrid.setPadding(new Insets(30,10,50,10));
         headerGrid.setHgap(30);
+        headerGrid.add(codeCademyPreviousButton(),0 , 0);
         headerGrid.add(emptyLabel,0,1);
         headerGrid.add(codeCademyAllCoursesSceneHeader(),0,2);
         headerGrid.setAlignment(Pos.TOP_CENTER);
@@ -76,6 +77,12 @@ public class CodeCademyAllCoursesScene {
         VBox headerVbox = new VBox();
         headerVbox.getChildren().add(codeCademyAllCourseHeaderTitle());
         return headerVbox;
+    }
+
+    protected static Button codeCademyPreviousButton(){
+        Button button = new Button("Back");
+        button.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademyAllCoursesLogic.eventHandlerBack());
+        return button;
     }
 
     protected static Label codeCademyAllCourseHeaderTitle(){

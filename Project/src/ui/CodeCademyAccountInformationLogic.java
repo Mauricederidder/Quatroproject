@@ -31,4 +31,14 @@ public class CodeCademyAccountInformationLogic {
             };
             return showStudentCourseInformation;
         }
+
+        protected static EventHandler<MouseEvent> eventHandlerBack() {
+            EventHandler<MouseEvent> eventHandlerMouseOver = new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent e) {
+                    CodeCademyStage.getStage().setScene(CodeCademySearchStudent.codeCademySearchStudentSceneBuilder());
+                }
+            };
+            return eventHandlerMouseOver;
+        }
 }

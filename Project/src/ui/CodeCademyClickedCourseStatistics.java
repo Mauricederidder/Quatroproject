@@ -70,6 +70,7 @@ public class CodeCademyClickedCourseStatistics {
         GridPane headerGrid = new GridPane();
         headerGrid.setPadding(new Insets(30, 10, 50, 10));
         headerGrid.setHgap(30);
+        headerGrid.add(codeCademyClickedCourseButton(), 0, 0);
         headerGrid.add(codeCademyClickdCourseEmptyLabel(), 0, 1);
         headerGrid.add(codeCademyClickedCourseStatisticsSceneHeader(), 0, 2);
         headerGrid.add(codeCademyClickdCourseEmptyLabel(), 0, 3);
@@ -81,6 +82,13 @@ public class CodeCademyClickedCourseStatistics {
     protected static Label codeCademyClickdCourseEmptyLabel() {
         Label emptyLabel = new Label();
         return emptyLabel;
+    }
+
+    protected static Button codeCademyClickedCourseButton(){
+        Button button = new Button("Back");
+        button.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademyClickedCourseStatisticsLogic.eventHandlerBack());
+        button.setAlignment(Pos.TOP_LEFT);
+        return button;
     }
 
     protected static VBox codeCademyClickedCourseStatisticsSceneHeader() {

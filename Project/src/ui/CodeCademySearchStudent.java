@@ -60,6 +60,7 @@ public class CodeCademySearchStudent {
         Label emptyLabel = new Label();
         headerGrid.setPadding(new Insets(30,10,50,10));
         headerGrid.setHgap(30);
+        headerGrid.add(codeCademySearchStudentsBackButton(), 0, 0);
         headerGrid.add(emptyLabel,0,1);
         headerGrid.add(codeCademySearchStudentSceneHeader(),0,2);
         headerGrid.setAlignment(Pos.TOP_CENTER);
@@ -70,6 +71,13 @@ public class CodeCademySearchStudent {
         VBox headerVbox = new VBox();
         headerVbox.getChildren().add(codeCademySearchStudentsSceneHeaderLabel());
         return headerVbox;
+    }
+
+    protected static Button codeCademySearchStudentsBackButton(){
+        Button button = new Button("Back");
+        button.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademySearchStudentLogic.eventHandlerBack());
+        button.setAlignment(Pos.TOP_LEFT);
+        return button;
     }
 
     protected static Label codeCademySearchStudentsSceneHeaderLabel(){

@@ -40,6 +40,16 @@ public class CodeCademyAddCertificateLogic {
         return eventHandlerMouseOver;
     }
 
+    protected static EventHandler<MouseEvent> eventHandlerBack(Course course) {
+        EventHandler<MouseEvent> eventHandlerMouseOver = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                CodeCademyStage.getStage().setScene(CodeCademyClickedCourseStatistics.codeCademyClickedCourseStatisticsSceneBuilder(course));
+            }
+        };
+        return eventHandlerMouseOver;
+    }
+
 
 
 }

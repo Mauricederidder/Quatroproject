@@ -36,4 +36,14 @@ public class CodeCademyClickedCourseStatisticsLogic {
         };
         return EventMouseOnClickAddCertificateButton;
     }
+
+    protected static EventHandler<MouseEvent> eventHandlerBack() {
+        EventHandler<MouseEvent> eventHandlerMouseOver = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                CodeCademyStage.getStage().setScene(CodeCademyAllCoursesScene.codeCademyAllCoursesSceneBuilder());
+            }
+        };
+        return eventHandlerMouseOver;
+    }
 }

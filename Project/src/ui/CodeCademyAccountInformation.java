@@ -60,6 +60,7 @@ public class CodeCademyAccountInformation {
         Label emptyLabel = new Label();
         headerGrid.setPadding(new Insets(30, 10, 50, 10));
         headerGrid.setHgap(30);
+        headerGrid.add(codeCademyAccountInformationBackButton(), 0 ,0);
         headerGrid.add(emptyLabel, 0, 1);
         headerGrid.add(codeCademyAccountInformationSceneHeader(), 0, 2);
         headerGrid.setAlignment(Pos.TOP_CENTER);
@@ -70,6 +71,13 @@ public class CodeCademyAccountInformation {
         VBox headerVbox = new VBox();
         headerVbox.getChildren().add(codeCademyAccountInformationHeaderTitle());
         return headerVbox;
+    }
+
+    protected static Button codeCademyAccountInformationBackButton(){
+        Button button = new Button("Back");
+        button.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademyAccountInformationLogic.eventHandlerBack());
+        button.setAlignment(Pos.TOP_LEFT);
+        return button;
     }
 
     protected static Label codeCademyAccountInformationHeaderTitle() {

@@ -64,10 +64,18 @@ public class CodeCademyAddModule {
         Label emptyLabel = new Label();
         headerGrid.setPadding(new Insets(30, 10, 50, 10));
         headerGrid.setHgap(30);
+        headerGrid.add(codeCademyAddModuleBackButton(), 0, 0);
         headerGrid.add(emptyLabel, 0, 1);
         headerGrid.add(codeCademyAddModuleSceneHeader(), 0, 2);
         headerGrid.setAlignment(Pos.TOP_CENTER);
         return headerGrid;
+    }
+
+    protected static Button codeCademyAddModuleBackButton(){
+        Button button = new Button("Back");
+        button.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademyAddCertificateLogic.eventHandlerBack(linkedCourse));
+        button.setAlignment(Pos.TOP_LEFT);
+        return button;
     }
 
     protected static VBox codeCademyAddModuleSceneHeader() {
