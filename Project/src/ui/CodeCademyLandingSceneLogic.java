@@ -23,7 +23,7 @@ public class CodeCademyLandingSceneLogic {
         EventHandler<MouseEvent> eventHandlerMouseOver = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                CodeCademyStage.getStage().setScene(CodeCademyAllCoursesScene.CodeCademyAllCoursesSceneBuilder());;
+                CodeCademyStage.getStage().setScene(CodeCademyAllCoursesScene.codeCademyAllCoursesSceneBuilder());;
             }
         };
         return eventHandlerMouseOver;
@@ -33,7 +33,7 @@ public class CodeCademyLandingSceneLogic {
         EventHandler<MouseEvent> eventHandlerMouseOver = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                CodeCademyStage.getStage().setScene(CodeCademySearchStudent.CodeCademySearchStudentSceneBuilder());;
+                CodeCademyStage.getStage().setScene(CodeCademySearchStudent.codeCademySearchStudentSceneBuilder());;
             }
         };
         return eventHandlerMouseOver;
@@ -43,7 +43,7 @@ public class CodeCademyLandingSceneLogic {
         EventHandler<MouseEvent> eventHandlerMouseOver = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                CodeCademyStage.getStage().setScene(CodeCademyAddCourse.CodeCademyAddCourseSceneBuilder());;
+                CodeCademyStage.getStage().setScene(CodeCademyAddCourse.codeCademyAddCourseSceneBuilder());;
             }
         };
         return eventHandlerMouseOver;

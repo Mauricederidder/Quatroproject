@@ -26,7 +26,7 @@ public class CodeCademySearchStudentLogic {
                     StudentRepo studentRepo = new StudentRepo();
 
 
-                    CodeCademyStage.getStage().setScene(CodeCademyAccountInformation.CodeCademyAccountInformationSceneBuilder(studentRepo.get(text.getText())));
+                    CodeCademyStage.getStage().setScene(CodeCademyAccountInformation.codeCademyAccountInformationSceneBuilder(studentRepo.get(text.getText())));
                 }
             };
             return eventHandlerMouseOver;

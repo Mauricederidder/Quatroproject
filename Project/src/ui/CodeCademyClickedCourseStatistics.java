@@ -31,7 +31,7 @@ public class CodeCademyClickedCourseStatistics {
 
     private static Course linkedCourse;
 
-    protected static Scene CodeCademyClickedCourseStatisticsSceneBuilder(Course course) {
+    protected static Scene codeCademyClickedCourseStatisticsSceneBuilder(Course course) {
         linkedCourse = course;
         Scene codeCademyAllCoursesScene = new Scene(codeCademyClickedCourseStatisticsLayout());
         return codeCademyAllCoursesScene;

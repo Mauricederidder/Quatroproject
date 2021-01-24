@@ -26,7 +26,7 @@ public class CodeCademyAccountInformationLogic {
             EventHandler<MouseEvent> showStudentCourseInformation = new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent e) {
-                    CodeCademyStage.getStage().setScene(codeCademyStudentFollowedCourse.codeCademyStudentFollowedCourseSceneBuilder(course,student));
+                    CodeCademyStage.getStage().setScene(CodeCademyStudentFollowedCourse.codeCademyStudentFollowedCourseSceneBuilder(course,student));
                 }
             };
             return showStudentCourseInformation;

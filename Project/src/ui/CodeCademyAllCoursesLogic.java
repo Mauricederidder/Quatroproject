@@ -23,7 +23,7 @@ public class CodeCademyAllCoursesLogic {
         EventHandler<MouseEvent> eventHandlerMouseOver = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                CodeCademyStage.getStage().setScene(CodeCademyClickedCourseStatistics.CodeCademyClickedCourseStatisticsSceneBuilder(course));;
+                CodeCademyStage.getStage().setScene(CodeCademyClickedCourseStatistics.codeCademyClickedCourseStatisticsSceneBuilder(course));;
             }
         };
         return eventHandlerMouseOver;

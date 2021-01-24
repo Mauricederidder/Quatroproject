@@ -26,7 +26,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-public class codeCademyStudentFollowedCourse {
+public class CodeCademyStudentFollowedCourse {
 
     private static Student student;
     private static Course course;

@@ -25,18 +25,18 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class codeCademyAddModuleLogic {
+public class CodeCademyAddModuleLogic {
     
-    protected static EventHandler<MouseEvent> eventHandlerMouseClickedAddModule(TextField TextFieldModuleVersion, TextField textFieldModuleName, TextField TextFieldModuleDescription, TextField TextFieldModuleContactName, TextField TextFieldModuleContactEmail, Course linkedScene) {
+    protected static EventHandler<MouseEvent> eventHandlerMouseClickedAddModule(TextField textFieldModuleVersion, TextField textFieldModuleName, TextField textFieldModuleDescription, TextField textFieldModuleContactName, TextField textFieldModuleContactEmail, Course linkedScene) {
         EventHandler<MouseEvent> eventHandlerMouseClick = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) { 
 
-                String Version = TextFieldModuleVersion.getText();
-                String Modulename = textFieldModuleName.getText();
-                String ModuleDescription = TextFieldModuleDescription.getText();
-                String ModuleContactName = TextFieldModuleContactName.getText();
-                String ModuleContactEmail = TextFieldModuleContactEmail.getText();
+                String version = textFieldModuleVersion.getText();
+                String modulename = textFieldModuleName.getText();
+                String moduleDescription = textFieldModuleDescription.getText();
+                String moduleContactName = textFieldModuleContactName.getText();
+                String moduleContactEmail = textFieldModuleContactEmail.getText();
                 // DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/mm/dd");  
                 // LocalDateTime now = LocalDateTime.now();  
                 // String test = String.valueOf(dtf.format(now));
@@ -44,14 +44,14 @@ public class codeCademyAddModuleLogic {
 
                 Status active = Status.Active;
                 // Double v = Double.valueOf(Version);
-                double x = Double.parseDouble(Version);
+                double x = Double.parseDouble(version);
 
 
-                Module newModule = new Module(x, ModuleDescription, ModuleContactName, ModuleContactEmail, linkedScene, active,date, Modulename); 
+                Module newModule = new Module(x, moduleDescription, moduleContactName, moduleContactEmail, linkedScene, active,date, modulename); 
                
                 ModuleRepo r = new ModuleRepo();
                 r.create(newModule); 
-                CodeCademyStage.getStage().setScene(CodeCademyClickedCourseStatistics.CodeCademyClickedCourseStatisticsSceneBuilder(linkedScene));
+                CodeCademyStage.getStage().setScene(CodeCademyClickedCourseStatistics.codeCademyClickedCourseStatisticsSceneBuilder(linkedScene));
             }
         };
         return eventHandlerMouseClick;

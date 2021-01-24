@@ -21,11 +21,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-public class codeCademyAddModule {
+public class CodeCademyAddModule {
     
     private static Course linkedCourse;
 
-    protected static Scene CodeCademyAddModuleSceneBuilder(Course course) {
+    protected static Scene codeCademyAddModuleSceneBuilder(Course course) {
         linkedCourse = course;
         Scene codeCademyAllCoursesScene = new Scene(codeCademyAddModuleLayout());
         return codeCademyAllCoursesScene;
@@ -97,7 +97,7 @@ public class codeCademyAddModule {
         vbox.getChildren().add(new Label(""));
         vbox.getChildren().add(addModuleButton);
 
-        addModuleButton.addEventHandler(MouseEvent.MOUSE_CLICKED, codeCademyAddModuleLogic.eventHandlerMouseClickedAddModule(TextFieldModuleVersion,textFieldModuleName, TextFieldModuleDescription,TextFieldModuleContactName,TextFieldModuleContactEmail, linkedCourse));
+        addModuleButton.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademyAddModuleLogic.eventHandlerMouseClickedAddModule(TextFieldModuleVersion,textFieldModuleName, TextFieldModuleDescription,TextFieldModuleContactName,TextFieldModuleContactEmail, linkedCourse));
         return vbox;
     }
 

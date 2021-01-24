@@ -21,7 +21,7 @@ public class CodeCademyClickedCourseStatisticsLogic {
         EventHandler<MouseEvent> EventMouseOnClickAddModuleButton = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                CodeCademyStage.getStage().setScene(codeCademyAddModule.CodeCademyAddModuleSceneBuilder(name));;
+                CodeCademyStage.getStage().setScene(CodeCademyAddModule.codeCademyAddModuleSceneBuilder(name));
             }
         };
         return EventMouseOnClickAddModuleButton;

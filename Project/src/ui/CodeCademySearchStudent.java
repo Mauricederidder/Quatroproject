@@ -22,7 +22,7 @@ import javafx.scene.text.Text;
 
 public class CodeCademySearchStudent {
 
-    protected static Scene CodeCademySearchStudentSceneBuilder(){
+    protected static Scene codeCademySearchStudentSceneBuilder(){
         Scene codeCademySearchStudentScene = new Scene(codeCademySearchStudentLayout());
         return codeCademySearchStudentScene;
     }

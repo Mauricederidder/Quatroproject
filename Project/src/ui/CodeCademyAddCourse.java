@@ -22,7 +22,7 @@ import javafx.scene.text.Text;
 
 public class CodeCademyAddCourse {
 
-    protected static Scene CodeCademyAddCourseSceneBuilder(){
+    protected static Scene codeCademyAddCourseSceneBuilder(){
         Scene codeCademyAllCoursesScene = new Scene(codeCademyAddCourseLayout());
         return codeCademyAllCoursesScene;
     }

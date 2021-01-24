@@ -31,13 +31,13 @@ public class CodeCademyAccountInformation {
 
     private static Student student;
 
-    protected static Scene CodeCademyAccountInformationSceneBuilder(Student studentArg) {
+    protected static Scene codeCademyAccountInformationSceneBuilder(Student studentArg) {
         student = studentArg;
-        Scene codeCademyAllCoursesScene = new Scene(CodeCademyAccountInformationLayout());
+        Scene codeCademyAllCoursesScene = new Scene(codeCademyAccountInformationLayout());
         return codeCademyAllCoursesScene;
     }
 
-    protected static BorderPane CodeCademyAccountInformationLayout() {
+    protected static BorderPane codeCademyAccountInformationLayout() {
         BorderPane root = new BorderPane();
         root.setMinSize(800, 900);
         root.setTop(codeCademyAccountInformationGridHeader());

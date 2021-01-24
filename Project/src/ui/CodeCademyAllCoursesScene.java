@@ -28,7 +28,7 @@ import javafx.scene.text.Text;
 public class CodeCademyAllCoursesScene {
 
 
-    protected static Scene CodeCademyAllCoursesSceneBuilder(){
+    protected static Scene codeCademyAllCoursesSceneBuilder(){
         Scene codeCademyAllCoursesScene = new Scene(codeCademyAllCoursesLayout());
         return codeCademyAllCoursesScene;
     }
@@ -102,27 +102,27 @@ public class CodeCademyAllCoursesScene {
 
         // First, create the table.
         Label tableHeaderLabel = codeCademyAllCoursesGridPaneTableLabelCourseCompletion();
-        Label FirstColumnFirstRow = codeCademyAllCoursesGridPaneTableLabelFirstColumn();
-        Label SecondColumnFirstRow = codeCademyAllCoursesGridPaneTableLabelSecondColumn();
-        Label ThirdColumnFirstRow = codeCademyAllCoursesGridPaneTableLabelThirdColumn();
-        Label FourthColumnFirstRow = codeCademyAllCoursesGridPaneTableLabelFourthColumn();
+        Label firstColumnFirstRow = codeCademyAllCoursesGridPaneTableLabelFirstColumn();
+        Label secondColumnFirstRow = codeCademyAllCoursesGridPaneTableLabelSecondColumn();
+        Label thirdColumnFirstRow = codeCademyAllCoursesGridPaneTableLabelThirdColumn();
+        Label fourthColumnFirstRow = codeCademyAllCoursesGridPaneTableLabelFourthColumn();
         
         tablesGrid.add(tableHeaderLabel,1,0);
         tablesGrid.setColumnSpan(tableHeaderLabel, 5);
 
-        tablesGrid.add(FirstColumnFirstRow,1,1);
-        tablesGrid.add(SecondColumnFirstRow,2,1);
-        tablesGrid.add(ThirdColumnFirstRow,3,1);
-        tablesGrid.add(FourthColumnFirstRow,4,1);
+        tablesGrid.add(firstColumnFirstRow,1,1);
+        tablesGrid.add(secondColumnFirstRow,2,1);
+        tablesGrid.add(thirdColumnFirstRow,3,1);
+        tablesGrid.add(fourthColumnFirstRow,4,1);
 
         tablesGrid.setStyle("-fx-background-color:#000000");
         tablesGrid.setVgap(20);
         tablesGrid.setHgap(10);
 
-        FirstColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE  );
-        SecondColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE );
-        ThirdColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE  );
-        FourthColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE );
+        firstColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE  );
+        secondColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE );
+        thirdColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE  );
+        fourthColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE );
 
         tablesGrid.add(addButton,5,3);
         
@@ -130,27 +130,27 @@ public class CodeCademyAllCoursesScene {
         CourseRepo courseRepo = new CourseRepo();
         for (int i = 1; i < courseRepo.get().size() + 1; i++) {
 
-            Label FirstColumnSecondRow = codeCademyAllCoursesGridPaneTupelsLabelFirstColumn(courseRepo.get(i));
-            Label SecondColumnSecondRow = codeCademyAllCoursesGridPaneTupelsLabelSecondColumn(courseRepo.get(i));
-            Label ThirdColumnSecondRow = codeCademyAllCoursesGridPaneTupelsLabelThirdColumn(courseRepo.get(i));
-            Label FourthColumnSecondRow = codeCademyAllCoursesGridPaneTupelsLabelFourthColumn(courseRepo.get(i));
+            Label firstColumnSecondRow = codeCademyAllCoursesGridPaneTupelsLabelFirstColumn(courseRepo.get(i));
+            Label secondColumnSecondRow = codeCademyAllCoursesGridPaneTupelsLabelSecondColumn(courseRepo.get(i));
+            Label thirdColumnSecondRow = codeCademyAllCoursesGridPaneTupelsLabelThirdColumn(courseRepo.get(i));
+            Label fourthColumnSecondRow = codeCademyAllCoursesGridPaneTupelsLabelFourthColumn(courseRepo.get(i));
 
-            FirstColumnSecondRow.setPadding(new Insets(25,10,25,10));
-            SecondColumnSecondRow.setPadding(new Insets(25,10,25,10));
-            ThirdColumnSecondRow.setPadding(new Insets(25,10,25,10));
-            FourthColumnSecondRow.setPadding(new Insets(25,10,25,10));
+            firstColumnSecondRow.setPadding(new Insets(25,10,25,10));
+            secondColumnSecondRow.setPadding(new Insets(25,10,25,10));
+            thirdColumnSecondRow.setPadding(new Insets(25,10,25,10));
+            fourthColumnSecondRow.setPadding(new Insets(25,10,25,10));
 
-            FirstColumnSecondRow.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademyAllCoursesLogic.eventHandlerMouseOver(courseRepo.get(i)));
+            firstColumnSecondRow.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademyAllCoursesLogic.eventHandlerMouseOver(courseRepo.get(i)));
 
-            FirstColumnSecondRow.setMaxSize(170,40);
-            SecondColumnSecondRow.setMaxSize(170,40);
-            ThirdColumnSecondRow.setMaxSize(170,40);
-            FourthColumnSecondRow.setMaxSize(170,40);
+            firstColumnSecondRow.setMaxSize(170,40);
+            secondColumnSecondRow.setMaxSize(170,40);
+            thirdColumnSecondRow.setMaxSize(170,40);
+            fourthColumnSecondRow.setMaxSize(170,40);
             
-            tablesGrid.add(FirstColumnSecondRow,1,2+i);
-            tablesGrid.add(SecondColumnSecondRow,2,2+i);
-            tablesGrid.add(ThirdColumnSecondRow,3,2+i);
-            tablesGrid.add(FourthColumnSecondRow,4,2+i);
+            tablesGrid.add(firstColumnSecondRow,1,2+i);
+            tablesGrid.add(secondColumnSecondRow,2,2+i);
+            tablesGrid.add(thirdColumnSecondRow,3,2+i);
+            tablesGrid.add(fourthColumnSecondRow,4,2+i);
         }
 
         return tablesGrid;
@@ -244,13 +244,13 @@ public class CodeCademyAllCoursesScene {
         tablesGrid.getColumnConstraints().add(new ColumnConstraints(30));
 
         Label tableHeaderLabel = codeCademyAllCoursesGridPaneTableLabelTopCourses();
-        Label FirstColumnFirstRow = codeCademyAllCoursesGridPaneTopCoursesFirstColumn();
-        Label SecondColumnFirstRow = codeCademyAllCoursesGridPaneTopCoursesSecondColumn();
-        Label ThirdColumnFirstRow = codeCademyAllCoursesGridPaneTopCoursesThirdColumn();
+        Label firstColumnFirstRow = codeCademyAllCoursesGridPaneTopCoursesFirstColumn();
+        Label secondColumnFirstRow = codeCademyAllCoursesGridPaneTopCoursesSecondColumn();
+        Label thirdColumnFirstRow = codeCademyAllCoursesGridPaneTopCoursesThirdColumn();
 
-        FirstColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE  );
-        SecondColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE );
-        ThirdColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE  );
+        firstColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE  );
+        secondColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE );
+        thirdColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE  );
 
         tablesGrid.setStyle("-fx-background-color:#000000");
         tablesGrid.setVgap(20);
@@ -258,29 +258,29 @@ public class CodeCademyAllCoursesScene {
         tablesGrid.add(tableHeaderLabel,1,0);
         tablesGrid.setColumnSpan(tableHeaderLabel, 5);
 
-        tablesGrid.add(FirstColumnFirstRow,1,1);
-        tablesGrid.add(SecondColumnFirstRow,2,1);
-        tablesGrid.add(ThirdColumnFirstRow,3,1);
+        tablesGrid.add(firstColumnFirstRow,1,1);
+        tablesGrid.add(secondColumnFirstRow,2,1);
+        tablesGrid.add(thirdColumnFirstRow,3,1);
 
         // Then fill in the DATA
         CourseRepo courseRepo = new CourseRepo();
         for (int i = 1; i < courseRepo.top5Courses().size() + 1; i++) {
 
-            Label FirstColumnSecondRow = codeCademyTopCoursesGridPaneTupelsLabelFirstColumn(courseRepo.get(i));
-            Label SecondColumnSecondRow = codeCademyTopCoursesGridPaneTupelsLabelSecondColumn(courseRepo.get(i));
-            Label ThirdColumnSecondRow = codeCademyTopCoursesGridPaneTupelsLabelThirdColumn(courseRepo.get(i));
+            Label firstColumnSecondRow = codeCademyTopCoursesGridPaneTupelsLabelFirstColumn(courseRepo.get(i));
+            Label secondColumnSecondRow = codeCademyTopCoursesGridPaneTupelsLabelSecondColumn(courseRepo.get(i));
+            Label thirdColumnSecondRow = codeCademyTopCoursesGridPaneTupelsLabelThirdColumn(courseRepo.get(i));
             
-            FirstColumnSecondRow.setPadding(new Insets(25,10,25,10));
-            SecondColumnSecondRow.setPadding(new Insets(25,10,25,10));
-            ThirdColumnSecondRow.setPadding(new Insets(25,10,25,10));
+            firstColumnSecondRow.setPadding(new Insets(25,10,25,10));
+            secondColumnSecondRow.setPadding(new Insets(25,10,25,10));
+            thirdColumnSecondRow.setPadding(new Insets(25,10,25,10));
 
-            FirstColumnSecondRow.setMaxSize(170,40);
-            SecondColumnSecondRow.setMaxSize(170,40);
-            ThirdColumnSecondRow.setMaxSize(170,40);
+            firstColumnSecondRow.setMaxSize(170,40);
+            secondColumnSecondRow.setMaxSize(170,40);
+            thirdColumnSecondRow.setMaxSize(170,40);
 
-            tablesGrid.add(FirstColumnSecondRow,1,2+i);
-            tablesGrid.add(SecondColumnSecondRow,2,2+i);
-            tablesGrid.add(ThirdColumnSecondRow,3,2+i);
+            tablesGrid.add(firstColumnSecondRow,1,2+i);
+            tablesGrid.add(secondColumnSecondRow,2,2+i);
+            tablesGrid.add(thirdColumnSecondRow,3,2+i);
      
         }
         return tablesGrid;
@@ -356,13 +356,13 @@ public class CodeCademyAllCoursesScene {
         tablesGrid.getColumnConstraints().add(new ColumnConstraints(30));
 
         Label tableHeaderLabel = codeCademyAllCoursesGridPaneTableLabelMostCertificates();
-        Label FirstColumnFirstRow = codeCademyAllCoursesGridPaneMostCertificatesFirstColumn();
-        Label SecondColumnFirstRow = codeCademyAllCoursesGridPaneMostCertificatesSecondColumn();
-        Label ThirdColumnFirstRow = codeCademyAllCoursesGridPaneMostCertificatesThirdColumn();
+        Label firstColumnFirstRow = codeCademyAllCoursesGridPaneMostCertificatesFirstColumn();
+        Label secondColumnFirstRow = codeCademyAllCoursesGridPaneMostCertificatesSecondColumn();
+        Label thirdColumnFirstRow = codeCademyAllCoursesGridPaneMostCertificatesThirdColumn();
 
-        FirstColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE  );
-        SecondColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE );
-        ThirdColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE  );
+        firstColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE  );
+        secondColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE );
+        thirdColumnFirstRow.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE  );
 
         tablesGrid.setStyle("-fx-background-color:#000000");
         tablesGrid.setVgap(20);
@@ -370,9 +370,9 @@ public class CodeCademyAllCoursesScene {
         tablesGrid.add(tableHeaderLabel,1,0);
         tablesGrid.setColumnSpan(tableHeaderLabel, 5);
 
-        tablesGrid.add(FirstColumnFirstRow,1,1);
-        tablesGrid.add(SecondColumnFirstRow,2,1);
-        tablesGrid.add(ThirdColumnFirstRow,3,1);
+        tablesGrid.add(firstColumnFirstRow,1,1);
+        tablesGrid.add(secondColumnFirstRow,2,1);
+        tablesGrid.add(thirdColumnFirstRow,3,1);
 
         // Then fill in the DATA
         CourseRepo courseRepo = new CourseRepo();
@@ -385,21 +385,21 @@ public class CodeCademyAllCoursesScene {
             
 
             
-            Label FirstColumnSecondRow = codeCademyMostCertificatesGridPaneTupelsLabelFirstColumn(i);
-            Label SecondColumnSecondRow = codeCademyMostCertificatesGridPaneTupelsLabelSecondColumn(pair.getKey());
-            Label ThirdColumnSecondRow = codeCademyMostCertificatesGridPaneTupelsLabelThirdColumn(pair.getValue());
+            Label firstColumnSecondRow = codeCademyMostCertificatesGridPaneTupelsLabelFirstColumn(i);
+            Label secondColumnSecondRow = codeCademyMostCertificatesGridPaneTupelsLabelSecondColumn(pair.getKey());
+            Label thirdColumnSecondRow = codeCademyMostCertificatesGridPaneTupelsLabelThirdColumn(pair.getValue());
             
-            FirstColumnSecondRow.setPadding(new Insets(25,10,25,10));
-            SecondColumnSecondRow.setPadding(new Insets(25,10,25,10));
-            ThirdColumnSecondRow.setPadding(new Insets(25,10,25,10));
+            firstColumnSecondRow.setPadding(new Insets(25,10,25,10));
+            secondColumnSecondRow.setPadding(new Insets(25,10,25,10));
+            thirdColumnSecondRow.setPadding(new Insets(25,10,25,10));
 
-            FirstColumnSecondRow.setMaxSize(170,40);
-            SecondColumnSecondRow.setMaxSize(170,40);
-            ThirdColumnSecondRow.setMaxSize(170,40);
+            firstColumnSecondRow.setMaxSize(170,40);
+            secondColumnSecondRow.setMaxSize(170,40);
+            thirdColumnSecondRow.setMaxSize(170,40);
 
-            tablesGrid.add(FirstColumnSecondRow,1,2+i);
-            tablesGrid.add(SecondColumnSecondRow,2,2+i);
-            tablesGrid.add(ThirdColumnSecondRow,3,2+i);
+            tablesGrid.add(firstColumnSecondRow,1,2+i);
+            tablesGrid.add(secondColumnSecondRow,2,2+i);
+            tablesGrid.add(thirdColumnSecondRow,3,2+i);
         }
            
         
