@@ -99,6 +99,7 @@ public class CodeCademyClickedCourseStatistics {
         GridPane grid = new GridPane();
         Button button = codeCademyClickedCourseStatisticsAddCertificateButton();
         Label label = codeCademyClickedCourseStatisticsAddCertificateLabel();
+        button.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademyClickedCourseStatisticsLogic.EventMouseOnClickAddCertificateButton(linkedCourse));
         button.setMinWidth(100);
         button.setMaxWidth(250);
         grid.getColumnConstraints().add(new ColumnConstraints(230));
