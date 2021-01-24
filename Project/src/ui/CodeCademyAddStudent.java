@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -73,7 +74,7 @@ public class CodeCademyAddStudent {
         VBox vbox = new VBox();
         TextField TextFieldStudentEmail = codeCademyAddStudentTextFieldStudentContactVersion();
         TextField textFieldStudentName = codeCademyAddStudentTextFieldStudentName();
-        TextField TextFieldStudentGender = codeCademyAddStudentTextFieldStudentGender();
+        ComboBox TextFieldStudentGender = codeCademyAddStudentTextFieldStudentGender();
         TextField TextFieldStudentAddress = codeCademyAddStudentTextFieldStudentContactAddress();
         TextField TextFieldStudentContactCity = codeCademyAddStudentTextFieldStudentContactCity();
         TextField TextFieldStudentPostalCode = codeCademyAddStudentTextFieldPostalCode();
@@ -99,6 +100,7 @@ public class CodeCademyAddStudent {
         vbox.getChildren().add(new Label(""));
 
         vbox.getChildren().add(addStudentButton);
+        addStudentButton.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademyAddStudentLogic.EventHandlerMouseClickAddStudent(TextFieldStudentEmail, textFieldStudentName, TextFieldStudentGender, TextFieldStudentAddress,TextFieldStudentContactCity, TextFieldStudentPostalCode));
 
         return vbox;
     }
@@ -139,10 +141,14 @@ public class CodeCademyAddStudent {
         return TextFieldLabelOne;
     }
 
-    protected static TextField codeCademyAddStudentTextFieldStudentGender() {
-        TextField TextFieldStudentTag = new TextField();
-        TextFieldStudentTag.setText("Student Gender");
-        return TextFieldStudentTag;
+    protected static ComboBox codeCademyAddStudentTextFieldStudentGender() {
+        ComboBox combobox = new ComboBox();
+        combobox.getItems().addAll(
+            "Male",
+            "Female"
+        );
+       combobox.getSelectionModel().selectFirst();
+        return combobox;
     }
     
     protected static Label codeCademyAddStudentTextFieldLabelStudentAddress() {
