@@ -31,6 +31,8 @@ public class CodeCademyAddStudentLogic {
         EventHandler<MouseEvent> eventHandlerMouseOver = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
+
+
                 String studentEmail = email.getText();
                 String studentNaam = naam.getText();
                 String gend = String.valueOf(gender.getValue());
@@ -41,7 +43,7 @@ public class CodeCademyAddStudentLogic {
                 Date dayofBirth = Date.valueOf("1997-02-16");  
 
                 Student student = new Student(studentEmail, studentNaam, dayofBirth, gend,
-                adres, studentContactCity, studentPostalCode, studentPostalCode, 0);
+                adres, studentContactCity, country, studentPostalCode, 0);
 
                 StudentRepo s = new StudentRepo();
                 s.create(student);
