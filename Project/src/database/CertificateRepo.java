@@ -11,29 +11,27 @@ public class CertificateRepo implements Crud<Certificate> {
 
     @Override
     public void create(Certificate params) {
-        int certificateID = params.getCertificateId();
+        
         String certificateName = params.getName();
-        int rating = params.getRating();
+        int courseId = params.getCourseId();
         String difficulty = params.getDifficulty();
 
         ResultSet rs = DatabaseConnection
-                .execute(String.format("INSERT INTO Courses(Name, Rating, Difficulty) VALUES ('%s','%d','%s');",
-                        certificateName, rating, difficulty));
+                .execute(String.format("INSERT INTO Certificate(Name,CourseID, Difficulty) VALUES ('%s','%d','%s');",
+                        certificateName,courseId, difficulty));
     }
 
     @Override
     public Certificate get(int id) {
         ResultSet rs = DatabaseConnection
                 .execute(String.format("SELECT * FROM Certificate WHERE CertificateID = %d", id));
-        Certificate certificate = new Certificate(0, null, 0, null);
+        Certificate certificate = new Certificate(null, null,0);
 
         try {
 
             while (rs.next()) {
 
                 certificate.setName(rs.getString("Name"));
-                certificate.setCertificateId(rs.getInt("CertificateID"));
-                certificate.setRating(rs.getInt("Subject"));
 
                 System.out.println(certificate);
             }
@@ -51,11 +49,10 @@ public class CertificateRepo implements Crud<Certificate> {
         try {
             while (rs.next()) {
 
-                Certificate certificate = new Certificate(0, null, 0, null);
-                certificate.setCertificateId(rs.getInt("CertificateID"));
+                Certificate certificate = new Certificate(null, null,0);
                 certificate.setName(rs.getString("Name"));
-                certificate.setRating(rs.getInt("Rating"));
                 certificate.setDifficulty(rs.getString("Difficulty"));
+                certificate.setCourseId(rs.getInt("CourseID"));
                 certificateList.add(certificate);
 
             }
@@ -136,7 +133,7 @@ public class CertificateRepo implements Crud<Certificate> {
         }
         // if no one is subscribed to the course, add 0.
         if(completionBasedOnGender.isEmpty()){
-            completionBasedOnGender.add("0%");
+            completionBasedOnGender.add("0");
             completionBasedOnGender.add("0");
         }
         return completionBasedOnGender;

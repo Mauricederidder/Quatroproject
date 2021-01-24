@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -73,13 +74,27 @@ public class CodeCademyAddCourse {
 
     protected static VBox codeCademyAddCourseTextfieldVbox(){
         VBox vbox = new VBox();
+        TextField courseName = codeCademyAddCourseTextFieldCourseName();
+        TextField courseSubject = codeCademyAddCourseTextFieldCourseSubject();
+        ComboBox difficulty = codeCademyAddCourseTextFieldCourseDifficulty();
+        TextField introText = codeCademyAddCourseTextFieldCourseIntroText();
+        TextField description = codeCademyAddCourseTextFieldCourseDescription();
+
         vbox.getChildren().add(codeCademyAddCourseTextFieldLabelCourseName());
-        vbox.getChildren().add(codeCademyAddCourseTextFieldCourseName());
+        vbox.getChildren().add(courseName);
         vbox.getChildren().add(new Label(""));
-        vbox.getChildren().add(codeCademyAddCourseTextFieldLabelCourseTag());
-        vbox.getChildren().add(codeCademyAddCourseTextFieldCourseTag());
+        vbox.getChildren().add(codeCademyAddCourseTextFieldLabelCourseSubject());
+        vbox.getChildren().add(courseSubject);
         vbox.getChildren().add(new Label(""));
-      //  vbox.getChildren().add(codeCademyAddCourseAddModulesOverview());
+        vbox.getChildren().add(codeCademyAddCourseTextFieldLabelCourseDifficulty());
+        vbox.getChildren().add(difficulty);
+        vbox.getChildren().add(new Label(""));
+        vbox.getChildren().add(codeCademyAddCourseTextFieldLabelCourseIntoText());
+        vbox.getChildren().add(introText);
+        vbox.getChildren().add(new Label(""));
+        vbox.getChildren().add(codeCademyAddCourseTextFieldLabelCourseDescription());
+        vbox.getChildren().add(description);
+        vbox.getChildren().add(new Label(""));
         vbox.getChildren().add(codeCademyAddCourseGridPane());
         vbox.getChildren().add(new Label(""));
         vbox.getChildren().add(new Label(""));
@@ -99,17 +114,62 @@ public class CodeCademyAddCourse {
         return TextFieldCoursename;
     }
 
-    protected static Label codeCademyAddCourseTextFieldLabelCourseTag(){
-        Label TextFieldLabelOne = new Label("Course tag: ");
+    protected static Label codeCademyAddCourseTextFieldLabelCourseSubject(){
+        Label TextFieldLabelOne = new Label("Course subject: ");
         TextFieldLabelOne.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(),16));
         TextFieldLabelOne.setTextFill(Color.web("#000000", 1.0));
         return TextFieldLabelOne;
     }
 
-    protected static TextField codeCademyAddCourseTextFieldCourseTag(){
+    protected static TextField codeCademyAddCourseTextFieldCourseSubject(){
         TextField TextFieldCoursename = new TextField();
-        TextFieldCoursename.setText("Course tag");
+        TextFieldCoursename.setText("Course subject");
         return TextFieldCoursename;
+    }
+
+    protected static Label codeCademyAddCourseTextFieldLabelCourseDifficulty(){
+        Label difficulty = new Label("Course Difficulty: ");
+        difficulty.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(),16));
+        difficulty.setTextFill(Color.web("#000000", 1.0));
+        return difficulty;
+    }
+
+    protected static ComboBox codeCademyAddCourseTextFieldCourseDifficulty(){
+        ComboBox ComboBox = new ComboBox();
+        ComboBox.getItems().addAll(
+          "Beginner",
+          "Advanced",
+          "Expert"
+          
+        );
+        ComboBox.getSelectionModel().selectFirst(); 
+        return ComboBox;
+    }
+
+    protected static Label codeCademyAddCourseTextFieldLabelCourseIntoText(){
+        Label label = new Label("Introduction: ");
+        label.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(),16));
+        label.setTextFill(Color.web("#000000", 1.0));
+        return label;
+    }
+
+    protected static TextField codeCademyAddCourseTextFieldCourseIntroText(){
+        TextField insertIntro = new TextField();
+        insertIntro.setText("insert intro");
+        return insertIntro;
+    }
+
+    protected static Label codeCademyAddCourseTextFieldLabelCourseDescription(){
+        Label label = new Label("Description: ");
+        label.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(),16));
+        label.setTextFill(Color.web("#000000", 1.0));
+        return label;
+    }
+
+    protected static TextField codeCademyAddCourseTextFieldCourseDescription(){
+        TextField Description = new TextField();
+        Description.setText("Description");
+        return Description;
     }
 
     protected static Button codeCademyAddCourseButton(){

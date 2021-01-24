@@ -1,5 +1,6 @@
 package ui;
 
+import domain.Course;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -10,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -21,8 +23,10 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class CodeCademyAddCertificate {
+    private static Course linkedCourse;
 
-    protected static Scene codeCademyAddCertificateSceneBuilder(){
+    protected static Scene CodeCademyAddCertificateSceneBuilder(Course course) {
+        linkedCourse = course;
         Scene codeCademyAddCertificateScene = new Scene(codeCademyAddCertificateLayout());
         return codeCademyAddCertificateScene;
     }
@@ -69,14 +73,18 @@ public class CodeCademyAddCertificate {
 
     protected static VBox codeCademyAddCertificateTextfieldVbox(){
         VBox vbox = new VBox();
+        Button addCertificateButton = codeCademyAddCertificateButton();
+        TextField textfieldNaam = codeCademAddCertificateTextFieldCName();
+        ComboBox comboboxGrade = codeCademyAddCertificateComboBoxCertificateTag();
         vbox.getChildren().add(codeCademyAddCertificateTextFieldLabelCertificateName());
-        vbox.getChildren().add(codeCademAddCertificateTextFieldCName());
+        vbox.getChildren().add(textfieldNaam);
         vbox.getChildren().add(new Label(""));
         vbox.getChildren().add(codeCademyAddCertificateTextFieldLabelCertificateTag());
-        vbox.getChildren().add(codeCademyAddCertificateTextFieldCertificateTag());
+        vbox.getChildren().add(comboboxGrade);
         vbox.getChildren().add(new Label(""));
       //  vbox.getChildren().add(codeCademyAddCourseAddModulesOverview());
-        vbox.getChildren().add(codeCademyAddCertificateButton());
+        vbox.getChildren().add(addCertificateButton);
+        addCertificateButton.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademyAddCertificateLogic.EventHandlerMouseClickAddCertificate(textfieldNaam,comboboxGrade,linkedCourse));
         return vbox;
     }
     protected static Label codeCademyAddCertificateTextFieldLabelCertificateName(){
@@ -93,16 +101,21 @@ public class CodeCademyAddCertificate {
     }
 
     protected static Label codeCademyAddCertificateTextFieldLabelCertificateTag(){
-        Label TextFieldLabelOne = new Label("Certificate tag: ");
+        Label TextFieldLabelOne = new Label("Certificate Difficulty: ");
         TextFieldLabelOne.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Bold.ttf").toExternalForm(),16));
         TextFieldLabelOne.setTextFill(Color.web("#000000", 1.0));
         return TextFieldLabelOne;
     }
 
-    protected static TextField codeCademyAddCertificateTextFieldCertificateTag(){
-        TextField TextFieldCertificatename = new TextField();
-        TextFieldCertificatename.setText("Certificate tag");
-        return TextFieldCertificatename;
+    protected static ComboBox codeCademyAddCertificateComboBoxCertificateTag(){
+        ComboBox ComboBox = new ComboBox();
+        ComboBox.getItems().addAll(
+            "Beginner",
+            "Advanced",      
+            "Expert"
+        );
+        ComboBox.getSelectionModel().selectFirst();
+        return ComboBox;
     }
 
     protected static Button codeCademyAddCertificateButton(){

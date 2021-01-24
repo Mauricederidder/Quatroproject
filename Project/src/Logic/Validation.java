@@ -123,13 +123,4 @@ public class Validation {
     //     return false;
     // }
 
-    public boolean test(Certificate certificate){
-        //Validate dificulty
-        if (validateDifficulty(certificate.getDifficulty()) &&
-        validatePercentage(certificate.getRating())
-        ) {
-            return true;
-        }
-        return false;
-    }
 }
