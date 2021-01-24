@@ -2,33 +2,15 @@ package domain;
 
 public class Certificate {
 
-    private int certificateId;
-    private int rating;
     private String name;
     private String difficulty;
+    private int courseId;
     // TODO:: Implementeer certificate
 
-    public Certificate(int certificateId, String name, int rating, String difficulty) {
-        this.certificateId = certificateId;
-        this.rating = rating;
+    public Certificate(String name, String difficulty, int courseId) {
         this.name = name;
         this.difficulty = difficulty;
-    }
-
-    public int getCertificateId() {
-        return this.certificateId;
-    }
-
-    public void setCertificateId(int certificateId) {
-        this.certificateId = certificateId;
-    }
-
-    public int getRating() {
-        return this.rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
+        this.courseId = courseId;
     }
 
     public String getName() {
@@ -47,11 +29,19 @@ public class Certificate {
         this.difficulty = difficulty;
     }
 
+    public int getCourseId(){
+        return this.courseId;
+    }
+
+    public void setCourseId(int courseId){
+        this.courseId = courseId;
+    }
+
+
     @Override
     public String toString() {
         // TODO Auto-generated method stub
-        return String.format(" CertificateID: %d \n Name: %s \n Rating: %d \n", this.certificateId, this.name,
-                this.rating);
+        return String.format("Name: %s \n", this.name);
     }
 
 }
