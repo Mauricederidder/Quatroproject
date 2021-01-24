@@ -52,10 +52,18 @@ public class CodeCademyAddStudent {
         Label emptyLabel = new Label();
         headerGrid.setPadding(new Insets(30, 10, 50, 10));
         headerGrid.setHgap(30);
+        headerGrid.add(codeCademyAccountInformationBackButton(), 0, 0);
         headerGrid.add(emptyLabel, 0, 1);
         headerGrid.add(codeCademyAddStudentSceneHeader(), 0, 2);
         headerGrid.setAlignment(Pos.TOP_CENTER);
         return headerGrid;
+    }
+
+    protected static Button codeCademyAccountInformationBackButton(){
+        Button button = new Button("Back");
+        button.addEventHandler(MouseEvent.MOUSE_CLICKED, CodeCademyAccountInformationLogic.eventHandlerBack());
+        button.setAlignment(Pos.TOP_LEFT);
+        return button;
     }
 
     protected static VBox codeCademyAddStudentSceneHeader() {

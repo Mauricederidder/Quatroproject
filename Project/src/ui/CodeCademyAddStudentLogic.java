@@ -29,6 +29,16 @@ import Logic.Validation;
 
 public class CodeCademyAddStudentLogic {
 
+    protected static EventHandler<MouseEvent> eventHandlerBack() {
+        EventHandler<MouseEvent> eventHandlerMouseOver = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                CodeCademyStage.getStage().setScene(CodeCademySearchStudent.codeCademySearchStudentSceneBuilder());
+            }
+        };
+        return eventHandlerMouseOver;
+    }
+
     protected static EventHandler<MouseEvent> EventHandlerMouseClickAddStudent(TextField email, TextField naam,
             ComboBox gender, TextField address, TextField contactCity, TextField postalCode, Label error) {
         EventHandler<MouseEvent> eventHandlerMouseOver = new EventHandler<MouseEvent>() {
@@ -61,5 +71,8 @@ public class CodeCademyAddStudentLogic {
         };
         return eventHandlerMouseOver;
 
+        
+
     }
+
 }
