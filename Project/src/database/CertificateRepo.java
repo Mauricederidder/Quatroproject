@@ -33,7 +33,7 @@ public class CertificateRepo implements Crud<Certificate> {
 
                 certificate.setName(rs.getString("Name"));
 
-                System.out.println(certificate);
+          //      System.out.println(certificate);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,7 +57,7 @@ public class CertificateRepo implements Crud<Certificate> {
 
             }
             for (Certificate i : certificateList) {
-                System.out.println(i);
+           //     System.out.println(i);
             }
 
         } catch (Exception e) {
@@ -100,7 +100,7 @@ public class CertificateRepo implements Crud<Certificate> {
                 completionBasedOnGender.add(courseName + " | Total: " + totalStudents + "  |  Male: " + percentageMale
                         + "%  |  Female: " + percentageFemale + "%  |  \n ");
             }
-            System.out.println(completionBasedOnGender);
+        //    System.out.println(completionBasedOnGender);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -126,7 +126,7 @@ public class CertificateRepo implements Crud<Certificate> {
                 // completionBasedOnGender.add(courseName + " | Total: " + totalStudents + "  |  Male: " + percentageMale
                 //         + "%  |  Female: " + percentageFemale + "%  |  \n ");
             }
-            System.out.println(completionBasedOnGender);
+        //    System.out.println(completionBasedOnGender);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -151,7 +151,7 @@ public class CertificateRepo implements Crud<Certificate> {
                 mostCertificates.put(courseName, amount);
             }
             for (String i : mostCertificates.keySet()) {
-                System.out.println(i + " | Amount of certificates: " + mostCertificates.get(i));
+      //          System.out.println(i + " | Amount of certificates: " + mostCertificates.get(i));
             }
         } catch (Exception e) {
             e.printStackTrace();

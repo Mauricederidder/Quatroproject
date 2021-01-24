@@ -6,6 +6,7 @@ import java.util.List;
 import database.CourseRepo;
 import database.ModuleRepo;
 import domain.Course;
+import domain.CourseAndTag;
 import domain.Module;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -184,34 +185,28 @@ public class CodeCademyClickedCourseStatistics {
         // courseRepo.matchingCoursesBasedOnTag(courseRepo.);
         CourseRepo courseRepo = new CourseRepo();
 
-        // Vergeef mij voor de zonden die ik heb begaan.
-        List bestMatchingCourses = courseRepo.matchingCoursesBasedOnTag( courseRepo.getTagsBasedOnCourse(linkedCourse.getCourseId()).get(0).toString());
+        List<CourseAndTag> bestMatchingCourses = courseRepo.matchingCoursesBasedOnTag( courseRepo.getTagsBasedOnCourse(linkedCourse.getCourseId()).get(0).toString());
         
         for (int i = 0; i < bestMatchingCourses.size(); i++) {
+            Label FirstColumnSecondRow = codeCademyClickedCourseStatisticsAmountofPeopleDummyDataOne(i);
+            Label SecondColumnSecondRow = codeCademyClickedCourseStatisticsAmountofPeopleDummyDataTwo(bestMatchingCourses.get(i));
+            Label ThirdColumnSecondRow = codeCademyClickedCourseStatisticsAmountofPeopleDummyDataThree(bestMatchingCourses.get(i));
+            Label FourthColumnSecondRow = codeCademyClickedCourseStatisticsAmountofPeopleDummyDataFour(bestMatchingCourses.get(i));
 
-            if(i % 3 == 0){
-                
-                Label FirstColumnSecondRow = codeCademyClickedCourseStatisticsAmountofPeopleDummyDataOne(i/3);
-                Label SecondColumnSecondRow = codeCademyClickedCourseStatisticsAmountofPeopleDummyDataTwo(bestMatchingCourses.get(i/3+2).toString());
-                Label ThirdColumnSecondRow = codeCademyClickedCourseStatisticsAmountofPeopleDummyDataThree(bestMatchingCourses.get(i/3+1).toString());
-                Label FourthColumnSecondRow = codeCademyClickedCourseStatisticsAmountofPeopleDummyDataFour(bestMatchingCourses.get(i/3).toString());
-    
-                FirstColumnSecondRow.setPadding(new Insets(25, 10, 25, 10));
-                SecondColumnSecondRow.setPadding(new Insets(25, 10, 25, 10));
-                ThirdColumnSecondRow.setPadding(new Insets(25, 10, 25, 10));
-                FourthColumnSecondRow.setPadding(new Insets(25, 10, 25, 10));
+            FirstColumnSecondRow.setPadding(new Insets(25, 10, 25, 10));
+            SecondColumnSecondRow.setPadding(new Insets(25, 10, 25, 10));
+            ThirdColumnSecondRow.setPadding(new Insets(25, 10, 25, 10));
+            FourthColumnSecondRow.setPadding(new Insets(25, 10, 25, 10));
+        
+            FirstColumnSecondRow.setMaxSize(170, 40);
+            SecondColumnSecondRow.setMaxSize(170, 40);
+            ThirdColumnSecondRow.setMaxSize(170, 40);
+            FourthColumnSecondRow.setMaxSize(170, 40);
             
-                FirstColumnSecondRow.setMaxSize(170, 40);
-                SecondColumnSecondRow.setMaxSize(170, 40);
-                ThirdColumnSecondRow.setMaxSize(170, 40);
-                FourthColumnSecondRow.setMaxSize(170, 40);
-                
-                matchingCourse.add(FirstColumnSecondRow, 0, 3+i/3);
-                matchingCourse.add(SecondColumnSecondRow, 1, 3+i/3);
-                matchingCourse.add(ThirdColumnSecondRow, 2, 3+i/3);
-                matchingCourse.add(FourthColumnSecondRow, 3, 3+i/3); 
-            }  
-
+            matchingCourse.add(FirstColumnSecondRow, 0, 3+i);
+            matchingCourse.add(SecondColumnSecondRow, 1, 3+i);
+            matchingCourse.add(ThirdColumnSecondRow, 2, 3+i);
+            matchingCourse.add(FourthColumnSecondRow, 3, 3+i); 
         }
         return matchingCourse;
     }
@@ -265,24 +260,24 @@ public class CodeCademyClickedCourseStatistics {
         return label;
     }
 
-    protected static Label codeCademyClickedCourseStatisticsAmountofPeopleDummyDataTwo(String courseName) {
-        Label label = new Label(courseName);
+    protected static Label codeCademyClickedCourseStatisticsAmountofPeopleDummyDataTwo(CourseAndTag courseAndTag) {
+        Label label = new Label(courseAndTag.getCourseName());
         label.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Regular.ttf").toExternalForm(), 14));
         label.setTextFill(Color.web("#FFFFFF", 1.0));
         label.setStyle("-fx-background-color:#404040");
         return label;
     }
 
-    protected static Label codeCademyClickedCourseStatisticsAmountofPeopleDummyDataThree(String studentAmount) {
-        Label label = new Label(studentAmount);
+    protected static Label codeCademyClickedCourseStatisticsAmountofPeopleDummyDataThree(CourseAndTag courseAndTag) {
+        Label label = new Label(courseAndTag.getStudentsPerCourse());
         label.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Regular.ttf").toExternalForm(), 14));
         label.setTextFill(Color.web("#FFFFFF", 1.0));
         label.setStyle("-fx-background-color:#404040");
         return label;
     }
 
-    protected static Label codeCademyClickedCourseStatisticsAmountofPeopleDummyDataFour(String tags) {
-        Label label = new Label(tags);
+    protected static Label codeCademyClickedCourseStatisticsAmountofPeopleDummyDataFour(CourseAndTag courseAndTag) {
+        Label label = new Label(courseAndTag.getTags());
         label.setFont(Font.loadFont(CodeCademyStage.class.getResource("Montserrat-Regular.ttf").toExternalForm(), 14));
         label.setTextFill(Color.web("#FFFFFF", 1.0));
         label.setStyle("-fx-background-color:#404040");

@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import domain.Course;
+import domain.CourseAndTag;
+
 import domain.Level;
 import domain.Module;
 import domain.ContentItem;
@@ -66,7 +68,7 @@ public class CourseRepo implements Crud<Course> {
                 course.setSubject(rs.getString("Subject"));
                 course.setIntroduction(rs.getString("IntroText"));
                 course.setDescription(rs.getString("Description"));
-                System.out.println(course);
+          //      System.out.println(course);
 
             }
         } catch (Exception e) {
@@ -89,13 +91,13 @@ public class CourseRepo implements Crud<Course> {
                 course.setIntroduction(rs.getString("IntroText"));
                 course.setDescription(rs.getString("Description"));
                 course.setCourseId(rs.getInt("CourseID"));
-                System.out.println(course);
+          //      System.out.println(course);
                 coursesList.add(course);
 
             }
 
             for (Course i : coursesList) {
-                System.out.println(i);
+      //          System.out.println(i);
             }
             return coursesList;
 
@@ -135,7 +137,7 @@ public class CourseRepo implements Crud<Course> {
             }
 
             for (String i : studentsPerCourse.keySet()) {
-                System.out.println(i + " | " + studentsPerCourse.get(i));
+ //               System.out.println(i + " | " + studentsPerCourse.get(i));
             }
 
         } catch (Exception e) {
@@ -160,7 +162,7 @@ public class CourseRepo implements Crud<Course> {
             }
 
             for (String i : studentsPerCourse.keySet()) {
-                System.out.println(i + " | " + studentsPerCourse.get(i));
+     //           System.out.println(i + " | " + studentsPerCourse.get(i));
             }
 
         } catch (Exception e) {
@@ -184,7 +186,7 @@ public class CourseRepo implements Crud<Course> {
             }
 
             for (String i : top5Courses.keySet()) {
-                System.out.println(i + " | Students: " + top5Courses.get(i));
+   //             System.out.println(i + " | Students: " + top5Courses.get(i));
             }
 
         } catch (Exception e) {
@@ -212,19 +214,19 @@ public class CourseRepo implements Crud<Course> {
         return behaald;
     }
 
-    public List matchingCoursesBasedOnTag(String tag) {
+    public List<CourseAndTag> matchingCoursesBasedOnTag(String tag) {
         ResultSet rs = DatabaseConnection.execute(String.format(
                 "SELECT Courses.CourseID, CourseName, TagName FROM Courses INNER JOIN CourseTags ON CourseTags.CourseID = Courses.CourseID INNER JOIN Tags ON Tags.TagID = CourseTags.TagID WHERE TagName = '%s'",
                 tag));
 
-        List<String> matchingCourses = new ArrayList<>();
+        List<CourseAndTag> matchingCourses = new ArrayList<>();
         try {
             while (rs.next()) {
-                String courseName = rs.getString("CourseName");
-                String tagName = rs.getString("TagName");
-                matchingCourses.add(courseName);
-                matchingCourses.add(tagName);
-                matchingCourses.add(studentsPerCourse(rs.getInt("CourseID")).toString());
+                CourseAndTag courseAndTags = new CourseAndTag(null, null, null);
+                courseAndTags.setCourseName(rs.getString("CourseName"));
+                courseAndTags.setStudentsPerCourse(studentsPerCourse(rs.getInt("CourseID")).toString());
+                courseAndTags.setTags(rs.getString("TagName"));
+                matchingCourses.add(courseAndTags);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -246,7 +248,7 @@ public class CourseRepo implements Crud<Course> {
                 String tagName = rs.getString("TagName");
                 matchingCourses.add(courseName + " | " + tagName);
             }
-            System.out.println(matchingCourses);
+     //       System.out.println(matchingCourses);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -256,7 +258,7 @@ public class CourseRepo implements Crud<Course> {
 
     public ArrayList<Module> getProgress(int id) {
         ResultSet rs = DatabaseConnection.execute(String.format(
-                "SELECT Modules.Titel, Progress.Progress FROM Progress INNER JOIN ContentItems ON ContentItems.ContentItemID = Progress.ContentItemID INNER JOIN Courses ON Courses.CourseID = ContentItems.CourseID INNER JOIN Modules ON ContentItems.ContentItemID = Modules.ContentItemID",
+                "SELECT Modules.Title, Progress.Progress FROM Progress INNER JOIN ContentItems ON ContentItems.ContentItemID = Progress.ContentItemID INNER JOIN Courses ON Courses.CourseID = ContentItems.CourseID INNER JOIN Modules ON ContentItems.ContentItemID = Modules.ContentItemID",
                 id));
 
         ArrayList<Module> progress = new ArrayList<Module>();
@@ -265,7 +267,7 @@ public class CourseRepo implements Crud<Course> {
             while (rs.next()) {
                 Module module = new Module(id, null, null, null, null, null, null, null);
                 module.setAvarageProgress(rs.getString("Progress"));
-                module.setTitle(rs.getString("Titel"));
+                module.setTitle(rs.getString("Title"));
                 progress.add(module);
             }
 

@@ -53,7 +53,7 @@ public class StudentRepo implements Crud<Student> {
                 student.setCity(rs.getString("City"));
                 student.setCountry(rs.getString("Country"));
                 student.setPostalCode(rs.getString("PostalCode"));
-                System.out.println(student);
+            //    System.out.println(student);
             }
 
         } catch (Exception e) {
